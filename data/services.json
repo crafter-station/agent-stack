@@ -1,0 +1,522 @@
+{
+  "services": [
+    {
+      "id": "clerk",
+      "name": "Clerk",
+      "category": "auth",
+      "tier": 1,
+      "score": 85,
+      "capabilities": {
+        "mcp": "official",
+        "mcpUrl": "https://mcp.clerk.com/mcp",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "official",
+        "cliName": "clerk",
+        "skills": true,
+        "oauth": true
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "excellent",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": true,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://clerk.com",
+        "docs": "https://docs.clerk.com",
+        "logo": "/logos/clerk.svg",
+        "description": "Complete authentication infrastructure with MCP server and PLAPI for one-shot provisioning"
+      },
+      "strengths": [
+        "Official MCP server",
+        "PLAPI for infrastructure provisioning",
+        "--include-secrets pattern for agents",
+        "OAuth device flow support",
+        "Comprehensive webhooks"
+      ],
+      "gaps": [
+        "Custom domains need manual verification"
+      ],
+      "bestFor": "User identity, organizations, multi-tenant SaaS",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "category": "database",
+      "tier": 1,
+      "score": 82,
+      "capabilities": {
+        "mcp": "official",
+        "mcpUrl": "https://supabase.com/docs/guides/ai/mcp",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "official",
+        "cliName": "supabase",
+        "skills": false,
+        "oauth": true
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "good",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": true,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": true
+      },
+      "metadata": {
+        "homepage": "https://supabase.com",
+        "docs": "https://supabase.com/docs",
+        "logo": "/logos/supabase.svg",
+        "description": "PostgreSQL + backend services with OAuth-first MCP and database branching"
+      },
+      "strengths": [
+        "OAuth device flow (no PAT needed)",
+        "Database branching for testing",
+        "Official MCP with comprehensive tools",
+        "Full infrastructure provisioning API",
+        "Realtime + webhooks"
+      ],
+      "gaps": [
+        "MCP is dev-only (not production data)"
+      ],
+      "bestFor": "Full backend development, rapid prototyping",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "code",
+      "tier": 1,
+      "score": 81,
+      "capabilities": {
+        "mcp": "none",
+        "platformAPI": true,
+        "apiType": "Both",
+        "cli": "official",
+        "cliName": "gh",
+        "skills": false,
+        "oauth": true
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "excellent",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": true,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://github.com",
+        "docs": "https://docs.github.com",
+        "logo": "/logos/github.svg",
+        "description": "Repository management with gh CLI (JSON output) and new Copilot CLI agents"
+      },
+      "strengths": [
+        "gh CLI with perfect JSON output",
+        "Copilot CLI agents (2026)",
+        "REST + GraphQL APIs",
+        "OAuth device flow",
+        "Comprehensive webhooks"
+      ],
+      "gaps": [
+        "No MCP server (REST/CLI sufficient)"
+      ],
+      "bestFor": "Repository creation, branch management, CI/CD automation",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "trigger",
+      "name": "Trigger.dev",
+      "category": "jobs",
+      "tier": 1,
+      "score": 80,
+      "capabilities": {
+        "mcp": "official",
+        "mcpUrl": "https://trigger.dev/docs/mcp-server",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "official",
+        "cliName": "trigger.dev",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": true,
+        "errorHandling": "excellent",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": true,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://trigger.dev",
+        "docs": "https://trigger.dev/docs",
+        "logo": "/logos/trigger.svg",
+        "description": "Serverless background jobs with official MCP and Agent Rules for specialized guidance"
+      },
+      "strengths": [
+        "Official MCP with Agent Rules",
+        "Task-driven automation",
+        "One-command deployment",
+        "Full observability",
+        "Generous free tier"
+      ],
+      "gaps": [],
+      "bestFor": "Async tasks, scheduled jobs, event-driven workflows",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "neon",
+      "name": "Neon",
+      "category": "database",
+      "tier": 1,
+      "score": 78,
+      "capabilities": {
+        "mcp": "none",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "none",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": false,
+        "agentRules": false,
+        "errorHandling": "good",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": false,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": true
+      },
+      "metadata": {
+        "homepage": "https://neon.tech",
+        "docs": "https://neon.tech/docs",
+        "logo": "/logos/neon.svg",
+        "description": "Managed PostgreSQL with unique Data API for serverless/edge access"
+      },
+      "strengths": [
+        "Comprehensive REST API",
+        "Data API (HTTP access to Postgres)",
+        "Instant database cloning",
+        "Edge-friendly",
+        "OpenAPI schema available"
+      ],
+      "gaps": [
+        "No MCP server",
+        "No CLI tool"
+      ],
+      "bestFor": "PostgreSQL infrastructure, edge compute",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "category": "edge",
+      "tier": 2,
+      "score": 76,
+      "capabilities": {
+        "mcp": "none",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "official",
+        "cliName": "wrangler",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "good",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": false,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://cloudflare.com",
+        "docs": "https://developers.cloudflare.com",
+        "logo": "/logos/cloudflare.svg",
+        "description": "Edge compute and DNS with Wrangler CLI - can host MCP servers on Workers"
+      },
+      "strengths": [
+        "Wrangler CLI with JSON output",
+        "Can HOST MCP servers on Workers",
+        "Comprehensive infrastructure API",
+        "Global edge network"
+      ],
+      "gaps": [
+        "No MCP server for Cloudflare API itself",
+        "DNS automation requires manual verification"
+      ],
+      "bestFor": "DNS management, edge functions, global distribution",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "category": "deploy",
+      "tier": 2,
+      "score": 72,
+      "capabilities": {
+        "mcp": "none",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "official",
+        "cliName": "vercel",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "excellent",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": true,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": true
+      },
+      "metadata": {
+        "homepage": "https://vercel.com",
+        "docs": "https://vercel.com/docs",
+        "logo": "/logos/vercel.svg",
+        "description": "Next.js hosting with Agent-Browser (93% context reduction) and deploy previews"
+      },
+      "strengths": [
+        "Agent-Browser (AI-native automation)",
+        "Vercel Agent for code review",
+        "CLI with JSON output",
+        "Deploy previews for testing"
+      ],
+      "gaps": [
+        "Limited to deployment (not infra provisioning)",
+        "No database management"
+      ],
+      "bestFor": "App deployment, preview environments",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "category": "email",
+      "tier": 3,
+      "score": 68,
+      "capabilities": {
+        "mcp": "community",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "none",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "good",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": false,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": false,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://resend.com",
+        "docs": "https://resend.com/docs",
+        "logo": "/logos/resend.svg",
+        "description": "Transactional email with templates, scheduling, and community MCP"
+      },
+      "strengths": [
+        "MCP via community (Skywork)",
+        "Templates + scheduling",
+        "Webhooks for delivery events"
+      ],
+      "gaps": [
+        "No CLI",
+        "Email domain verification manual"
+      ],
+      "bestFor": "Transactional email, templating",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "uploadthing",
+      "name": "Uploadthing",
+      "category": "files",
+      "tier": 3,
+      "score": 65,
+      "capabilities": {
+        "mcp": "none",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "none",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "basic",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": false,
+        "openAPI": false,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": false,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://uploadthing.com",
+        "docs": "https://docs.uploadthing.com",
+        "logo": "/logos/uploadthing.svg",
+        "description": "File uploads with presigned URLs for security and comprehensive webhooks"
+      },
+      "strengths": [
+        "REST API comprehensive",
+        "Presigned URLs for security",
+        "Webhooks for file events"
+      ],
+      "gaps": [
+        "No MCP",
+        "No CLI",
+        "No OpenAPI schema"
+      ],
+      "bestFor": "File operations, uploads management",
+      "lastUpdated": "2026-02-01"
+    },
+    {
+      "id": "kapso",
+      "name": "Kapso",
+      "category": "messaging",
+      "tier": 3,
+      "score": 62,
+      "capabilities": {
+        "mcp": "official",
+        "mcpUrl": "https://docs.kapso.io/mcp",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "none",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "good",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": false,
+        "openAPI": false,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": false,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://kapso.io",
+        "docs": "https://docs.kapso.io",
+        "logo": "/logos/kapso.svg",
+        "description": "WhatsApp automation with MCP server, TypeScript SDK, and interactive flows"
+      },
+      "strengths": [
+        "MCP available",
+        "TypeScript SDK",
+        "Interactive flows"
+      ],
+      "gaps": [
+        "No CLI",
+        "Limited to WhatsApp"
+      ],
+      "bestFor": "WhatsApp automation, realtime alerts",
+      "lastUpdated": "2026-02-01"
+    }
+  ],
+  "metadata": {
+    "researchDate": "2026-02-01",
+    "researcher": "Hunter (Railly Hugo)",
+    "phase": "Research Complete",
+    "totalServices": 10,
+    "productionReady": 5
+  },
+  "recommendations": {
+    "recommendedStack": {
+      "auth": "Clerk",
+      "database": "Supabase OR Neon",
+      "deployment": "Vercel",
+      "jobs": "Trigger.dev",
+      "code": "GitHub",
+      "email": "Resend",
+      "files": "Uploadthing",
+      "messaging": "Kapso",
+      "edge": "Cloudflare"
+    },
+    "estimatedCost": "$100-200/month"
+  }
+}
