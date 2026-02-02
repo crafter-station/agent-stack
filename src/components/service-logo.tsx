@@ -33,7 +33,14 @@ export function ServiceLogo({ name, className = "h-5 w-5" }: ServiceLogoProps) {
     ),
     Supabase: <SupabaseLogo variant="icon" className={className} />,
     GitHub: <GithubLogo variant="invertocat" className={className} />,
-    "Trigger.dev": <TriggerLogo variant="icon" className={className} />,
+    "Trigger.dev": (
+      <TriggerLogo
+        variant="icon"
+        colorScheme="grayscale"
+        mode={isDark ? "dark" : "light"}
+        className={className}
+      />
+    ),
     Vercel: <VercelLogo variant="icon" className={className} />,
     Resend: <ResendLogo variant="icon" className={className} />,
     Neon: <NeonLogo variant="icon" className={className} />,

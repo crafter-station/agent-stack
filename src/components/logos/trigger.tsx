@@ -1,3 +1,7 @@
+"use client";
+
+import { useTheme } from "next-themes";
+
 const COLORS = {
   colorful: {
     light: {
@@ -43,13 +47,13 @@ export function TriggerLogo({
   className,
   variant = "icon",
   colorScheme = "grayscale",
-  mode = "light",
 }: {
   className?: string;
   variant?: "icon" | "wordmark";
   colorScheme?: "grayscale" | "colorful";
-  mode?: "dark" | "light";
 }) {
+  const { resolvedTheme } = useTheme();
+  const mode = resolvedTheme === "dark" ? "dark" : "light";
   const colors = COLORS[colorScheme][mode];
 
   if (variant === "wordmark") {
