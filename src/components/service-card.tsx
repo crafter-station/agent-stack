@@ -2,21 +2,8 @@
 
 import type { Service } from "@/lib/types";
 
-import {
-  CategoryBadge,
-  FeatureBadge,
-  ScoreBadge,
-  TierBadge,
-} from "@/components/badge-components";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { FeatureBadge } from "@/components/badge-components";
+import { ServiceModal } from "@/components/service-modal";
 
 interface ServiceCardProps {
   service: Service;
@@ -24,212 +11,290 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ service, onClose }: ServiceCardProps) {
-  const copyAsJSON = () => {
-    navigator.clipboard.writeText(JSON.stringify(service, null, 2));
-  };
-
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <div className="flex items-start justify-between">
-          <div className="space-y-2">
-            <div className="flex items-center gap-3">
-              <CardTitle className="text-2xl">{service.name}</CardTitle>
-              <TierBadge tier={service.tier} />
-              <CategoryBadge category={service.category} />
-            </div>
-            <CardDescription>{service.metadata.description}</CardDescription>
-          </div>
-          <div className="flex items-center gap-2">
-            <ScoreBadge score={service.score} />
-            {onClose && (
-              <Button variant="ghost" size="sm" onClick={onClose}>
-                ✕
-              </Button>
-            )}
-          </div>
-        </div>
-      </CardHeader>
+    <ServiceModal.Root service={service} onClose={onClose}>
+      <ServiceModal.Backdrop />
 
-      <CardContent className="space-y-6">
-        {/* Capabilities */}
-        <div>
-          <h3 className="mb-3 font-semibold">Capabilities</h3>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div>
-              <div className="text-xs text-muted-foreground mb-1">
-                MCP Server
-              </div>
-              <div className="flex items-center gap-2">
-                <FeatureBadge feature="mcp" status={service.capabilities.mcp} />
-                {service.capabilities.mcpUrl && (
-                  <a
-                    href={service.capabilities.mcpUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-blue-500 hover:underline truncate"
-                  >
-                    {service.capabilities.mcpUrl}
-                  </a>
-                )}
-              </div>
-            </div>
+      <ServiceModal.Content>
+        <ServiceModal.Close />
+        <ServiceModal.Header />
 
-            <div>
-              <div className="text-xs text-muted-foreground mb-1">
-                Platform API
+        <ServiceModal.Body>
+          {/* Capabilities */}
+          <ServiceModal.Section title="CAPABILITIES">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {/* MCP Server */}
+              <div className="border border-border rounded p-3 bg-background">
+                <div className="text-xs font-mono mb-2 text-muted-foreground">
+                  MCP_SERVER
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <FeatureBadge
+                    feature="mcp"
+                    status={service.capabilities.mcp}
+                  />
+                  {service.capabilities.mcpUrl && (
+                    <a
+                      href={service.capabilities.mcpUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono transition-colors text-primary hover:underline"
+                    >
+                      docs →
+                    </a>
+                  )}
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <FeatureBadge
-                  feature="api"
-                  status={service.capabilities.platformAPI}
-                />
-                {service.capabilities.apiType && (
-                  <span className="text-xs">
-                    {service.capabilities.apiType}
-                  </span>
-                )}
-              </div>
-            </div>
 
-            <div>
-              <div className="text-xs text-muted-foreground mb-1">CLI Tool</div>
-              <div className="flex items-center gap-2">
-                <FeatureBadge feature="cli" status={service.capabilities.cli} />
-                {service.capabilities.cliName && (
-                  <code className="text-xs bg-muted px-1 rounded">
-                    {service.capabilities.cliName}
-                  </code>
-                )}
+              {/* Platform API */}
+              <div className="border border-border rounded p-3 bg-background">
+                <div className="text-xs font-mono mb-2 text-muted-foreground">
+                  PLATFORM_API
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <FeatureBadge
+                    feature="api"
+                    status={service.capabilities.platformAPI}
+                  />
+                  {service.capabilities.apiType && (
+                    <span className="text-xs font-mono px-2 py-0.5 rounded border bg-card border-border text-foreground">
+                      {service.capabilities.apiType}
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div>
-              <div className="text-xs text-muted-foreground mb-1">
-                Additional
+              {/* CLI Tool */}
+              <div className="border border-border rounded p-3 bg-background">
+                <div className="text-xs font-mono mb-2 text-muted-foreground">
+                  CLI_TOOL
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <FeatureBadge
+                    feature="cli"
+                    status={service.capabilities.cli}
+                  />
+                  {service.capabilities.cliName && (
+                    <span className="text-xs font-mono px-2 py-0.5 rounded border bg-card border-border text-primary">
+                      {service.capabilities.cliName}
+                    </span>
+                  )}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-1">
-                {service.capabilities.oauth && (
-                  <FeatureBadge feature="oauth" status={true} />
-                )}
-                {service.capabilities.skills && (
-                  <Badge variant="secondary" className="text-xs">
-                    Skills
-                  </Badge>
-                )}
+
+              {/* Additional */}
+              <div className="border border-border rounded p-3 bg-background">
+                <div className="text-xs font-mono mb-2 text-muted-foreground">
+                  ADDITIONAL
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {service.capabilities.oauth && (
+                    <FeatureBadge feature="oauth" status={true} />
+                  )}
+                  {service.capabilities.skills && (
+                    <span className="text-xs font-mono px-2 py-0.5 rounded border bg-card border-border text-foreground">
+                      Skills
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </ServiceModal.Section>
 
-        {/* Features */}
-        <div>
-          <h3 className="mb-3 font-semibold">Features</h3>
-          <div className="grid gap-2 sm:grid-cols-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Webhooks</span>
-              <Badge
-                variant={service.features.webhooks ? "default" : "outline"}
-                className="text-xs"
+          {/* Features */}
+          <ServiceModal.Section title="FEATURES">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="flex items-center justify-between py-2 px-3 rounded border bg-background border-border">
+                <span className="text-xs font-mono text-muted-foreground">
+                  webhooks
+                </span>
+                <span
+                  className={`text-xs font-mono ${
+                    service.features.webhooks
+                      ? "text-[var(--color-green-400)]"
+                      : "text-muted-foreground/60"
+                  }`}
+                >
+                  {service.features.webhooks ? "yes" : "no"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2 px-3 rounded border bg-background border-border">
+                <span className="text-xs font-mono text-muted-foreground">
+                  agent_rules
+                </span>
+                <span
+                  className={`text-xs font-mono ${
+                    service.features.agentRules
+                      ? "text-[var(--color-green-400)]"
+                      : "text-muted-foreground/60"
+                  }`}
+                >
+                  {service.features.agentRules ? "yes" : "no"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2 px-3 rounded border bg-background border-border">
+                <span className="text-xs font-mono text-muted-foreground">
+                  error_handling
+                </span>
+                <span className="text-xs font-mono text-primary">
+                  {service.features.errorHandling}
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2 px-3 rounded border bg-background border-border">
+                <span className="text-xs font-mono text-muted-foreground">
+                  rate_limits
+                </span>
+                <span
+                  className={`text-xs font-mono ${
+                    service.features.rateLimits
+                      ? "text-[var(--color-green-400)]"
+                      : "text-muted-foreground/60"
+                  }`}
+                >
+                  {service.features.rateLimits ? "yes" : "no"}
+                </span>
+              </div>
+            </div>
+          </ServiceModal.Section>
+
+          {/* Strengths */}
+          {service.strengths.length > 0 && (
+            <ServiceModal.Section title="STRENGTHS">
+              <ul className="space-y-2">
+                {service.strengths.map((strength, idx) => (
+                  <li key={strength} className="flex items-start gap-3 group">
+                    <span className="text-xs font-mono mt-0.5 transition-colors text-[var(--color-green-400)]">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-sm font-mono leading-relaxed text-foreground/80">
+                      {strength}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </ServiceModal.Section>
+          )}
+
+          {/* Gaps */}
+          {service.gaps.length > 0 && (
+            <ServiceModal.Section title="GAPS">
+              <ul className="space-y-2">
+                {service.gaps.map((gap, idx) => (
+                  <li key={gap} className="flex items-start gap-3">
+                    <span className="text-xs font-mono mt-0.5 text-primary">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-sm font-mono leading-relaxed text-foreground/80">
+                      {gap}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </ServiceModal.Section>
+          )}
+
+          {/* Best For */}
+          <ServiceModal.Section title="BEST_FOR">
+            <p className="text-sm font-mono leading-relaxed text-foreground/80">
+              {service.bestFor}
+            </p>
+          </ServiceModal.Section>
+
+          {/* Resources */}
+          <ServiceModal.Section title="RESOURCES" bordered>
+            <div className="grid gap-2 text-sm font-mono">
+              <a
+                href={service.metadata.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors text-muted-foreground hover:text-primary"
               >
-                {service.features.webhooks ? "Yes" : "No"}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Agent Rules</span>
-              <Badge
-                variant={service.features.agentRules ? "default" : "outline"}
-                className="text-xs"
+                homepage →
+              </a>
+              <a
+                href={service.metadata.docs}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors text-muted-foreground hover:text-primary"
               >
-                {service.features.agentRules ? "Yes" : "No"}
-              </Badge>
+                documentation →
+              </a>
+              {service.links?.mcpDocs && (
+                <a
+                  href={service.links.mcpDocs}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors text-muted-foreground hover:text-primary"
+                >
+                  mcp_docs →
+                </a>
+              )}
+              {service.links?.apiDocs && (
+                <a
+                  href={service.links.apiDocs}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors text-muted-foreground hover:text-primary"
+                >
+                  api_docs →
+                </a>
+              )}
+              {service.links?.cliDocs && (
+                <a
+                  href={service.links.cliDocs}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors text-muted-foreground hover:text-primary"
+                >
+                  cli_docs →
+                </a>
+              )}
+              {service.links?.github && (
+                <a
+                  href={service.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors text-muted-foreground hover:text-primary"
+                >
+                  github →
+                </a>
+              )}
+              {service.links?.community && (
+                <a
+                  href={service.links.community}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors text-muted-foreground hover:text-primary"
+                >
+                  community →
+                </a>
+              )}
+              {service.links?.guides && service.links.guides.length > 0 && (
+                <div className="space-y-2 mt-2">
+                  <div className="text-xs font-mono text-muted-foreground">
+                    guides:
+                  </div>
+                  <div className="pl-4 space-y-1">
+                    {service.links.guides.map((guide) => (
+                      <a
+                        key={guide}
+                        href={guide}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block transition-colors text-muted-foreground hover:text-primary"
+                      >
+                        {new URL(guide).pathname.split("/").pop() || "guide"} →
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Error Handling
-              </span>
-              <Badge variant="secondary" className="text-xs capitalize">
-                {service.features.errorHandling}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Rate Limits</span>
-              <Badge
-                variant={service.features.rateLimits ? "default" : "outline"}
-                className="text-xs"
-              >
-                {service.features.rateLimits ? "Yes" : "No"}
-              </Badge>
-            </div>
-          </div>
-        </div>
+          </ServiceModal.Section>
 
-        {/* Strengths */}
-        {service.strengths.length > 0 && (
-          <div>
-            <h3 className="mb-3 font-semibold">Strengths</h3>
-            <ul className="space-y-1 text-sm">
-              {service.strengths.map((strength, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{strength}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Gaps */}
-        {service.gaps.length > 0 && (
-          <div>
-            <h3 className="mb-3 font-semibold">Gaps</h3>
-            <ul className="space-y-1 text-sm">
-              {service.gaps.map((gap, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-yellow-500">⚠</span>
-                  <span>{gap}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Best For */}
-        <div>
-          <h3 className="mb-3 font-semibold">Best For</h3>
-          <p className="text-sm text-muted-foreground">{service.bestFor}</p>
-        </div>
-
-        {/* Links */}
-        <div className="flex flex-wrap gap-2 pt-4 border-t">
-          <Button variant="outline" size="sm" asChild>
-            <a
-              href={service.metadata.homepage}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Homepage ↗
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" asChild>
-            <a
-              href={service.metadata.docs}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Docs ↗
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" onClick={copyAsJSON}>
-            Copy JSON
-          </Button>
-        </div>
-
-        {/* Last Updated */}
-        <div className="text-xs text-muted-foreground pt-2">
-          Last updated: {service.lastUpdated}
-        </div>
-      </CardContent>
-    </Card>
+          <ServiceModal.Footer />
+        </ServiceModal.Body>
+      </ServiceModal.Content>
+    </ServiceModal.Root>
   );
 }

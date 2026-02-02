@@ -34,20 +34,30 @@
       },
       "metadata": {
         "homepage": "https://clerk.com",
-        "docs": "https://docs.clerk.com",
+        "docs": "https://clerk.com/docs",
         "logo": "/logos/clerk.svg",
-        "description": "Complete authentication infrastructure with MCP server and PLAPI for one-shot provisioning"
+        "description": "Authentication with MCP server, PLAPI one-shot provisioning, OAuth device flow (Jan 2026)"
+      },
+      "links": {
+        "mcpDocs": "https://clerk.com/docs/guides/ai/mcp/clerk-mcp-server",
+        "apiDocs": "https://clerk.com/docs",
+        "github": "https://github.com/clerk/mcp-tools",
+        "guides": [
+          "https://clerk.com/docs/guides/development/mcp/overview",
+          "https://clerk.com/docs/mcp/build-mcp-server",
+          "https://skywork.ai/skypage/en/ultimate-guide-official-clerk-mcp-server/1977614154253930496"
+        ]
       },
       "strengths": [
-        "Official MCP server",
+        "Official MCP server at mcp.clerk.com/mcp",
+        "Dynamic client registration with Vercel withMcpAuth()",
         "PLAPI for infrastructure provisioning",
-        "--include-secrets pattern for agents",
-        "OAuth device flow support",
-        "Comprehensive webhooks"
+        "OAuth device flow + webhooks",
+        "Updated Jan 14, 2026"
       ],
       "gaps": ["Custom domains need manual verification"],
       "bestFor": "User identity, organizations, multi-tenant SaaS",
-      "lastUpdated": "2026-02-01"
+      "lastUpdated": "2026-01-14"
     },
     {
       "id": "supabase",
@@ -57,7 +67,7 @@
       "score": 82,
       "capabilities": {
         "mcp": "official",
-        "mcpUrl": "https://supabase.com/docs/guides/ai/mcp",
+        "mcpUrl": "https://supabase.com/docs/guides/getting-started/mcp",
         "platformAPI": true,
         "apiType": "REST",
         "cli": "official",
@@ -85,18 +95,86 @@
         "homepage": "https://supabase.com",
         "docs": "https://supabase.com/docs",
         "logo": "/logos/supabase.svg",
-        "description": "PostgreSQL + backend services with OAuth-first MCP and database branching"
+        "description": "PostgreSQL with OAuth-first MCP, database branching, no PAT needed (2026 MCP spec)"
+      },
+      "links": {
+        "mcpDocs": "https://supabase.com/docs/guides/auth/oauth-server/mcp-authentication",
+        "apiDocs": "https://supabase.com/docs",
+        "github": "https://github.com/supabase-community/supabase-mcp",
+        "community": "https://mcpservers.org/servers/supabase-community/supabase-mcp",
+        "guides": [
+          "https://supabase.com/blog/mcp-server",
+          "https://docs.continue.dev/guides/supabase-mcp-database-workflow"
+        ]
       },
       "strengths": [
-        "OAuth device flow (no PAT needed)",
-        "Database branching for testing",
-        "Official MCP with comprehensive tools",
-        "Full infrastructure provisioning API",
-        "Realtime + webhooks"
+        "OAuth 2.1 support (MCP spec 2025-03-26)",
+        "Database branching with migrations",
+        "No PAT management required",
+        "PostgreSQL 18 support (late 2025)",
+        "RLS security audit via MCP"
       ],
-      "gaps": ["MCP is dev-only (not production data)"],
-      "bestFor": "Full backend development, rapid prototyping",
-      "lastUpdated": "2026-02-01"
+      "gaps": ["MCP dev-only (not production data)"],
+      "bestFor": "Full backend, real-time, development environments",
+      "lastUpdated": "2026-01-15"
+    },
+    {
+      "id": "trigger",
+      "name": "Trigger.dev",
+      "category": "jobs",
+      "tier": 1,
+      "score": 80,
+      "capabilities": {
+        "mcp": "official",
+        "mcpUrl": "https://trigger.dev/docs/mcp-agent-rules",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "official",
+        "cliName": "trigger.dev",
+        "skills": true,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": true,
+        "errorHandling": "excellent",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": true,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://trigger.dev",
+        "docs": "https://trigger.dev/docs",
+        "logo": "/logos/trigger.svg",
+        "description": "Background jobs with Agent Rules, MCP server, 108+ commands, npx trigger.dev install-rules"
+      },
+      "links": {
+        "mcpDocs": "https://trigger.dev/docs/mcp-agent-rules",
+        "apiDocs": "https://trigger.dev/docs",
+        "github": "https://github.com/triggerdotdev/trigger.dev",
+        "guides": [
+          "https://trigger.dev/launchweek/2/official-mcp-server",
+          "https://trigger.dev/changelog/official-mcp-server"
+        ]
+      },
+      "strengths": [
+        "Agent Rules for optimal code (AGENTS.md, Cursor)",
+        "Trigger-dev-expert subagent for Claude Code",
+        "108+ MCP commands",
+        "Dev-only mode (--dev-only flag)",
+        "Universal AI tool compatibility"
+      ],
+      "gaps": [],
+      "bestFor": "Async tasks, scheduled jobs, event-driven workflows",
+      "lastUpdated": "2026-01-20"
     },
     {
       "id": "github",
@@ -133,67 +211,27 @@
         "homepage": "https://github.com",
         "docs": "https://docs.github.com",
         "logo": "/logos/github.svg",
-        "description": "Repository management with gh CLI (JSON output) and new Copilot CLI agents"
+        "description": "Copilot CLI with enhanced agents (Jan 2026), Explore + Task agents, parallel execution"
+      },
+      "links": {
+        "cliDocs": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli",
+        "apiDocs": "https://docs.github.com/en/rest",
+        "github": "https://github.com/github/copilot-cli",
+        "guides": [
+          "https://github.blog/changelog/2026-01-14-github-copilot-cli-enhanced-agents-context-management-and-new-ways-to-install/",
+          "https://github.blog/changelog/2026-01-21-install-and-use-github-copilot-cli-directly-from-the-github-cli/"
+        ]
       },
       "strengths": [
-        "gh CLI with perfect JSON output",
-        "Copilot CLI agents (2026)",
-        "REST + GraphQL APIs",
-        "OAuth device flow",
-        "Comprehensive webhooks"
+        "Enhanced agents (Explore + Task) Jan 2026",
+        "Parallel agent execution",
+        "Programmatic mode (copilot -p)",
+        "MCP config in mcp-config.json",
+        "gh CLI perfect JSON output"
       ],
-      "gaps": ["No MCP server (REST/CLI sufficient)"],
-      "bestFor": "Repository creation, branch management, CI/CD automation",
-      "lastUpdated": "2026-02-01"
-    },
-    {
-      "id": "trigger",
-      "name": "Trigger.dev",
-      "category": "jobs",
-      "tier": 1,
-      "score": 80,
-      "capabilities": {
-        "mcp": "official",
-        "mcpUrl": "https://trigger.dev/docs/mcp-server",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "official",
-        "cliName": "trigger.dev",
-        "skills": false,
-        "oauth": false
-      },
-      "features": {
-        "webhooks": true,
-        "agentRules": true,
-        "errorHandling": "excellent",
-        "rateLimits": true
-      },
-      "docs": {
-        "aiFocused": true,
-        "openAPI": true,
-        "quickStart": true
-      },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://trigger.dev",
-        "docs": "https://trigger.dev/docs",
-        "logo": "/logos/trigger.svg",
-        "description": "Serverless background jobs with official MCP and Agent Rules for specialized guidance"
-      },
-      "strengths": [
-        "Official MCP with Agent Rules",
-        "Task-driven automation",
-        "One-command deployment",
-        "Full observability",
-        "Generous free tier"
-      ],
-      "gaps": [],
-      "bestFor": "Async tasks, scheduled jobs, event-driven workflows",
-      "lastUpdated": "2026-02-01"
+      "gaps": ["No structured JSON output yet (feature requested)"],
+      "bestFor": "Repository management, CI/CD, webhooks",
+      "lastUpdated": "2026-01-21"
     },
     {
       "id": "neon",
@@ -229,68 +267,27 @@
         "homepage": "https://neon.tech",
         "docs": "https://neon.tech/docs",
         "logo": "/logos/neon.svg",
-        "description": "Managed PostgreSQL with unique Data API for serverless/edge access"
+        "description": "Serverless Postgres with Data API (HTTP/WebSocket), edge computing, PostgreSQL 18 (2025)"
+      },
+      "links": {
+        "apiDocs": "https://neon.com/docs/data-api/overview",
+        "github": "https://github.com/neondatabase/neon",
+        "guides": [
+          "https://neon.com/blog/how-to-use-postgres-at-the-edge",
+          "https://github.com/neondatabase/serverless",
+          "https://dev.to/dataformathub/neon-postgres-deep-dive-why-the-2025-updates-change-serverless-sql-5o0"
+        ]
       },
       "strengths": [
-        "Comprehensive REST API",
-        "Data API (HTTP access to Postgres)",
+        "Data API (SQL-over-HTTP)",
+        "PostgreSQL 18 support (late 2025)",
+        "WebSocket/HTTP for edge (Vercel Edge)",
         "Instant database cloning",
-        "Edge-friendly",
-        "OpenAPI schema available"
+        "Separated compute/storage autoscaling"
       ],
       "gaps": ["No MCP server", "No CLI tool"],
-      "bestFor": "PostgreSQL infrastructure, edge compute",
-      "lastUpdated": "2026-02-01"
-    },
-    {
-      "id": "cloudflare",
-      "name": "Cloudflare",
-      "category": "edge",
-      "tier": 2,
-      "score": 76,
-      "capabilities": {
-        "mcp": "none",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "official",
-        "cliName": "wrangler",
-        "skills": false,
-        "oauth": false
-      },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "good",
-        "rateLimits": true
-      },
-      "docs": {
-        "aiFocused": false,
-        "openAPI": true,
-        "quickStart": true
-      },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://cloudflare.com",
-        "docs": "https://developers.cloudflare.com",
-        "logo": "/logos/cloudflare.svg",
-        "description": "Edge compute and DNS with Wrangler CLI - can host MCP servers on Workers"
-      },
-      "strengths": [
-        "Wrangler CLI with JSON output",
-        "Can HOST MCP servers on Workers",
-        "Comprehensive infrastructure API",
-        "Global edge network"
-      ],
-      "gaps": [
-        "No MCP server for Cloudflare API itself",
-        "DNS automation requires manual verification"
-      ],
-      "bestFor": "DNS management, edge functions, global distribution",
-      "lastUpdated": "2026-02-01"
+      "bestFor": "PostgreSQL infrastructure, edge compute, serverless",
+      "lastUpdated": "2025-12-15"
     },
     {
       "id": "vercel",
@@ -327,20 +324,83 @@
         "homepage": "https://vercel.com",
         "docs": "https://vercel.com/docs",
         "logo": "/logos/vercel.svg",
-        "description": "Next.js hosting with Agent-Browser (93% context reduction) and deploy previews"
+        "description": "Agent-Browser (93% context reduction), Rust CLI <50ms boot, 108+ commands (Jan 2026)"
+      },
+      "links": {
+        "github": "https://github.com/vercel-labs/agent-browser",
+        "apiDocs": "https://vercel.com/docs/agent",
+        "guides": [
+          "https://medium.com/@richardhightower/agent-browser-ai-first-browser-automation-that-saves-93-of-your-context-window-7a2c52562f8c",
+          "https://www.pulumi.com/blog/self-verifying-ai-agents-vercels-agent-browser-in-the-ralph-wiggum-loop/"
+        ]
       },
       "strengths": [
-        "Agent-Browser (AI-native automation)",
-        "Vercel Agent for code review",
-        "CLI with JSON output",
-        "Deploy previews for testing"
+        "Agent-Browser (93% token reduction)",
+        "Rust CLI boots <50ms",
+        "Semantic locators (not DOM trees)",
+        "Compatible: Claude, Cursor, Copilot",
+        "Browserbase for remote deployment"
       ],
-      "gaps": [
-        "Limited to deployment (not infra provisioning)",
-        "No database management"
+      "gaps": ["No database management", "Limited to deployment"],
+      "bestFor": "App deployment, preview environments, AI browser automation",
+      "lastUpdated": "2026-01-15"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "category": "edge",
+      "tier": 2,
+      "score": 76,
+      "capabilities": {
+        "mcp": "none",
+        "platformAPI": true,
+        "apiType": "REST",
+        "cli": "official",
+        "cliName": "wrangler",
+        "skills": false,
+        "oauth": false
+      },
+      "features": {
+        "webhooks": true,
+        "agentRules": false,
+        "errorHandling": "good",
+        "rateLimits": true
+      },
+      "docs": {
+        "aiFocused": false,
+        "openAPI": true,
+        "quickStart": true
+      },
+      "provisioning": {
+        "oneShot": true,
+        "secrets": true,
+        "branching": false
+      },
+      "metadata": {
+        "homepage": "https://cloudflare.com",
+        "docs": "https://developers.cloudflare.com",
+        "logo": "/logos/cloudflare.svg",
+        "description": "Workers can HOST MCP servers, Wrangler CLI, workers-mcp package (2026)"
+      },
+      "links": {
+        "mcpDocs": "https://developers.cloudflare.com/agents/guides/remote-mcp-server/",
+        "cliDocs": "https://developers.cloudflare.com/workers/wrangler/",
+        "github": "https://github.com/cloudflare/workers-mcp",
+        "guides": [
+          "https://learnmcp.examples.workers.dev/",
+          "https://natoma.ai/blog/how-to-deploy-mcp-server-to-cloudflare-workers"
+        ]
+      },
+      "strengths": [
+        "Can host MCP servers on Workers",
+        "workers-mcp package (cloudflare/workers-mcp)",
+        "Interactive tutorial (learnmcp.examples.workers.dev)",
+        "Wrangler CLI with local testing",
+        "KV storage + external API integration"
       ],
-      "bestFor": "App deployment, preview environments",
-      "lastUpdated": "2026-02-01"
+      "gaps": ["No MCP for Cloudflare API itself", "DNS manual verification"],
+      "bestFor": "DNS, edge functions, hosting MCP servers, global CDN",
+      "lastUpdated": "2026-01-10"
     },
     {
       "id": "resend",
@@ -349,7 +409,8 @@
       "tier": 3,
       "score": 68,
       "capabilities": {
-        "mcp": "community",
+        "mcp": "official",
+        "mcpUrl": "https://resend.com/mcp",
         "platformAPI": true,
         "apiType": "REST",
         "cli": "none",
@@ -376,16 +437,27 @@
         "homepage": "https://resend.com",
         "docs": "https://resend.com/docs",
         "logo": "/logos/resend.svg",
-        "description": "Transactional email with templates, scheduling, and community MCP"
+        "description": "Official MCP server (Jan 2, 2026), send from Cursor/Claude, transactional email API"
+      },
+      "links": {
+        "mcpDocs": "https://resend.com/docs/knowledge-base/mcp-server",
+        "apiDocs": "https://resend.com/docs",
+        "github": "https://github.com/resend/mcp-send-email",
+        "community": "https://www.pulsemcp.com/servers/resend-email",
+        "guides": [
+          "https://skywork.ai/skypage/en/ai-engineer-resend-email-server/1978346974633914368"
+        ]
       },
       "strengths": [
-        "MCP via community (Skywork)",
-        "Templates + scheduling",
-        "Webhooks for delivery events"
+        "Official MCP (resend/mcp-send-email)",
+        "Released Jan 2, 2026",
+        "Send emails from Cursor/Claude Desktop",
+        "Transactional email (resets, confirmations)",
+        "Templates + scheduling"
       ],
       "gaps": ["No CLI", "Email domain verification manual"],
-      "bestFor": "Transactional email, templating",
-      "lastUpdated": "2026-02-01"
+      "bestFor": "Transactional email, templating, MCP email workflows",
+      "lastUpdated": "2026-01-02"
     },
     {
       "id": "uploadthing",
@@ -421,16 +493,26 @@
         "homepage": "https://uploadthing.com",
         "docs": "https://docs.uploadthing.com",
         "logo": "/logos/uploadthing.svg",
-        "description": "File uploads with presigned URLs for security and comprehensive webhooks"
+        "description": "Type-safe Next.js file uploads, App Router + Pages Router, CDN-backed, resumable (2026)"
+      },
+      "links": {
+        "apiDocs": "https://docs.uploadthing.com/",
+        "guides": [
+          "https://docs.uploadthing.com/getting-started/appdir",
+          "https://blog.logrocket.com/handling-file-uploads-next-js-using-uploadthing/",
+          "https://codeparrot.ai/blogs/uploadthing-a-modern-file-upload-solution-for-nextjs-applications"
+        ]
       },
       "strengths": [
-        "REST API comprehensive",
-        "Presigned URLs for security",
-        "Webhooks for file events"
+        "Type-safe TypeScript APIs",
+        "Next.js App Router + Pages Router",
+        "File validation + transformation",
+        "CDN-backed delivery",
+        "Resumable uploads (large files)"
       ],
       "gaps": ["No MCP", "No CLI", "No OpenAPI schema"],
-      "bestFor": "File operations, uploads management",
-      "lastUpdated": "2026-02-01"
+      "bestFor": "Next.js file uploads, type-safe APIs, CDN delivery",
+      "lastUpdated": "2026-01-01"
     },
     {
       "id": "kapso",
@@ -440,7 +522,7 @@
       "score": 62,
       "capabilities": {
         "mcp": "official",
-        "mcpUrl": "https://docs.kapso.io/mcp",
+        "mcpUrl": "https://app.kapso.ai/mcp",
         "platformAPI": true,
         "apiType": "REST",
         "cli": "none",
@@ -464,21 +546,34 @@
         "branching": false
       },
       "metadata": {
-        "homepage": "https://kapso.io",
-        "docs": "https://docs.kapso.io",
+        "homepage": "https://kapso.ai",
+        "docs": "https://docs.kapso.ai",
         "logo": "/logos/kapso.svg",
-        "description": "WhatsApp automation with MCP server, TypeScript SDK, and interactive flows"
+        "description": "WhatsApp MCP (alpha), send/search messages, inbox management, TypeScript SDK (2026)"
       },
-      "strengths": ["MCP available", "TypeScript SDK", "Interactive flows"],
-      "gaps": ["No CLI", "Limited to WhatsApp"],
-      "bestFor": "WhatsApp automation, realtime alerts",
-      "lastUpdated": "2026-02-01"
+      "links": {
+        "mcpDocs": "https://docs.kapso.ai/docs/mcp/introduction",
+        "apiDocs": "https://docs.kapso.ai",
+        "github": "https://github.com/gokapso/whatsapp-cloud-api-js",
+        "community": "https://mcpservers.org/servers/docs-kapso-ai-docs-mcp-introduction",
+        "guides": ["https://apidog.com/blog/whatsapp-mcp-server/"]
+      },
+      "strengths": [
+        "MCP alpha (app.kapso.ai/mcp)",
+        "WhatsApp operations (send, search, inbox)",
+        "TypeScript Cloud API SDK",
+        "Platform tools (create customer, setup links)",
+        "Batch conversation retrieval"
+      ],
+      "gaps": ["No CLI", "Alpha (subject to changes)", "Limited to WhatsApp"],
+      "bestFor": "WhatsApp automation, real-time messaging, MCP workflows",
+      "lastUpdated": "2026-01-01"
     }
   ],
   "metadata": {
     "researchDate": "2026-02-01",
     "researcher": "Hunter (Railly Hugo)",
-    "phase": "Research Complete",
+    "phase": "Research Complete + Verified Links",
     "totalServices": 10,
     "productionReady": 5
   },

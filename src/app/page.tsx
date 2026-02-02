@@ -5,9 +5,10 @@ import { useState } from "react";
 import { filterServices, getMetadata, getServices } from "@/lib/services";
 import type { FilterType, Service } from "@/lib/types";
 
-import { FilterBar } from "@/components/filter-bar";
-import { ServiceCard } from "@/components/service-card";
+import { CompactFilters } from "@/components/compact-filters";
+import { ServiceDrawer } from "@/components/service-drawer";
 import { ServiceTable } from "@/components/service-table";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export default function Home() {
   const allServices = getServices();
@@ -24,157 +25,97 @@ export default function Home() {
   const filteredServices = filterServices(allServices, filters);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">agent-stack</h1>
-              <p className="text-sm text-muted-foreground mt-1">
-                Agent Provisioning Readiness Assessment
-              </p>
-            </div>
-            <div className="text-right">
-              <div className="text-sm text-muted-foreground">
-                {metadata.totalServices} services assessed
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {metadata.productionReady} production-ready
+      <header className="border-b border-border sticky top-0 z-30 bg-background">
+        <div className="px-4 lg:px-6">
+          <div className="flex h-12 items-center justify-between">
+            <div className="flex items-center gap-4">
+              <h1 className="text-sm font-bold tracking-tight uppercase">
+                Agent Stack
+              </h1>
+              <div className="flex items-center gap-1.5 text-xs">
+                <span className="font-bold tabular-nums">
+                  {metadata.productionReady}/{metadata.totalServices}
+                </span>
+                <span className="text-muted-foreground">production ready</span>
               </div>
             </div>
+            <ThemeSwitcher />
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
-          {/* Sidebar - Filters */}
-          <aside className="space-y-4">
-            <FilterBar onFilterChange={setFilters} />
+      <main className="px-4 lg:px-6 py-4">
+        <div className="space-y-4">
+          {/* Compact Filters */}
+          <CompactFilters onFilterChange={setFilters} />
 
-            {/* Stats */}
-            <div className="rounded-lg border bg-card p-4 space-y-3">
-              <h3 className="font-semibold text-sm">Quick Stats</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Total Services</span>
-                  <span className="font-mono font-semibold">
-                    {allServices.length}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Filtered</span>
-                  <span className="font-mono font-semibold">
-                    {filteredServices.length}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Tier 1</span>
-                  <span className="font-mono font-semibold text-green-500">
-                    {allServices.filter((s) => s.tier === 1).length}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Tier 2</span>
-                  <span className="font-mono font-semibold text-yellow-500">
-                    {allServices.filter((s) => s.tier === 2).length}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Tier 3</span>
-                  <span className="font-mono font-semibold text-red-500">
-                    {allServices.filter((s) => s.tier === 3).length}
-                  </span>
-                </div>
+          {/* Stats Bar */}
+          <div className="flex items-center justify-between text-xs border-b border-border pb-3">
+            <div className="flex items-center gap-4">
+              <span className="text-muted-foreground">
+                Showing {filteredServices.length} of {allServices.length}
+              </span>
+              <span className="text-border">|</span>
+              <div className="flex items-center gap-3">
+                <span className="text-[var(--color-green-400)]">
+                  T1: {allServices.filter((s) => s.tier === 1).length}
+                </span>
+                <span className="text-[var(--color-blue-400)]">
+                  T2: {allServices.filter((s) => s.tier === 2).length}
+                </span>
+                <span className="text-[var(--color-red-400)]">
+                  T3: {allServices.filter((s) => s.tier === 3).length}
+                </span>
               </div>
             </div>
-
-            {/* Research Info */}
-            <div className="rounded-lg border bg-card p-4 space-y-2">
-              <h3 className="font-semibold text-sm">Research</h3>
-              <div className="space-y-1 text-xs text-muted-foreground">
-                <div>Date: {metadata.researchDate}</div>
-                <div>By: {metadata.researcher}</div>
-                <div>Phase: {metadata.phase}</div>
-              </div>
-            </div>
-          </aside>
-
-          {/* Main Area */}
-          <div className="space-y-6">
-            {/* Selected Service Detail */}
-            {selectedService && (
-              <ServiceCard
-                service={selectedService}
-                onClose={() => setSelectedService(null)}
-              />
-            )}
-
-            {/* Services Table */}
-            <div>
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-xl font-semibold">
-                  {filteredServices.length === allServices.length
-                    ? "All Services"
-                    : `${filteredServices.length} Service${filteredServices.length !== 1 ? "s" : ""}`}
-                </h2>
-              </div>
-              <ServiceTable
-                services={filteredServices}
-                onServiceClick={setSelectedService}
-              />
-            </div>
-
-            {/* Empty State */}
-            {filteredServices.length === 0 && (
-              <div className="rounded-lg border bg-card p-12 text-center">
-                <p className="text-muted-foreground">
-                  No services match your filters. Try adjusting your criteria.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t bg-card/50 mt-12">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col gap-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              Built by{" "}
-              <a
-                href="https://github.com/crafter-station"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium hover:text-foreground"
-              >
-                Crafter Station
-              </a>
-            </div>
-            <div className="flex gap-4">
+            <div className="flex items-center gap-3 text-muted-foreground">
               <a
                 href="https://github.com/crafter-station/agent-stack"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground"
+                className="hover:text-foreground transition-colors"
               >
-                GitHub
+                github
               </a>
               <a
                 href="https://clerk.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground"
+                className="hover:text-foreground transition-colors"
               >
-                Clerk
+                clerk
               </a>
             </div>
           </div>
+
+          {/* Services Table */}
+          <ServiceTable
+            services={filteredServices}
+            onServiceClick={setSelectedService}
+          />
+
+          {/* Empty State */}
+          {filteredServices.length === 0 && (
+            <div className="border border-border rounded p-12 text-center text-sm">
+              <div className="space-y-2">
+                <div className="text-2xl text-muted-foreground">∅</div>
+                <p className="text-muted-foreground">
+                  No services match filters
+                </p>
+              </div>
+            </div>
+          )}
         </div>
-      </footer>
+      </main>
+
+      {/* Drawer */}
+      <ServiceDrawer
+        service={selectedService}
+        onClose={() => setSelectedService(null)}
+      />
     </div>
   );
 }

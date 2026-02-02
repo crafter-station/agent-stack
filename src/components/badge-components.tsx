@@ -1,4 +1,5 @@
 import type { Service } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -9,16 +10,19 @@ interface TierBadgeProps {
 export function TierBadge({ tier }: TierBadgeProps) {
   const variants = {
     1: {
-      label: "Tier 1",
-      className: "bg-green-500/10 text-green-500 border-green-500/20",
+      label: "T1",
+      className:
+        "bg-[var(--color-green-400)]/10 text-[var(--color-green-400)] border-[var(--color-green-400)]/20",
     },
     2: {
-      label: "Tier 2",
-      className: "bg-yellow-500/10 text-yellow-500 border-yellow-500/20",
+      label: "T2",
+      className:
+        "bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)] border-[var(--color-blue-400)]/20",
     },
     3: {
-      label: "Tier 3",
-      className: "bg-red-500/10 text-red-500 border-red-500/20",
+      label: "T3",
+      className:
+        "bg-[var(--color-red-400)]/10 text-[var(--color-red-400)] border-[var(--color-red-400)]/20",
     },
   };
 
@@ -27,7 +31,10 @@ export function TierBadge({ tier }: TierBadgeProps) {
   return (
     <Badge
       variant="outline"
-      className={`font-mono text-xs ${variant.className}`}
+      className={cn(
+        "text-[10px] font-bold tracking-wide border px-1.5 py-0",
+        variant.className,
+      )}
     >
       {variant.label}
     </Badge>
@@ -39,42 +46,26 @@ interface ScoreBadgeProps {
 }
 
 export function ScoreBadge({ score }: ScoreBadgeProps) {
-  const getColor = (score: number) => {
-    if (score >= 80) return "text-green-500";
-    if (score >= 70) return "text-yellow-500";
-    return "text-red-500";
+  const getClassName = (score: number) => {
+    if (score >= 80) {
+      return "bg-[var(--color-green-400)]/10 text-[var(--color-green-400)] border-[var(--color-green-400)]/20";
+    }
+    if (score >= 70) {
+      return "bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)] border-[var(--color-blue-400)]/20";
+    }
+    return "bg-[var(--color-red-400)]/10 text-[var(--color-red-400)] border-[var(--color-red-400)]/20";
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="relative h-12 w-12">
-        <svg className="h-12 w-12 -rotate-90 transform" viewBox="0 0 36 36">
-          <circle
-            cx="18"
-            cy="18"
-            r="16"
-            fill="none"
-            className="stroke-current text-muted-foreground/20"
-            strokeWidth="2"
-          />
-          <circle
-            cx="18"
-            cy="18"
-            r="16"
-            fill="none"
-            className={`stroke-current ${getColor(score)}`}
-            strokeWidth="2"
-            strokeDasharray={`${score}, 100`}
-            strokeLinecap="round"
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className={`text-sm font-bold ${getColor(score)}`}>
-            {score}
-          </span>
-        </div>
-      </div>
-    </div>
+    <Badge
+      variant="outline"
+      className={cn(
+        "text-[10px] font-bold tabular-nums border px-1.5 py-0",
+        getClassName(score),
+      )}
+    >
+      {score}
+    </Badge>
   );
 }
 
@@ -85,45 +76,32 @@ interface FeatureBadgeProps {
 
 export function FeatureBadge({ feature, status }: FeatureBadgeProps) {
   const getLabel = () => {
-    switch (feature) {
-      case "mcp":
-        return status === "official"
-          ? "MCP ✓"
-          : status === "community"
-            ? "MCP (C)"
-            : "MCP ✗";
-      case "api":
-        return status ? "API ✓" : "API ✗";
-      case "cli":
-        return status === "official"
-          ? "CLI ✓"
-          : status === "community"
-            ? "CLI (C)"
-            : "CLI ✗";
-      case "oauth":
-        return status ? "OAuth ✓" : "OAuth ✗";
-      case "webhooks":
-        return status ? "Webhooks ✓" : "Webhooks ✗";
-      default:
-        return "";
+    const featureNames = {
+      mcp: "MCP",
+      api: "API",
+      cli: "CLI",
+      oauth: "OAuth",
+      webhooks: "Webhooks",
+    };
+
+    const name = featureNames[feature];
+
+    if (feature === "mcp" || feature === "cli") {
+      if (status === "official") return name;
+      if (status === "community") return `${name}*`;
+      return null;
     }
+
+    return status ? name : null;
   };
 
-  const getVariant = () => {
-    if (feature === "mcp" || feature === "cli") {
-      return status === "official"
-        ? "default"
-        : status === "community"
-          ? "secondary"
-          : "outline";
-    }
-    return status ? "default" : "outline";
-  };
+  const label = getLabel();
+  if (!label) return null;
 
   return (
-    <Badge variant={getVariant()} className="font-mono text-xs">
-      {getLabel()}
-    </Badge>
+    <span className="inline-flex items-center text-[10px] px-1.5 py-0 rounded border border-border bg-muted/30 text-foreground font-bold tracking-wide uppercase">
+      {label}
+    </span>
   );
 }
 
@@ -134,18 +112,21 @@ interface CategoryBadgeProps {
 export function CategoryBadge({ category }: CategoryBadgeProps) {
   const labels = {
     auth: "Auth",
-    database: "Database",
+    database: "DB",
     deploy: "Deploy",
     jobs: "Jobs",
     email: "Email",
     files: "Files",
-    messaging: "Messaging",
+    messaging: "Msg",
     edge: "Edge",
     code: "Code",
   };
 
   return (
-    <Badge variant="secondary" className="font-mono text-xs">
+    <Badge
+      variant="outline"
+      className="text-[10px] border border-border bg-muted/20 text-muted-foreground font-bold tracking-wide px-1.5 py-0 uppercase"
+    >
       {labels[category]}
     </Badge>
   );

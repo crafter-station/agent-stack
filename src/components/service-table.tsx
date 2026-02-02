@@ -7,9 +7,10 @@ import type { Service } from "@/lib/types";
 import {
   CategoryBadge,
   FeatureBadge,
-  ScoreBadge,
   TierBadge,
 } from "@/components/badge-components";
+import { ScoreGauge } from "@/components/score-gauge";
+import { ServiceLogo } from "@/components/service-logo";
 import {
   Table,
   TableBody,
@@ -53,90 +54,98 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
   };
 
   return (
-    <div className="rounded-lg border bg-card">
+    <div className="border border-border overflow-hidden bg-card">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[50px]">#</TableHead>
-            <TableHead>
+          <TableRow className="border-b border-border hover:bg-transparent">
+            <TableHead className="w-12 h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+              #
+            </TableHead>
+            <TableHead className="h-9">
               <button
                 type="button"
                 onClick={() => handleSort("name")}
-                className="flex items-center gap-1 hover:text-foreground"
+                className="flex items-center gap-1 text-[10px] font-bold tracking-wider transition-colors text-muted-foreground hover:text-foreground uppercase"
               >
                 Service
                 {sortBy === "name" && (
-                  <span className="text-xs">
+                  <span className="text-foreground">
                     {sortOrder === "asc" ? "↑" : "↓"}
                   </span>
                 )}
               </button>
             </TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead>
+            <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+              Category
+            </TableHead>
+            <TableHead className="h-9">
               <button
                 type="button"
                 onClick={() => handleSort("tier")}
-                className="flex items-center gap-1 hover:text-foreground"
+                className="flex items-center gap-1 text-[10px] font-bold tracking-wider transition-colors text-muted-foreground hover:text-foreground uppercase"
               >
                 Tier
                 {sortBy === "tier" && (
-                  <span className="text-xs">
+                  <span className="text-foreground">
                     {sortOrder === "asc" ? "↑" : "↓"}
                   </span>
                 )}
               </button>
             </TableHead>
-            <TableHead>
+            <TableHead className="h-9">
               <button
                 type="button"
                 onClick={() => handleSort("score")}
-                className="flex items-center gap-1 hover:text-foreground"
+                className="flex items-center gap-1 text-[10px] font-bold tracking-wider transition-colors text-muted-foreground hover:text-foreground uppercase"
               >
                 Score
                 {sortBy === "score" && (
-                  <span className="text-xs">
+                  <span className="text-foreground">
                     {sortOrder === "asc" ? "↑" : "↓"}
                   </span>
                 )}
               </button>
             </TableHead>
-            <TableHead>Features</TableHead>
+            <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+              Features
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {sortedServices.map((service, index) => (
             <TableRow
               key={service.id}
-              className="cursor-pointer hover:bg-muted/50"
+              className="cursor-pointer border-b border-border last:border-0 transition-all hover:bg-muted/50 group"
               onClick={() => onServiceClick?.(service)}
             >
-              <TableCell className="font-mono text-xs text-muted-foreground">
+              <TableCell className="text-[10px] font-bold tabular-nums py-2 text-muted-foreground group-hover:text-foreground transition-colors">
                 {String(index + 1).padStart(2, "0")}
               </TableCell>
-              <TableCell>
+              <TableCell className="py-2">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded border bg-background">
-                    <span className="text-xs font-bold">{service.name[0]}</span>
+                  <div className="flex-shrink-0">
+                    <ServiceLogo name={service.name} className="h-6 w-6" />
                   </div>
-                  <div>
-                    <div className="font-semibold">{service.name}</div>
-                    <div className="text-xs text-muted-foreground truncate max-w-[200px]">
+                  <div className="space-y-0.5 flex-1 min-w-0">
+                    <div className="font-bold text-xs group-hover:text-foreground transition-colors">
+                      {service.name}
+                    </div>
+                    <div className="text-[10px] truncate text-muted-foreground">
                       {service.metadata.description}
                     </div>
                   </div>
                 </div>
               </TableCell>
-              <TableCell>
+              <TableCell className="py-2">
                 <CategoryBadge category={service.category} />
               </TableCell>
-              <TableCell>
+              <TableCell className="py-2">
                 <TierBadge tier={service.tier} />
               </TableCell>
-              <TableCell>
-                <ScoreBadge score={service.score} />
+              <TableCell className="py-2">
+                <ScoreGauge score={service.score} size="sm" />
               </TableCell>
-              <TableCell>
+              <TableCell className="py-2">
                 <div className="flex flex-wrap gap-1">
                   <FeatureBadge
                     feature="mcp"

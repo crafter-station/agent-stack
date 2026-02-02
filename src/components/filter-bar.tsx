@@ -46,19 +46,27 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
     );
   };
 
-  const getKey = <T,>(value: T, selected: T[]): string => {
+  const getKey = <T,>(value: T, _selected: T[]): string => {
     if (typeof value === "number") return "selectedTiers";
     if (categories.includes(value as string)) return "selectedCategories";
     return "selectedFeatures";
   };
 
-  const updateFilters = (current: any, updates: any) => {
+  const updateFilters = (
+    current: {
+      selectedTiers: number[];
+      selectedCategories: string[];
+      selectedFeatures: string[];
+      search: string;
+    },
+    updates: Record<string, unknown>,
+  ) => {
     const merged = { ...current, ...updates };
     onFilterChange({
-      tier: merged.selectedTiers,
-      category: merged.selectedCategories,
-      features: merged.selectedFeatures,
-      search: merged.search,
+      tier: merged.selectedTiers as number[],
+      category: merged.selectedCategories as string[],
+      features: merged.selectedFeatures as string[],
+      search: merged.search as string,
     });
   };
 
@@ -77,53 +85,59 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
     search.length > 0;
 
   return (
-    <div className="space-y-4 rounded-lg border bg-card p-4">
-      {/* Search */}
+    <div className="space-y-3 rounded-lg border border-border bg-card p-3">
       <div>
         <Input
-          placeholder="Search services..."
+          placeholder="Search..."
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
             updateFilters(
-              { selectedTiers, selectedCategories, selectedFeatures },
+              {
+                selectedTiers,
+                selectedCategories,
+                selectedFeatures,
+                search: "",
+              },
               { search: e.target.value },
             );
           }}
-          className="font-mono"
+          className="h-8 text-sm"
         />
       </div>
 
-      {/* Tier Filter */}
       <div>
-        <div className="mb-2 text-sm font-semibold">Tier</div>
-        <div className="flex flex-wrap gap-2">
+        <div className="mb-1.5 text-xs font-medium uppercase text-muted-foreground">
+          Tier
+        </div>
+        <div className="flex flex-wrap gap-1.5">
           {[1, 2, 3].map((tier) => (
             <Badge
               key={tier}
               variant={selectedTiers.includes(tier) ? "default" : "outline"}
-              className="cursor-pointer font-mono"
+              className="cursor-pointer text-xs"
               onClick={() =>
                 toggleFilter(tier, selectedTiers, setSelectedTiers)
               }
             >
-              Tier {tier}
+              {tier}
             </Badge>
           ))}
         </div>
       </div>
 
-      {/* Category Filter */}
       <div>
-        <div className="mb-2 text-sm font-semibold">Category</div>
-        <div className="flex flex-wrap gap-2">
+        <div className="mb-1.5 text-xs font-medium uppercase text-muted-foreground">
+          Category
+        </div>
+        <div className="flex flex-wrap gap-1.5">
           {categories.map((category) => (
             <Badge
               key={category}
               variant={
                 selectedCategories.includes(category) ? "default" : "outline"
               }
-              className="cursor-pointer font-mono capitalize"
+              className="cursor-pointer capitalize text-xs"
               onClick={() =>
                 toggleFilter(
                   category,
@@ -138,17 +152,18 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
         </div>
       </div>
 
-      {/* Features Filter */}
       <div>
-        <div className="mb-2 text-sm font-semibold">Features</div>
-        <div className="flex flex-wrap gap-2">
+        <div className="mb-1.5 text-xs font-medium uppercase text-muted-foreground">
+          Features
+        </div>
+        <div className="flex flex-wrap gap-1.5">
           {features.map((feature) => (
             <Badge
               key={feature}
               variant={
                 selectedFeatures.includes(feature) ? "default" : "outline"
               }
-              className="cursor-pointer font-mono"
+              className="cursor-pointer text-xs"
               onClick={() =>
                 toggleFilter(feature, selectedFeatures, setSelectedFeatures)
               }
@@ -159,16 +174,15 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
         </div>
       </div>
 
-      {/* Clear All */}
       {hasActiveFilters && (
-        <div className="pt-2">
+        <div className="pt-1">
           <Button
             variant="ghost"
             size="sm"
             onClick={clearAll}
-            className="font-mono text-xs"
+            className="h-7 text-xs text-muted-foreground hover:text-foreground"
           >
-            Clear all filters
+            Clear filters
           </Button>
         </div>
       )}

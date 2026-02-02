@@ -51,6 +51,15 @@ export interface Service {
     description: string;
   };
 
+  links: {
+    mcpDocs?: string;
+    apiDocs?: string;
+    cliDocs?: string;
+    github?: string;
+    community?: string;
+    guides?: string[];
+  };
+
   strengths: string[];
   gaps: string[];
   bestFor: string;
