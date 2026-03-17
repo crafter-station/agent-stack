@@ -1,101 +1,97 @@
+export type PillarStatus = "official" | "community" | "none";
+
+export interface MCPPillar {
+  status: PillarStatus;
+  url?: string;
+  package?: string;
+}
+
+export interface PlatformAPIPillar {
+  status: PillarStatus;
+  type?: "REST" | "GraphQL" | "Both";
+  docsUrl?: string;
+}
+
+export interface CLIPillar {
+  status: PillarStatus;
+  name?: string;
+  installCmd?: string;
+  supportsJson?: boolean;
+  nonInteractive?: boolean;
+}
+
+export interface SkillsPillar {
+  status: PillarStatus;
+  hasSkillFile?: boolean;
+  hasAgentRules?: boolean;
+  hasPrompts?: boolean;
+}
+
+export interface DocsSignals {
+  llmsTxt: boolean;
+  llmsTxtUrl?: string;
+  copyMarkdown: boolean;
+  aiQuickstart: boolean;
+  aiQuickstartUrl?: string;
+  openApiSpec: boolean;
+}
+
+export type Category =
+  | "auth"
+  | "database"
+  | "deploy"
+  | "jobs"
+  | "email"
+  | "files"
+  | "messaging"
+  | "edge"
+  | "code"
+  | "scraping"
+  | "payments"
+  | "cache"
+  | "monitoring"
+  | "pm"
+  | "orm"
+  | "search"
+  | "ai-eval"
+  | "cms"
+  | "analytics"
+  | "media"
+  | "feature-flags";
+
 export interface Service {
   id: string;
   name: string;
-  category:
-    | "auth"
-    | "database"
-    | "deploy"
-    | "jobs"
-    | "email"
-    | "files"
-    | "messaging"
-    | "edge"
-    | "code";
-  tier: 1 | 2 | 3;
+  category: Category;
+  description: string;
+  homepage: string;
+  docsUrl: string;
+
+  mcp: MCPPillar;
+  platformApi: PlatformAPIPillar;
+  cli: CLIPillar;
+  skills: SkillsPillar;
+  docs: DocsSignals;
+
   score: number;
-
-  capabilities: {
-    mcp: "official" | "community" | "none";
-    mcpUrl?: string;
-    platformAPI: boolean;
-    apiType?: "REST" | "GraphQL" | "Both";
-    cli: "official" | "community" | "none";
-    cliName?: string;
-    skills: boolean;
-    oauth: boolean;
-  };
-
-  features: {
-    webhooks: boolean;
-    agentRules: boolean;
-    errorHandling: "excellent" | "good" | "basic";
-    rateLimits: boolean;
-  };
-
-  docs: {
-    aiFocused: boolean;
-    openAPI: boolean;
-    quickStart: boolean;
-  };
-
-  provisioning: {
-    oneShot: boolean;
-    secrets: boolean;
-    branching: boolean;
-  };
-
-  metadata: {
-    homepage: string;
-    docs: string;
-    logo: string;
-    description: string;
-  };
+  maxScore: number;
 
   links: {
-    mcpDocs?: string;
-    apiDocs?: string;
-    cliDocs?: string;
     github?: string;
-    community?: string;
-    guides?: string[];
+    mcpDocs?: string;
+    cliDocs?: string;
+    apiDocs?: string;
+    skillsDocs?: string;
   };
-
-  strengths: string[];
-  gaps: string[];
-  bestFor: string;
 
   lastUpdated: string;
+  lastResearched: string;
 }
 
-export interface ComparisonData {
-  services: Service[];
-  metadata: {
-    researchDate: string;
-    researcher: string;
-    phase: string;
-    totalServices: number;
-    productionReady: number;
-  };
-  recommendations: {
-    recommendedStack: {
-      auth: string;
-      database: string;
-      deployment: string;
-      jobs: string;
-      code: string;
-      email: string;
-      files: string;
-      messaging: string;
-      edge: string;
-    };
-    estimatedCost: string;
-  };
-}
+export type SortField = "score" | "name" | "category";
+export type SortDirection = "asc" | "desc";
 
 export type FilterType = {
-  tier: number[];
-  category: string[];
-  features: string[];
+  category: Category[];
+  search: string;
 };
-
-export type SortType = "score" | "name" | "tier";
