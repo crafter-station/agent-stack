@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import type { Service } from "@/lib/types";
-
 import { cn } from "@/lib/utils";
 
 import {
@@ -42,6 +41,15 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
         return 0;
     }
   });
+
+  const ranks: number[] = [];
+  for (let i = 0; i < sortedServices.length; i++) {
+    if (i === 0 || sortedServices[i].score !== sortedServices[i - 1].score) {
+      ranks.push(i + 1);
+    } else {
+      ranks.push(ranks[i - 1]);
+    }
+  }
 
   const handleSort = (field: "score" | "name") => {
     if (sortBy === field) {
@@ -118,7 +126,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
               onClick={() => onServiceClick?.(service)}
             >
               <TableCell className="text-[10px] font-bold tabular-nums py-2 text-muted-foreground group-hover:text-foreground transition-colors">
-                {String(index + 1).padStart(2, "0")}
+                {String(ranks[index]).padStart(2, "0")}
               </TableCell>
               <TableCell className="py-2">
                 <div className="flex items-center gap-2.5">
@@ -199,6 +207,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                   <DocSignal
                     label="OpenAPI"
                     active={service.docs.openApiSpec}
+                    href={service.links.apiDocs}
                   />
                   <DocSignal
                     label="AI Guide"

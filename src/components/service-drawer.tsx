@@ -150,13 +150,26 @@ export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
               Docs Signals
             </h3>
             <div className="flex flex-wrap gap-1.5">
-              <DocSignal label="llms.txt" active={service.docs.llmsTxt} />
-              <DocSignal label="Copy MD" active={service.docs.copyMarkdown} />
+              <DocSignal
+                label="llms.txt"
+                active={service.docs.llmsTxt}
+                href={service.docs.llmsTxtUrl}
+              />
+              <DocSignal
+                label="Copy MD"
+                active={service.docs.copyMarkdown}
+                href={service.docsUrl}
+              />
               <DocSignal
                 label="AI Quickstart"
                 active={service.docs.aiQuickstart}
+                href={service.docs.aiQuickstartUrl}
               />
-              <DocSignal label="OpenAPI" active={service.docs.openApiSpec} />
+              <DocSignal
+                label="OpenAPI"
+                active={service.docs.openApiSpec}
+                href={service.links.apiDocs}
+              />
             </div>
           </section>
 
