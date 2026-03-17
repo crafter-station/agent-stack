@@ -43,12 +43,12 @@ interface PillarBadgeProps {
 }
 
 export function PillarBadge({ label, status }: PillarBadgeProps) {
-  if (status === "none") return null;
-
   const className =
     status === "official"
       ? "border-[var(--color-green-400)]/30 bg-[var(--color-green-400)]/10 text-[var(--color-green-400)]"
-      : "border-[var(--color-blue-400)]/30 bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)]";
+      : status === "community"
+        ? "border-[var(--color-blue-400)]/30 bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)]"
+        : "border-border/30 bg-transparent text-muted-foreground/20";
 
   return (
     <span
