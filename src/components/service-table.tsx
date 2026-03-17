@@ -68,7 +68,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
             <TableHead className="w-[3%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               #
             </TableHead>
-            <TableHead className="w-[22%] h-9">
+            <TableHead className="w-[23%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("name")}
@@ -85,7 +85,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
             <TableHead className="w-[7%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Category
             </TableHead>
-            <TableHead className="w-[18%] h-9">
+            <TableHead className="w-[16%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("score")}
@@ -99,10 +99,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="w-[24%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[20%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Pillars
             </TableHead>
-            <TableHead className="w-[26%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[31%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Docs
             </TableHead>
           </TableRow>
