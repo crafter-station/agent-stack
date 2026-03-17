@@ -4,11 +4,7 @@ import { useState } from "react";
 
 import type { Service } from "@/lib/types";
 
-import {
-  CategoryBadge,
-  FeatureBadge,
-  TierBadge,
-} from "@/components/badge-components";
+import { CategoryBadge, PillarBadge } from "@/components/badge-components";
 import { ScoreGauge } from "@/components/score-gauge";
 import { ServiceLogo } from "@/components/service-logo";
 import {
@@ -26,25 +22,22 @@ interface ServiceTableProps {
 }
 
 export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
-  const [sortBy, setSortBy] = useState<"score" | "name" | "tier">("score");
+  const [sortBy, setSortBy] = useState<"score" | "name">("score");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
   const sortedServices = [...services].sort((a, b) => {
     const order = sortOrder === "asc" ? 1 : -1;
-
     switch (sortBy) {
       case "score":
         return (a.score - b.score) * order;
       case "name":
         return a.name.localeCompare(b.name) * order;
-      case "tier":
-        return (a.tier - b.tier) * order;
       default:
         return 0;
     }
   });
 
-  const handleSort = (field: "score" | "name" | "tier") => {
+  const handleSort = (field: "score" | "name") => {
     if (sortBy === field) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
@@ -81,20 +74,6 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
             <TableHead className="h-9">
               <button
                 type="button"
-                onClick={() => handleSort("tier")}
-                className="flex items-center gap-1 text-[10px] font-bold tracking-wider transition-colors text-muted-foreground hover:text-foreground uppercase"
-              >
-                Tier
-                {sortBy === "tier" && (
-                  <span className="text-foreground">
-                    {sortOrder === "asc" ? "↑" : "↓"}
-                  </span>
-                )}
-              </button>
-            </TableHead>
-            <TableHead className="h-9">
-              <button
-                type="button"
                 onClick={() => handleSort("score")}
                 className="flex items-center gap-1 text-[10px] font-bold tracking-wider transition-colors text-muted-foreground hover:text-foreground uppercase"
               >
@@ -107,7 +86,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
               </button>
             </TableHead>
             <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
-              Features
+              Pillars
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -131,7 +110,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                       {service.name}
                     </div>
                     <div className="text-[10px] truncate text-muted-foreground">
-                      {service.metadata.description}
+                      {service.description}
                     </div>
                   </div>
                 </div>
@@ -140,31 +119,17 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 <CategoryBadge category={service.category} />
               </TableCell>
               <TableCell className="py-2">
-                <TierBadge tier={service.tier} />
-              </TableCell>
-              <TableCell className="py-2">
                 <ScoreGauge score={service.score} size="sm" />
               </TableCell>
               <TableCell className="py-2">
                 <div className="flex flex-wrap gap-1">
-                  <FeatureBadge
-                    feature="mcp"
-                    status={service.capabilities.mcp}
+                  <PillarBadge label="MCP" status={service.mcp.status} />
+                  <PillarBadge
+                    label="API"
+                    status={service.platformApi.status}
                   />
-                  <FeatureBadge
-                    feature="api"
-                    status={service.capabilities.platformAPI}
-                  />
-                  <FeatureBadge
-                    feature="cli"
-                    status={service.capabilities.cli}
-                  />
-                  {service.capabilities.oauth && (
-                    <FeatureBadge feature="oauth" status={true} />
-                  )}
-                  {service.features.webhooks && (
-                    <FeatureBadge feature="webhooks" status={true} />
-                  )}
+                  <PillarBadge label="CLI" status={service.cli.status} />
+                  <PillarBadge label="Skills" status={service.skills.status} />
                 </div>
               </TableCell>
             </TableRow>

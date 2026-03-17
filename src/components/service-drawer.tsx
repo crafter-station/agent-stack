@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import type { Service } from "@/lib/types";
 
-import { FeatureBadge, TierBadge } from "./badge-components";
+import { CategoryBadge, DocSignal } from "./badge-components";
 import { ScoreGauge } from "./score-gauge";
 import { ServiceLogo } from "./service-logo";
 
@@ -13,19 +13,58 @@ interface ServiceDrawerProps {
   onClose: () => void;
 }
 
+function PillarCard({
+  label,
+  status,
+  detail,
+  link,
+}: {
+  label: string;
+  status: string;
+  detail?: string;
+  link?: string;
+}) {
+  return (
+    <div className="border border-border rounded p-2 space-y-1.5 bg-muted/20">
+      <div className="text-muted-foreground uppercase text-[10px] tracking-wider">
+        {label}
+      </div>
+      <div className="flex items-center gap-1.5 flex-wrap">
+        <span
+          className={`text-xs font-bold ${
+            status === "official"
+              ? "text-[var(--color-green-400)]"
+              : status === "community"
+                ? "text-[var(--color-blue-400)]"
+                : "text-muted-foreground"
+          }`}
+        >
+          {status}
+        </span>
+        {detail && <span className="text-xs text-foreground">{detail}</span>}
+      </div>
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+        >
+          docs →
+        </a>
+      )}
+    </div>
+  );
+}
+
 export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
   useEffect(() => {
     if (!service) return;
-
-    // Prevent body scroll
     document.body.style.overflow = "hidden";
-
-    // ESC to close
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleEsc);
-
     return () => {
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleEsc);
@@ -36,7 +75,6 @@ export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
 
   return (
     <>
-      {/* Backdrop */}
       <button
         type="button"
         onClick={onClose}
@@ -44,9 +82,7 @@ export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
         aria-label="Close drawer"
       />
 
-      {/* Drawer */}
       <div className="fixed right-0 top-0 h-full w-full md:w-[600px] bg-background border-l border-border z-50 overflow-y-auto animate-slide-in-right">
-        {/* Header */}
         <div className="sticky top-0 bg-background border-b border-border p-4 flex items-start justify-between gap-4 z-10">
           <div className="space-y-3 flex-1">
             <div className="flex items-start gap-4">
@@ -56,10 +92,10 @@ export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
               <div className="flex-1 space-y-2 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h2 className="text-base font-bold">{service.name}</h2>
-                  <TierBadge tier={service.tier} />
+                  <CategoryBadge category={service.category} />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  {service.metadata.description}
+                  {service.description}
                 </p>
               </div>
               <div className="flex-shrink-0">
@@ -76,186 +112,72 @@ export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-4 space-y-6">
-          {/* Capabilities */}
           <section>
             <h3 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">
-              Capabilities
+              Four Pillars
             </h3>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="border border-border rounded p-2 space-y-1.5 bg-muted/20">
-                <div className="text-muted-foreground uppercase text-[10px] tracking-wider">
-                  MCP Server
-                </div>
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <FeatureBadge
-                    feature="mcp"
-                    status={service.capabilities.mcp}
-                  />
-                  {service.capabilities.mcpUrl && (
-                    <a
-                      href={service.capabilities.mcpUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground hover:underline"
-                    >
-                      docs →
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              <div className="border border-border rounded p-2 space-y-1.5 bg-muted/20">
-                <div className="text-muted-foreground uppercase text-[10px] tracking-wider">
-                  Platform API
-                </div>
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <FeatureBadge
-                    feature="api"
-                    status={service.capabilities.platformAPI}
-                  />
-                  {service.capabilities.apiType && (
-                    <span className="text-foreground">
-                      {service.capabilities.apiType}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              <div className="border border-border rounded p-2 space-y-1.5 bg-muted/20">
-                <div className="text-muted-foreground uppercase text-[10px] tracking-wider">
-                  CLI Tool
-                </div>
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <FeatureBadge
-                    feature="cli"
-                    status={service.capabilities.cli}
-                  />
-                  {service.capabilities.cliName && (
-                    <span className="text-foreground">
-                      {service.capabilities.cliName}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              <div className="border border-border rounded p-2 space-y-1.5 bg-muted/20">
-                <div className="text-muted-foreground uppercase text-[10px] tracking-wider">
-                  Additional
-                </div>
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  {service.capabilities.oauth && (
-                    <FeatureBadge feature="oauth" status={true} />
-                  )}
-                  {service.features.webhooks && (
-                    <FeatureBadge feature="webhooks" status={true} />
-                  )}
-                </div>
-              </div>
+              <PillarCard
+                label="MCP Server"
+                status={service.mcp.status}
+                detail={service.mcp.package}
+                link={service.links.mcpDocs}
+              />
+              <PillarCard
+                label="Platform API"
+                status={service.platformApi.status}
+                detail={service.platformApi.type}
+                link={service.links.apiDocs}
+              />
+              <PillarCard
+                label="CLI"
+                status={service.cli.status}
+                detail={service.cli.name}
+                link={service.links.cliDocs}
+              />
+              <PillarCard
+                label="Skills"
+                status={service.skills.status}
+                detail={service.skills.hasSkillFile ? "SKILL.md" : undefined}
+                link={service.links.skillsDocs}
+              />
             </div>
           </section>
 
-          {/* Features */}
           <section>
             <h3 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">
-              Features
+              Docs Signals
             </h3>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              {[
-                { key: "webhooks", value: service.features.webhooks },
-                { key: "agent_rules", value: service.features.agentRules },
-                {
-                  key: "error_handling",
-                  value: service.features.errorHandling,
-                },
-                { key: "rate_limits", value: service.features.rateLimits },
-              ].map(({ key, value }) => (
-                <div
-                  key={key}
-                  className="flex items-center justify-between border border-border rounded px-2 py-1.5 bg-muted/20"
-                >
-                  <span className="text-muted-foreground">{key}</span>
-                  <span
-                    className={
-                      typeof value === "boolean"
-                        ? value
-                          ? "text-[var(--color-green-400)]"
-                          : "text-muted-foreground"
-                        : "text-foreground"
-                    }
-                  >
-                    {typeof value === "boolean"
-                      ? value
-                        ? "yes"
-                        : "no"
-                      : value}
-                  </span>
-                </div>
-              ))}
+            <div className="flex flex-wrap gap-1.5">
+              <DocSignal label="llms.txt" active={service.docs.llmsTxt} />
+              <DocSignal label="Copy MD" active={service.docs.copyMarkdown} />
+              <DocSignal
+                label="AI Quickstart"
+                active={service.docs.aiQuickstart}
+              />
+              <DocSignal label="OpenAPI" active={service.docs.openApiSpec} />
             </div>
           </section>
 
-          {/* Strengths */}
-          {service.strengths.length > 0 && (
+          {service.cli.status !== "none" && service.cli.installCmd && (
             <section>
               <h3 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">
-                Strengths
+                Install CLI
               </h3>
-              <ul className="space-y-1.5 text-xs">
-                {service.strengths.map((strength, idx) => (
-                  <li key={strength} className="flex items-start gap-2">
-                    <span className="text-[var(--color-green-400)] mt-0.5">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-muted-foreground leading-relaxed">
-                      {strength}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <code className="block text-xs bg-muted/30 border border-border rounded px-3 py-2 font-mono">
+                {service.cli.installCmd}
+              </code>
             </section>
           )}
 
-          {/* Gaps */}
-          {service.gaps.length > 0 && (
-            <section>
-              <h3 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">
-                Gaps
-              </h3>
-              <ul className="space-y-1.5 text-xs">
-                {service.gaps.map((gap, idx) => (
-                  <li key={gap} className="flex items-start gap-2">
-                    <span className="text-[var(--color-red-400)] mt-0.5">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-muted-foreground leading-relaxed">
-                      {gap}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {/* Best For */}
-          <section>
-            <h3 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">
-              Best For
-            </h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              {service.bestFor}
-            </p>
-          </section>
-
-          {/* Resources */}
           <section>
             <h3 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">
               Resources
             </h3>
             <div className="space-y-1.5 text-xs">
               <a
-                href={service.metadata.homepage}
+                href={service.homepage}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-muted-foreground hover:text-foreground transition-colors"
@@ -263,34 +185,14 @@ export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
                 homepage →
               </a>
               <a
-                href={service.metadata.docs}
+                href={service.docsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-muted-foreground hover:text-foreground transition-colors"
               >
                 documentation →
               </a>
-              {service.links?.mcpDocs && (
-                <a
-                  href={service.links.mcpDocs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  mcp_docs →
-                </a>
-              )}
-              {service.links?.apiDocs && (
-                <a
-                  href={service.links.apiDocs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  api_docs →
-                </a>
-              )}
-              {service.links?.github && (
+              {service.links.github && (
                 <a
                   href={service.links.github}
                   target="_blank"
@@ -300,14 +202,33 @@ export function ServiceDrawer({ service, onClose }: ServiceDrawerProps) {
                   github →
                 </a>
               )}
+              {service.docs.llmsTxtUrl && (
+                <a
+                  href={service.docs.llmsTxtUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  llms.txt →
+                </a>
+              )}
+              {service.docs.aiQuickstartUrl && (
+                <a
+                  href={service.docs.aiQuickstartUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  ai quickstart →
+                </a>
+              )}
             </div>
           </section>
         </div>
 
-        {/* Footer */}
         <div className="sticky bottom-0 bg-background border-t border-border p-4 flex items-center justify-between text-xs">
           <span className="text-muted-foreground">
-            updated: {service.lastUpdated}
+            researched: {service.lastResearched}
           </span>
           <button
             type="button"
