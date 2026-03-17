@@ -62,13 +62,13 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
 
   return (
     <div className="border border-border overflow-hidden bg-card">
-      <Table>
+      <Table className="table-fixed w-full">
         <TableHeader>
           <TableRow className="border-b border-border hover:bg-transparent">
-            <TableHead className="w-10 h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[3%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               #
             </TableHead>
-            <TableHead className="h-9 min-w-[160px]">
+            <TableHead className="w-[27%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("name")}
@@ -82,10 +82,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[8%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Category
             </TableHead>
-            <TableHead className="h-9 w-16">
+            <TableHead className="w-[6%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("score")}
@@ -99,10 +99,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[26%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Pillars
             </TableHead>
-            <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[30%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Docs
             </TableHead>
           </TableRow>
@@ -126,9 +126,14 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                     name={service.name}
                     className="h-5 w-5 flex-shrink-0"
                   />
-                  <span className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap">
-                    {service.name}
-                  </span>
+                  <div className="min-w-0">
+                    <span className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap block">
+                      {service.name}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground/60 truncate block max-w-[240px]">
+                      {service.description}
+                    </span>
+                  </div>
                 </div>
               </TableCell>
               <TableCell className="py-2">
