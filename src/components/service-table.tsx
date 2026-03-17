@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import type { Service } from "@/lib/types";
 
+import { cn } from "@/lib/utils";
+
 import {
   CategoryBadge,
   DocSignal,
@@ -48,6 +50,14 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
       setSortBy(field);
       setSortOrder("desc");
     }
+  };
+
+  const getRowTint = (score: number) => {
+    if (score >= 95) return "bg-[var(--color-emerald-400)]/[0.03]";
+    if (score >= 85) return "bg-[var(--color-cyan-400)]/[0.03]";
+    if (score >= 75) return "bg-[var(--color-orange-400)]/[0.03]";
+    if (score >= 60) return "bg-[var(--color-yellow-400)]/[0.03]";
+    return "bg-[var(--color-red-400)]/[0.03]";
   };
 
   return (
@@ -101,7 +111,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
           {sortedServices.map((service, index) => (
             <TableRow
               key={service.id}
-              className="cursor-pointer border-b border-border last:border-0 transition-all hover:bg-muted/50 group"
+              className={cn(
+                "cursor-pointer border-b border-border last:border-0 transition-all hover:bg-muted/50 group",
+                getRowTint(service.score),
+              )}
               onClick={() => onServiceClick?.(service)}
             >
               <TableCell className="text-[10px] font-bold tabular-nums py-2 text-muted-foreground group-hover:text-foreground transition-colors">
