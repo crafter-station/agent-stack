@@ -4,7 +4,11 @@ import { useState } from "react";
 
 import type { Service } from "@/lib/types";
 
-import { CategoryBadge, PillarBadge } from "@/components/badge-components";
+import {
+  CategoryBadge,
+  DocSignal,
+  PillarBadge,
+} from "@/components/badge-components";
 import { ScoreGauge } from "@/components/score-gauge";
 import { ServiceLogo } from "@/components/service-logo";
 import {
@@ -51,10 +55,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
       <Table>
         <TableHeader>
           <TableRow className="border-b border-border hover:bg-transparent">
-            <TableHead className="w-12 h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-10 h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               #
             </TableHead>
-            <TableHead className="h-9">
+            <TableHead className="h-9 min-w-[160px]">
               <button
                 type="button"
                 onClick={() => handleSort("name")}
@@ -71,7 +75,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
             <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Category
             </TableHead>
-            <TableHead className="h-9">
+            <TableHead className="h-9 w-16">
               <button
                 type="button"
                 onClick={() => handleSort("score")}
@@ -88,6 +92,9 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
             <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Pillars
             </TableHead>
+            <TableHead className="h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+              Docs
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -102,7 +109,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
               </TableCell>
               <TableCell className="py-2">
                 <div className="flex items-center gap-2.5">
-                  <ServiceLogo name={service.name} className="h-5 w-5 flex-shrink-0" />
+                  <ServiceLogo
+                    name={service.name}
+                    className="h-5 w-5 flex-shrink-0"
+                  />
                   <span className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap">
                     {service.name}
                   </span>
@@ -123,6 +133,20 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                   />
                   <PillarBadge label="CLI" status={service.cli.status} />
                   <PillarBadge label="Skills" status={service.skills.status} />
+                </div>
+              </TableCell>
+              <TableCell className="py-2">
+                <div className="flex flex-wrap gap-1">
+                  <DocSignal label="llms.txt" active={service.docs.llmsTxt} />
+                  <DocSignal label="OpenAPI" active={service.docs.openApiSpec} />
+                  <DocSignal
+                    label="AI Guide"
+                    active={service.docs.aiQuickstart}
+                  />
+                  <DocSignal
+                    label="Copy MD"
+                    active={service.docs.copyMarkdown}
+                  />
                 </div>
               </TableCell>
             </TableRow>
