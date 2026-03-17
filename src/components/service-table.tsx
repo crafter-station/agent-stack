@@ -100,19 +100,12 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
               <TableCell className="text-[10px] font-bold tabular-nums py-2 text-muted-foreground group-hover:text-foreground transition-colors">
                 {String(index + 1).padStart(2, "0")}
               </TableCell>
-              <TableCell className="py-2 max-w-[280px]">
-                <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0">
-                    <ServiceLogo name={service.name} className="h-6 w-6" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-bold text-xs group-hover:text-foreground transition-colors">
-                      {service.name}
-                    </div>
-                    <div className="text-[10px] truncate text-muted-foreground">
-                      {service.description}
-                    </div>
-                  </div>
+              <TableCell className="py-2">
+                <div className="flex items-center gap-2.5">
+                  <ServiceLogo name={service.name} className="h-5 w-5 flex-shrink-0" />
+                  <span className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap">
+                    {service.name}
+                  </span>
                 </div>
               </TableCell>
               <TableCell className="py-2">
