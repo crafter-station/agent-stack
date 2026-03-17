@@ -57,7 +57,8 @@ export type Category =
   | "cms"
   | "analytics"
   | "media"
-  | "feature-flags";
+  | "feature-flags"
+  | "mobile";
 
 export interface Service {
   id: string;

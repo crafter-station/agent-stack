@@ -89,6 +89,7 @@ const categoryLabels: Record<Category, string> = {
   analytics: "Analytics",
   media: "Media",
   "feature-flags": "Flags",
+  mobile: "Mobile",
 };
 
 export function CategoryBadge({ category }: CategoryBadgeProps) {

@@ -2035,6 +2035,344 @@
       },
       "lastUpdated": "2026-03-16",
       "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "expo",
+      "name": "Expo",
+      "category": "mobile",
+      "description": "React Native framework with official MCP server, EAS CLI with JSON output, comprehensive API, and deep AI agent integration via Cursor/Windsurf rules",
+      "homepage": "https://expo.dev",
+      "docsUrl": "https://docs.expo.dev",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/expo/mcp",
+        "package": "@expo/mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.expo.dev/eas/api/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "eas",
+        "installCmd": "npm install -g eas-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.expo.dev/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.expo.dev/guides/overview/",
+        "openApiSpec": false
+      },
+      "score": 91,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/expo/expo",
+        "mcpDocs": "https://github.com/expo/mcp",
+        "cliDocs": "https://docs.expo.dev/more/expo-cli/",
+        "apiDocs": "https://docs.expo.dev/eas/api/"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "datadog",
+      "name": "Datadog",
+      "category": "monitoring",
+      "description": "Full-stack observability with official MCP server, comprehensive REST API, feature-rich CLI with JSON output, and AI-focused Bits AI integration",
+      "homepage": "https://www.datadoghq.com",
+      "docsUrl": "https://docs.datadoghq.com",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/DataDog/datadog-mcp-server",
+        "package": "@anthropic/datadog-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.datadoghq.com/api/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "datadog-ci",
+        "installCmd": "npm install -g @datadog/datadog-ci",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": false,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.datadoghq.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.datadoghq.com/getting_started/",
+        "openApiSpec": true
+      },
+      "score": 90,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/DataDog/datadog-mcp-server",
+        "mcpDocs": "https://github.com/DataDog/datadog-mcp-server",
+        "cliDocs": "https://docs.datadoghq.com/developers/guide/ci-cd-integrations/",
+        "apiDocs": "https://docs.datadoghq.com/api/"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "fal-ai",
+      "name": "fal.ai",
+      "category": "media",
+      "description": "AI inference platform with official MCP server, REST API for 300+ models, fal CLI with JSON output, and AI-native documentation",
+      "homepage": "https://fal.ai",
+      "docsUrl": "https://docs.fal.ai",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/fal-ai/fal-mcp",
+        "package": "@fal-ai/mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.fal.ai/api-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "fal",
+        "installCmd": "npm install -g @fal-ai/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.fal.ai/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.fal.ai/quickstart",
+        "openApiSpec": false
+      },
+      "score": 83,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/fal-ai",
+        "mcpDocs": "https://github.com/fal-ai/fal-mcp",
+        "cliDocs": "https://docs.fal.ai/cli",
+        "apiDocs": "https://docs.fal.ai/api-reference"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "terraform",
+      "name": "Terraform",
+      "category": "deploy",
+      "description": "Infrastructure as Code with community MCP servers, comprehensive API, powerful CLI with JSON output, and rich agent integration ecosystem",
+      "homepage": "https://www.terraform.io",
+      "docsUrl": "https://developer.hashicorp.com/terraform",
+      "mcp": {
+        "status": "community",
+        "url": "https://github.com/hashicorp/terraform-mcp-server",
+        "package": "terraform-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://developer.hashicorp.com/terraform/cloud-docs/api-docs"
+      },
+      "cli": {
+        "status": "official",
+        "name": "terraform",
+        "installCmd": "brew install terraform",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": false,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://developer.hashicorp.com/terraform/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 77,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/hashicorp/terraform",
+        "mcpDocs": "https://github.com/hashicorp/terraform-mcp-server",
+        "cliDocs": "https://developer.hashicorp.com/terraform/cli",
+        "apiDocs": "https://developer.hashicorp.com/terraform/cloud-docs/api-docs"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "category": "monitoring",
+      "description": "Observability platform with official MCP server, comprehensive HTTP API, grafana-cli with structured output, and AI-powered assistant",
+      "homepage": "https://grafana.com",
+      "docsUrl": "https://grafana.com/docs/grafana/latest/",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/grafana/mcp-grafana",
+        "package": "mcp-grafana"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://grafana.com/docs/grafana/latest/developers/http_api/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "grafana-cli",
+        "installCmd": "brew install grafana",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://grafana.com/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 77,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/grafana/grafana",
+        "mcpDocs": "https://github.com/grafana/mcp-grafana",
+        "cliDocs": "https://grafana.com/docs/grafana/latest/cli/",
+        "apiDocs": "https://grafana.com/docs/grafana/latest/developers/http_api/"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "twilio",
+      "name": "Twilio",
+      "category": "messaging",
+      "description": "Communication APIs with official MCP server (alpha), comprehensive REST API with OpenAPI spec, powerful CLI with JSON output, and llms.txt support",
+      "homepage": "https://www.twilio.com",
+      "docsUrl": "https://www.twilio.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/twilio/twilio-mcp",
+        "package": "@twilio/mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://www.twilio.com/docs/usage/api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "twilio",
+        "installCmd": "npm install -g twilio-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.twilio.com/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 75,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/twilio",
+        "mcpDocs": "https://github.com/twilio/twilio-mcp",
+        "cliDocs": "https://www.twilio.com/docs/twilio-cli",
+        "apiDocs": "https://www.twilio.com/docs/usage/api"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "pagerduty",
+      "name": "PagerDuty",
+      "category": "monitoring",
+      "description": "Incident management with official MCP server, comprehensive REST API v2, CLI with JSON output, and AI-native operations features",
+      "homepage": "https://www.pagerduty.com",
+      "docsUrl": "https://developer.pagerduty.com",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/PagerDuty/mcp-server-pagerduty",
+        "package": "@pagerduty/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://developer.pagerduty.com/api-reference/"
+      },
+      "cli": {
+        "status": "community",
+        "name": "pd",
+        "installCmd": "brew install PagerDuty/tap/pagerduty-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 65,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/PagerDuty",
+        "mcpDocs": "https://github.com/PagerDuty/mcp-server-pagerduty",
+        "cliDocs": "https://github.com/martindstone/pagerduty-cli",
+        "apiDocs": "https://developer.pagerduty.com/api-reference/"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
     }
   ]
 }

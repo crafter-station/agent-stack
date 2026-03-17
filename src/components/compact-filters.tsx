@@ -30,6 +30,7 @@ const categories: { value: Category; label: string }[] = [
   { value: "analytics", label: "analytics" },
   { value: "media", label: "media" },
   { value: "feature-flags", label: "flags" },
+  { value: "mobile", label: "mobile" },
 ];
 
 export function CompactFilters({ onFilterChange }: CompactFiltersProps) {
