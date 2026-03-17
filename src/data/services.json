@@ -1797,7 +1797,7 @@
       "id": "axiom",
       "name": "Axiom",
       "category": "monitoring",
-      "description": "Observability platform with hosted MCP v2 (mcp.axiom.co), REST API (100+ endpoints), Go CLI with --json + explicit agent mode, Claude Code plugin with 4 skills + hooks + AGENTS.md, and llms.txt + llms-full.txt",
+      "description": "Observability platform with hosted MCP v2 (mcp.axiom.co), REST API (100+ endpoints), Go CLI with --json + explicit agent mode, Claude Code plugin (3 skills + hooks) + separate skills repo (6 skills + evals), and llms.txt + copy-as-markdown + AI engineering quickstart",
       "homepage": "https://axiom.co",
       "docsUrl": "https://axiom.co/docs",
       "mcp": {
@@ -1826,18 +1826,19 @@
       "docs": {
         "llmsTxt": true,
         "llmsTxtUrl": "https://axiom.co/docs/llms.txt",
-        "copyMarkdown": false,
-        "aiQuickstart": false,
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://axiom.co/docs/ai-engineering/quickstart",
         "openApiSpec": false
       },
-      "score": 85,
+      "score": 95,
       "maxScore": 100,
       "links": {
         "github": "https://github.com/axiomhq/cli",
         "mcpDocs": "https://github.com/axiomhq/mcp",
         "cliDocs": "https://axiom.co/docs/reference/cli",
         "apiDocs": "https://axiom.co/docs/restapi/introduction",
-        "skillsDocs": "https://github.com/axiomhq/cli/tree/main/skills"
+        "skillsDocs": "https://github.com/axiomhq/skills"
       },
       "lastUpdated": "2026-03-16",
       "lastResearched": "2026-03-16"
