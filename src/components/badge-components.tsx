@@ -1,45 +1,7 @@
-import type { Service } from "@/lib/types";
+import type { Category, PillarStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 import { Badge } from "@/components/ui/badge";
-
-interface TierBadgeProps {
-  tier: 1 | 2 | 3;
-}
-
-export function TierBadge({ tier }: TierBadgeProps) {
-  const variants = {
-    1: {
-      label: "T1",
-      className:
-        "bg-[var(--color-green-400)]/10 text-[var(--color-green-400)] border-[var(--color-green-400)]/20",
-    },
-    2: {
-      label: "T2",
-      className:
-        "bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)] border-[var(--color-blue-400)]/20",
-    },
-    3: {
-      label: "T3",
-      className:
-        "bg-[var(--color-red-400)]/10 text-[var(--color-red-400)] border-[var(--color-red-400)]/20",
-    },
-  };
-
-  const variant = variants[tier];
-
-  return (
-    <Badge
-      variant="outline"
-      className={cn(
-        "text-[10px] font-bold tracking-wide border px-1.5 py-0",
-        variant.className,
-      )}
-    >
-      {variant.label}
-    </Badge>
-  );
-}
 
 interface ScoreBadgeProps {
   score: number;
@@ -47,11 +9,17 @@ interface ScoreBadgeProps {
 
 export function ScoreBadge({ score }: ScoreBadgeProps) {
   const getClassName = (score: number) => {
-    if (score >= 80) {
-      return "bg-[var(--color-green-400)]/10 text-[var(--color-green-400)] border-[var(--color-green-400)]/20";
+    if (score >= 95) {
+      return "bg-[var(--color-emerald-400)]/10 text-[var(--color-emerald-400)] border-[var(--color-emerald-400)]/20";
     }
-    if (score >= 70) {
-      return "bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)] border-[var(--color-blue-400)]/20";
+    if (score >= 85) {
+      return "bg-[var(--color-cyan-400)]/10 text-[var(--color-cyan-400)] border-[var(--color-cyan-400)]/20";
+    }
+    if (score >= 75) {
+      return "bg-[var(--color-orange-400)]/10 text-[var(--color-orange-400)] border-[var(--color-orange-400)]/20";
+    }
+    if (score >= 60) {
+      return "bg-[var(--color-yellow-400)]/10 text-[var(--color-yellow-400)] border-[var(--color-yellow-400)]/20";
     }
     return "bg-[var(--color-red-400)]/10 text-[var(--color-red-400)] border-[var(--color-red-400)]/20";
   };
@@ -69,65 +37,87 @@ export function ScoreBadge({ score }: ScoreBadgeProps) {
   );
 }
 
-interface FeatureBadgeProps {
-  feature: "mcp" | "api" | "cli" | "oauth" | "webhooks";
-  status: string | boolean;
+interface PillarBadgeProps {
+  label: string;
+  status: PillarStatus;
 }
 
-export function FeatureBadge({ feature, status }: FeatureBadgeProps) {
-  const getLabel = () => {
-    const featureNames = {
-      mcp: "MCP",
-      api: "API",
-      cli: "CLI",
-      oauth: "OAuth",
-      webhooks: "Webhooks",
-    };
+export function PillarBadge({ label, status }: PillarBadgeProps) {
+  if (status === "none") return null;
 
-    const name = featureNames[feature];
-
-    if (feature === "mcp" || feature === "cli") {
-      if (status === "official") return name;
-      if (status === "community") return `${name}*`;
-      return null;
-    }
-
-    return status ? name : null;
-  };
-
-  const label = getLabel();
-  if (!label) return null;
+  const className =
+    status === "official"
+      ? "border-[var(--color-green-400)]/30 bg-[var(--color-green-400)]/10 text-[var(--color-green-400)]"
+      : "border-[var(--color-blue-400)]/30 bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)]";
 
   return (
-    <span className="inline-flex items-center text-[10px] px-1.5 py-0 rounded border border-border bg-muted/30 text-foreground font-bold tracking-wide uppercase">
+    <span
+      className={cn(
+        "inline-flex items-center text-[10px] px-1.5 py-0 rounded border font-bold tracking-wide uppercase",
+        className,
+      )}
+    >
       {label}
+      {status === "community" && "*"}
     </span>
   );
 }
 
 interface CategoryBadgeProps {
-  category: Service["category"];
+  category: Category;
 }
 
-export function CategoryBadge({ category }: CategoryBadgeProps) {
-  const labels = {
-    auth: "Auth",
-    database: "DB",
-    deploy: "Deploy",
-    jobs: "Jobs",
-    email: "Email",
-    files: "Files",
-    messaging: "Msg",
-    edge: "Edge",
-    code: "Code",
-  };
+const categoryLabels: Record<Category, string> = {
+  auth: "Auth",
+  database: "DB",
+  deploy: "Deploy",
+  jobs: "Jobs",
+  email: "Email",
+  files: "Files",
+  messaging: "Msg",
+  edge: "Edge",
+  code: "Code",
+  scraping: "Scrape",
+  payments: "Pay",
+  cache: "Cache",
+  monitoring: "Monitor",
+  pm: "PM",
+  orm: "ORM",
+  search: "Search",
+  "ai-eval": "AI Eval",
+  cms: "CMS",
+  analytics: "Analytics",
+  media: "Media",
+  "feature-flags": "Flags",
+};
 
+export function CategoryBadge({ category }: CategoryBadgeProps) {
   return (
     <Badge
       variant="outline"
       className="text-[10px] border border-border bg-muted/20 text-muted-foreground font-bold tracking-wide px-1.5 py-0 uppercase"
     >
-      {labels[category]}
+      {categoryLabels[category]}
     </Badge>
+  );
+}
+
+interface DocSignalProps {
+  label: string;
+  active: boolean;
+}
+
+export function DocSignal({ label, active }: DocSignalProps) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center text-[10px] px-1.5 py-0 rounded border font-bold tracking-wide",
+        active
+          ? "border-border bg-muted/30 text-foreground"
+          : "border-transparent bg-transparent text-muted-foreground/30",
+      )}
+    >
+      {label}
+    </span>
   );
 }

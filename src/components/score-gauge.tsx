@@ -5,10 +5,14 @@ interface ScoreGaugeProps {
 
 export function ScoreGauge({ score, size = "sm" }: ScoreGaugeProps) {
   const getColor = (score: number) => {
-    if (score >= 80) return "var(--color-green-400)";
-    if (score >= 70) return "var(--color-blue-400)";
+    if (score >= 95) return "var(--color-emerald-400)";
+    if (score >= 85) return "var(--color-cyan-400)";
+    if (score >= 75) return "var(--color-orange-400)";
+    if (score >= 60) return "var(--color-yellow-400)";
     return "var(--color-red-400)";
   };
+
+  const isPerfect = score === 100;
 
   const sizes = {
     sm: { width: 32, height: 32, strokeWidth: 3, fontSize: "10px" },
@@ -31,32 +35,36 @@ export function ScoreGauge({ score, size = "sm" }: ScoreGaugeProps) {
         role="img"
         aria-label={`Score: ${score}`}
       >
-        {/* Background circle */}
         <circle
           cx={width / 2}
           cy={height / 2}
           r={radius}
-          stroke="var(--color-border)"
+          stroke={isPerfect ? color : "var(--color-border)"}
           strokeWidth={strokeWidth}
-          fill="none"
+          fill={isPerfect ? color : "none"}
         />
-        {/* Progress circle */}
-        <circle
-          cx={width / 2}
-          cy={height / 2}
-          r={radius}
-          stroke={color}
-          strokeWidth={strokeWidth}
-          fill="none"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-          className="transition-all duration-500 ease-out"
-        />
+        {!isPerfect && (
+          <circle
+            cx={width / 2}
+            cy={height / 2}
+            r={radius}
+            stroke={color}
+            strokeWidth={strokeWidth}
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            strokeLinecap="round"
+            className="transition-all duration-500 ease-out"
+          />
+        )}
       </svg>
       <span
-        className="absolute font-bold tabular-nums"
-        style={{ fontSize, color }}
+        className="absolute tabular-nums"
+        style={{
+          fontSize,
+          color: isPerfect ? "var(--color-black)" : color,
+          fontWeight: isPerfect ? 900 : 700,
+        }}
       >
         {score}
       </span>
