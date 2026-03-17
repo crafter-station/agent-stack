@@ -14,10 +14,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = "Agent Stack — Which dev tools are ready for AI agents?";
+const description =
+  "Ranking 49 developer tools across 5 dimensions: MCP Server, Platform API, CLI, Skills, and Docs. See which services are truly agent-ready.";
+
 export const metadata: Metadata = {
-  title: "Agent Stack - MCP Provisioning Readiness",
-  description:
-    "Comprehensive assessment of 10 services for MCP agent provisioning - Authentication, Database, Deployment, and more.",
+  title,
+  description,
+  metadataBase: new URL("https://agent-stack.crafter.run"),
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    siteName: "Agent Stack",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    creator: "@RaillyHugo",
+  },
 };
 
 export default function RootLayout({
