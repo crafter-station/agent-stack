@@ -11,7 +11,7 @@ import {
   DocSignal,
   PillarBadge,
 } from "@/components/badge-components";
-import { ScoreGauge } from "@/components/score-gauge";
+import { ScoreBar } from "@/components/score-bar";
 import { ServiceLogo } from "@/components/service-logo";
 import {
   Table,
@@ -68,7 +68,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
             <TableHead className="w-[3%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               #
             </TableHead>
-            <TableHead className="w-[27%] h-9">
+            <TableHead className="w-[22%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("name")}
@@ -82,10 +82,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="w-[8%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[7%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Category
             </TableHead>
-            <TableHead className="w-[6%] h-9">
+            <TableHead className="w-[18%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("score")}
@@ -99,10 +99,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="w-[26%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[24%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Pillars
             </TableHead>
-            <TableHead className="w-[30%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[26%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Docs
             </TableHead>
           </TableRow>
@@ -126,11 +126,34 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                     name={service.name}
                     className="h-5 w-5 flex-shrink-0"
                   />
-                  <div className="min-w-0">
-                    <span className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap block">
-                      {service.name}
-                    </span>
-                    <span className="text-[10px] text-muted-foreground/60 truncate block max-w-[240px]">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap">
+                        {service.name}
+                      </span>
+                      <a
+                        href={service.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground/40 hover:text-foreground transition-colors opacity-0 group-hover:opacity-100"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`Visit ${service.name}`}
+                      >
+                        <svg
+                          width="10"
+                          height="10"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        >
+                          <path d="M3.5 1.5H1.5v9h9v-2" />
+                          <path d="M7 1.5h3.5V5" />
+                          <path d="M5 7L10.5 1.5" />
+                        </svg>
+                      </a>
+                    </div>
+                    <span className="text-[10px] text-muted-foreground/50 truncate block">
                       {service.description}
                     </span>
                   </div>
@@ -140,7 +163,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 <CategoryBadge category={service.category} />
               </TableCell>
               <TableCell className="py-2">
-                <ScoreGauge score={service.score} size="sm" />
+                <ScoreBar service={service} />
               </TableCell>
               <TableCell className="py-2">
                 <div className="flex flex-wrap gap-1">
