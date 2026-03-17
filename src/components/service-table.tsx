@@ -167,26 +167,48 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
               </TableCell>
               <TableCell className="py-2">
                 <div className="flex flex-wrap gap-1">
-                  <PillarBadge label="MCP" status={service.mcp.status} />
+                  <PillarBadge
+                    label="MCP"
+                    status={service.mcp.status}
+                    href={service.links.mcpDocs || service.mcp.url}
+                  />
                   <PillarBadge
                     label="API"
                     status={service.platformApi.status}
+                    href={service.links.apiDocs}
                   />
-                  <PillarBadge label="CLI" status={service.cli.status} />
-                  <PillarBadge label="Skills" status={service.skills.status} />
+                  <PillarBadge
+                    label="CLI"
+                    status={service.cli.status}
+                    href={service.links.cliDocs}
+                  />
+                  <PillarBadge
+                    label="Skills"
+                    status={service.skills.status}
+                    href={service.links.skillsDocs}
+                  />
                 </div>
               </TableCell>
               <TableCell className="py-2">
                 <div className="flex flex-wrap gap-1">
-                  <DocSignal label="llms.txt" active={service.docs.llmsTxt} />
-                  <DocSignal label="OpenAPI" active={service.docs.openApiSpec} />
+                  <DocSignal
+                    label="llms.txt"
+                    active={service.docs.llmsTxt}
+                    href={service.docs.llmsTxtUrl}
+                  />
+                  <DocSignal
+                    label="OpenAPI"
+                    active={service.docs.openApiSpec}
+                  />
                   <DocSignal
                     label="AI Guide"
                     active={service.docs.aiQuickstart}
+                    href={service.docs.aiQuickstartUrl}
                   />
                   <DocSignal
                     label="Copy MD"
                     active={service.docs.copyMarkdown}
+                    href={service.docsUrl}
                   />
                 </div>
               </TableCell>

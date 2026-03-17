@@ -40,23 +40,40 @@ export function ScoreBadge({ score }: ScoreBadgeProps) {
 interface PillarBadgeProps {
   label: string;
   status: PillarStatus;
+  href?: string;
 }
 
-export function PillarBadge({ label, status }: PillarBadgeProps) {
-  const className =
+export function PillarBadge({ label, status, href }: PillarBadgeProps) {
+  const colorClass =
     status === "official"
       ? "border-[var(--color-green-400)]/30 bg-[var(--color-green-400)]/10 text-[var(--color-green-400)]"
       : status === "community"
         ? "border-[var(--color-blue-400)]/30 bg-[var(--color-blue-400)]/10 text-[var(--color-blue-400)]"
         : "border-border/30 bg-transparent text-muted-foreground/20";
 
+  const baseClass = cn(
+    "inline-flex items-center text-[10px] px-1.5 py-0 rounded border font-bold tracking-wide uppercase",
+    colorClass,
+    href && status !== "none" && "hover:brightness-125 transition-all cursor-pointer",
+  );
+
+  if (href && status !== "none") {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={baseClass}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {label}
+        {status === "community" && "*"}
+      </a>
+    );
+  }
+
   return (
-    <span
-      className={cn(
-        "inline-flex items-center text-[10px] px-1.5 py-0 rounded border font-bold tracking-wide uppercase",
-        className,
-      )}
-    >
+    <span className={baseClass}>
       {label}
       {status === "community" && "*"}
     </span>
@@ -106,19 +123,31 @@ export function CategoryBadge({ category }: CategoryBadgeProps) {
 interface DocSignalProps {
   label: string;
   active: boolean;
+  href?: string;
 }
 
-export function DocSignal({ label, active }: DocSignalProps) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center text-[10px] px-1.5 py-0 rounded border font-bold tracking-wide",
-        active
-          ? "border-border bg-muted/30 text-foreground"
-          : "border-transparent bg-transparent text-muted-foreground/30",
-      )}
-    >
-      {label}
-    </span>
+export function DocSignal({ label, active, href }: DocSignalProps) {
+  const baseClass = cn(
+    "inline-flex items-center text-[10px] px-1.5 py-0 rounded border font-bold tracking-wide",
+    active
+      ? "border-border bg-muted/30 text-foreground"
+      : "border-transparent bg-transparent text-muted-foreground/30",
+    href && active && "hover:bg-muted/50 transition-all cursor-pointer",
   );
+
+  if (href && active) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={baseClass}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {label}
+      </a>
+    );
+  }
+
+  return <span className={baseClass}>{label}</span>;
 }
