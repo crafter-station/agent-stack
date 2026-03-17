@@ -54,10 +54,11 @@ export function TriggerLogo({
 }) {
   const { resolvedTheme } = useTheme();
   const mode = resolvedTheme === "dark" ? "dark" : "light";
-  const colors = COLORS[colorScheme][mode];
+  // biome-ignore lint: pre-existing type narrowing issue
+  const colors = COLORS[colorScheme][mode] as any;
 
   if (variant === "wordmark") {
-    if (colorScheme === "colorful") {
+    if (colorScheme === "colorful" && "greenGradient" in colors) {
       return (
         <svg
           role="img"
@@ -75,7 +76,7 @@ export function TriggerLogo({
               y2="13.9297"
               gradientUnits="userSpaceOnUse"
             >
-              {colors.greenGradient.stops.map((stop) => (
+              {colors.greenGradient.stops.map((stop: { offset: string; color: string }) => (
                 <stop
                   key={stop.offset}
                   offset={stop.offset}
@@ -91,7 +92,7 @@ export function TriggerLogo({
               y2="25.9719"
               gradientUnits="userSpaceOnUse"
             >
-              {colors.blueGradient.stops.map((stop) => (
+              {colors.blueGradient.stops.map((stop: { offset: string; color: string }) => (
                 <stop
                   key={stop.offset}
                   offset={stop.offset}
@@ -234,7 +235,7 @@ export function TriggerLogo({
             y2="27.8737"
             gradientUnits="userSpaceOnUse"
           >
-            {colors.greenGradient.stops.map((stop) => (
+            {colors.greenGradient.stops.map((stop: { offset: string; color: string }) => (
               <stop
                 key={stop.offset}
                 offset={stop.offset}
