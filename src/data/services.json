@@ -1,594 +1,2039 @@
 {
   "services": [
     {
-      "id": "clerk",
-      "name": "Clerk",
-      "category": "auth",
-      "tier": 1,
-      "score": 85,
-      "capabilities": {
-        "mcp": "official",
-        "mcpUrl": "https://mcp.clerk.com/mcp",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "official",
-        "cliName": "clerk",
-        "skills": true,
-        "oauth": true
-      },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "excellent",
-        "rateLimits": true
-      },
-      "docs": {
-        "aiFocused": true,
-        "openAPI": true,
-        "quickStart": true
-      },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://clerk.com",
-        "docs": "https://clerk.com/docs",
-        "logo": "/logos/clerk.svg",
-        "description": "Authentication with MCP server, PLAPI one-shot provisioning, OAuth device flow (Jan 2026)"
-      },
-      "links": {
-        "mcpDocs": "https://clerk.com/docs/guides/ai/mcp/clerk-mcp-server",
-        "apiDocs": "https://clerk.com/docs",
-        "github": "https://github.com/clerk/mcp-tools",
-        "guides": [
-          "https://clerk.com/docs/guides/development/mcp/overview",
-          "https://clerk.com/docs/mcp/build-mcp-server",
-          "https://skywork.ai/skypage/en/ultimate-guide-official-clerk-mcp-server/1977614154253930496"
-        ]
-      },
-      "strengths": [
-        "Official MCP server at mcp.clerk.com/mcp",
-        "Dynamic client registration with Vercel withMcpAuth()",
-        "PLAPI for infrastructure provisioning",
-        "OAuth device flow + webhooks",
-        "Updated Jan 14, 2026"
-      ],
-      "gaps": ["Custom domains need manual verification"],
-      "bestFor": "User identity, organizations, multi-tenant SaaS",
-      "lastUpdated": "2026-01-14"
-    },
-    {
-      "id": "supabase",
-      "name": "Supabase",
-      "category": "database",
-      "tier": 1,
-      "score": 82,
-      "capabilities": {
-        "mcp": "official",
-        "mcpUrl": "https://supabase.com/docs/guides/getting-started/mcp",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "official",
-        "cliName": "supabase",
-        "skills": false,
-        "oauth": true
-      },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "good",
-        "rateLimits": true
-      },
-      "docs": {
-        "aiFocused": true,
-        "openAPI": true,
-        "quickStart": true
-      },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": true
-      },
-      "metadata": {
-        "homepage": "https://supabase.com",
-        "docs": "https://supabase.com/docs",
-        "logo": "/logos/supabase.svg",
-        "description": "PostgreSQL with OAuth-first MCP, database branching, no PAT needed (2026 MCP spec)"
-      },
-      "links": {
-        "mcpDocs": "https://supabase.com/docs/guides/auth/oauth-server/mcp-authentication",
-        "apiDocs": "https://supabase.com/docs",
-        "github": "https://github.com/supabase-community/supabase-mcp",
-        "community": "https://mcpservers.org/servers/supabase-community/supabase-mcp",
-        "guides": [
-          "https://supabase.com/blog/mcp-server",
-          "https://docs.continue.dev/guides/supabase-mcp-database-workflow"
-        ]
-      },
-      "strengths": [
-        "OAuth 2.1 support (MCP spec 2025-03-26)",
-        "Database branching with migrations",
-        "No PAT management required",
-        "PostgreSQL 18 support (late 2025)",
-        "RLS security audit via MCP"
-      ],
-      "gaps": ["MCP dev-only (not production data)"],
-      "bestFor": "Full backend, real-time, development environments",
-      "lastUpdated": "2026-01-15"
-    },
-    {
-      "id": "trigger",
-      "name": "Trigger.dev",
-      "category": "jobs",
-      "tier": 1,
-      "score": 80,
-      "capabilities": {
-        "mcp": "official",
-        "mcpUrl": "https://trigger.dev/docs/mcp-agent-rules",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "official",
-        "cliName": "trigger.dev",
-        "skills": true,
-        "oauth": false
-      },
-      "features": {
-        "webhooks": true,
-        "agentRules": true,
-        "errorHandling": "excellent",
-        "rateLimits": true
-      },
-      "docs": {
-        "aiFocused": true,
-        "openAPI": true,
-        "quickStart": true
-      },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://trigger.dev",
-        "docs": "https://trigger.dev/docs",
-        "logo": "/logos/trigger.svg",
-        "description": "Background jobs with Agent Rules, MCP server, 108+ commands, npx trigger.dev install-rules"
-      },
-      "links": {
-        "mcpDocs": "https://trigger.dev/docs/mcp-agent-rules",
-        "apiDocs": "https://trigger.dev/docs",
-        "github": "https://github.com/triggerdotdev/trigger.dev",
-        "guides": [
-          "https://trigger.dev/launchweek/2/official-mcp-server",
-          "https://trigger.dev/changelog/official-mcp-server"
-        ]
-      },
-      "strengths": [
-        "Agent Rules for optimal code (AGENTS.md, Cursor)",
-        "Trigger-dev-expert subagent for Claude Code",
-        "108+ MCP commands",
-        "Dev-only mode (--dev-only flag)",
-        "Universal AI tool compatibility"
-      ],
-      "gaps": [],
-      "bestFor": "Async tasks, scheduled jobs, event-driven workflows",
-      "lastUpdated": "2026-01-20"
-    },
-    {
       "id": "github",
       "name": "GitHub",
       "category": "code",
-      "tier": 1,
-      "score": 81,
-      "capabilities": {
-        "mcp": "none",
-        "platformAPI": true,
-        "apiType": "Both",
-        "cli": "official",
-        "cliName": "gh",
-        "skills": false,
-        "oauth": true
+      "description": "Code hosting with official MCP server (28K stars), REST + GraphQL APIs, gh CLI, and 6-layer agent customization system",
+      "homepage": "https://github.com",
+      "docsUrl": "https://docs.github.com",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/github/github-mcp-server",
+        "package": "github/github-mcp-server"
       },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "excellent",
-        "rateLimits": true
+      "platformApi": {
+        "status": "official",
+        "type": "Both",
+        "docsUrl": "https://docs.github.com/rest"
       },
-      "docs": {
-        "aiFocused": true,
-        "openAPI": true,
-        "quickStart": true
+      "cli": {
+        "status": "official",
+        "name": "gh",
+        "installCmd": "brew install gh",
+        "supportsJson": true,
+        "nonInteractive": true
       },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://github.com",
-        "docs": "https://docs.github.com",
-        "logo": "/logos/github.svg",
-        "description": "Copilot CLI with enhanced agents (Jan 2026), Explore + Task agents, parallel execution"
-      },
-      "links": {
-        "cliDocs": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli",
-        "apiDocs": "https://docs.github.com/en/rest",
-        "github": "https://github.com/github/copilot-cli",
-        "guides": [
-          "https://github.blog/changelog/2026-01-14-github-copilot-cli-enhanced-agents-context-management-and-new-ways-to-install/",
-          "https://github.blog/changelog/2026-01-21-install-and-use-github-copilot-cli-directly-from-the-github-cli/"
-        ]
-      },
-      "strengths": [
-        "Enhanced agents (Explore + Task) Jan 2026",
-        "Parallel agent execution",
-        "Programmatic mode (copilot -p)",
-        "MCP config in mcp-config.json",
-        "gh CLI perfect JSON output"
-      ],
-      "gaps": ["No structured JSON output yet (feature requested)"],
-      "bestFor": "Repository management, CI/CD, webhooks",
-      "lastUpdated": "2026-01-21"
-    },
-    {
-      "id": "neon",
-      "name": "Neon",
-      "category": "database",
-      "tier": 1,
-      "score": 78,
-      "capabilities": {
-        "mcp": "none",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "none",
-        "skills": false,
-        "oauth": false
-      },
-      "features": {
-        "webhooks": false,
-        "agentRules": false,
-        "errorHandling": "good",
-        "rateLimits": true
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
       },
       "docs": {
-        "aiFocused": false,
-        "openAPI": true,
-        "quickStart": true
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.github.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.github.com/en/copilot/reference/customization-cheat-sheet",
+        "openApiSpec": true
       },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": true
-      },
-      "metadata": {
-        "homepage": "https://neon.tech",
-        "docs": "https://neon.tech/docs",
-        "logo": "/logos/neon.svg",
-        "description": "Serverless Postgres with Data API (HTTP/WebSocket), edge computing, PostgreSQL 18 (2025)"
-      },
+      "score": 100,
+      "maxScore": 100,
       "links": {
-        "apiDocs": "https://neon.com/docs/data-api/overview",
-        "github": "https://github.com/neondatabase/neon",
-        "guides": [
-          "https://neon.com/blog/how-to-use-postgres-at-the-edge",
-          "https://github.com/neondatabase/serverless",
-          "https://dev.to/dataformathub/neon-postgres-deep-dive-why-the-2025-updates-change-serverless-sql-5o0"
-        ]
+        "github": "https://github.com/github/github-mcp-server",
+        "mcpDocs": "https://github.com/github/github-mcp-server",
+        "cliDocs": "https://cli.github.com/manual/",
+        "apiDocs": "https://docs.github.com/rest",
+        "skillsDocs": "https://docs.github.com/en/copilot/concepts/agents/about-agent-skills"
       },
-      "strengths": [
-        "Data API (SQL-over-HTTP)",
-        "PostgreSQL 18 support (late 2025)",
-        "WebSocket/HTTP for edge (Vercel Edge)",
-        "Instant database cloning",
-        "Separated compute/storage autoscaling"
-      ],
-      "gaps": ["No MCP server", "No CLI tool"],
-      "bestFor": "PostgreSQL infrastructure, edge compute, serverless",
-      "lastUpdated": "2025-12-15"
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
     },
     {
       "id": "vercel",
       "name": "Vercel",
       "category": "deploy",
-      "tier": 2,
-      "score": 72,
-      "capabilities": {
-        "mcp": "none",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "official",
-        "cliName": "vercel",
-        "skills": false,
-        "oauth": false
+      "description": "Deployment platform with remote MCP, 27+ agent skills via skills.sh, REST API with 250+ endpoints, and llms-full.txt",
+      "homepage": "https://vercel.com",
+      "docsUrl": "https://vercel.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.vercel.com",
+        "package": "mcp.vercel.com"
       },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "excellent",
-        "rateLimits": true
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://vercel.com/docs/rest-api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "vercel",
+        "installCmd": "npm i -g vercel",
+        "supportsJson": false,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
       },
       "docs": {
-        "aiFocused": true,
-        "openAPI": true,
-        "quickStart": true
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://vercel.com/docs/llms-full.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://vercel.com/docs/agent-resources",
+        "openApiSpec": true
       },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": true
-      },
-      "metadata": {
-        "homepage": "https://vercel.com",
-        "docs": "https://vercel.com/docs",
-        "logo": "/logos/vercel.svg",
-        "description": "Agent-Browser (93% context reduction), Rust CLI <50ms boot, 108+ commands (Jan 2026)"
-      },
+      "score": 96,
+      "maxScore": 100,
       "links": {
-        "github": "https://github.com/vercel-labs/agent-browser",
-        "apiDocs": "https://vercel.com/docs/agent",
-        "guides": [
-          "https://medium.com/@richardhightower/agent-browser-ai-first-browser-automation-that-saves-93-of-your-context-window-7a2c52562f8c",
-          "https://www.pulumi.com/blog/self-verifying-ai-agents-vercels-agent-browser-in-the-ralph-wiggum-loop/"
-        ]
+        "github": "https://github.com/vercel/vercel",
+        "mcpDocs": "https://vercel.com/docs/agent-resources/vercel-mcp",
+        "cliDocs": "https://vercel.com/docs/cli",
+        "apiDocs": "https://vercel.com/docs/rest-api",
+        "skillsDocs": "https://vercel.com/docs/agent-resources/skills"
       },
-      "strengths": [
-        "Agent-Browser (93% token reduction)",
-        "Rust CLI boots <50ms",
-        "Semantic locators (not DOM trees)",
-        "Compatible: Claude, Cursor, Copilot",
-        "Browserbase for remote deployment"
-      ],
-      "gaps": ["No database management", "Limited to deployment"],
-      "bestFor": "App deployment, preview environments, AI browser automation",
-      "lastUpdated": "2026-01-15"
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
     },
     {
-      "id": "cloudflare",
-      "name": "Cloudflare",
-      "category": "edge",
-      "tier": 2,
-      "score": 76,
-      "capabilities": {
-        "mcp": "none",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "official",
-        "cliName": "wrangler",
-        "skills": false,
-        "oauth": false
+      "id": "supabase",
+      "name": "Supabase",
+      "category": "database",
+      "description": "Postgres platform with remote MCP (8 tool groups), Management API, mature CLI, agent skills, and per-product llms.txt files",
+      "homepage": "https://supabase.com",
+      "docsUrl": "https://supabase.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.supabase.com/mcp",
+        "package": "supabase-community/supabase-mcp"
       },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "good",
-        "rateLimits": true
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://supabase.com/docs/reference/api/introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "supabase",
+        "installCmd": "npm install supabase --save-dev",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
       },
       "docs": {
-        "aiFocused": false,
-        "openAPI": true,
-        "quickStart": true
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://supabase.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://supabase.com/docs/guides/getting-started/ai-prompts",
+        "openApiSpec": false
       },
-      "provisioning": {
-        "oneShot": true,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://cloudflare.com",
-        "docs": "https://developers.cloudflare.com",
-        "logo": "/logos/cloudflare.svg",
-        "description": "Workers can HOST MCP servers, Wrangler CLI, workers-mcp package (2026)"
-      },
+      "score": 95,
+      "maxScore": 100,
       "links": {
-        "mcpDocs": "https://developers.cloudflare.com/agents/guides/remote-mcp-server/",
-        "cliDocs": "https://developers.cloudflare.com/workers/wrangler/",
-        "github": "https://github.com/cloudflare/workers-mcp",
-        "guides": [
-          "https://learnmcp.examples.workers.dev/",
-          "https://natoma.ai/blog/how-to-deploy-mcp-server-to-cloudflare-workers"
-        ]
+        "github": "https://github.com/supabase-community/supabase-mcp",
+        "mcpDocs": "https://supabase.com/docs/guides/getting-started/mcp",
+        "cliDocs": "https://supabase.com/docs/reference/cli/introduction",
+        "apiDocs": "https://supabase.com/docs/reference/api/introduction",
+        "skillsDocs": "https://supabase.com/blog/postgres-best-practices-for-ai-agents"
       },
-      "strengths": [
-        "Can host MCP servers on Workers",
-        "workers-mcp package (cloudflare/workers-mcp)",
-        "Interactive tutorial (learnmcp.examples.workers.dev)",
-        "Wrangler CLI with local testing",
-        "KV storage + external API integration"
-      ],
-      "gaps": ["No MCP for Cloudflare API itself", "DNS manual verification"],
-      "bestFor": "DNS, edge functions, hosting MCP servers, global CDN",
-      "lastUpdated": "2026-01-10"
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "neon",
+      "name": "Neon",
+      "category": "database",
+      "description": "Serverless Postgres with remote MCP (25+ tools), full REST API with OpenAPI, neonctl CLI, agent skills, and one-command neon init setup",
+      "homepage": "https://neon.tech",
+      "docsUrl": "https://neon.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.neon.tech/mcp",
+        "package": "@neondatabase/mcp-server-neon"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://neon.com/docs/reference/api-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "neonctl",
+        "installCmd": "npm i -g neonctl",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://neon.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://neon.com/docs/ai/ai-agents-tools",
+        "openApiSpec": true
+      },
+      "score": 100,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/neondatabase/mcp-server-neon",
+        "mcpDocs": "https://neon.com/docs/ai/neon-mcp-server",
+        "cliDocs": "https://neon.com/docs/reference/neon-cli",
+        "apiDocs": "https://api-docs.neon.tech/reference/getting-started-with-neon-api",
+        "skillsDocs": "https://neon.com/docs/ai/agent-skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
     },
     {
       "id": "resend",
       "name": "Resend",
       "category": "email",
-      "tier": 3,
-      "score": 68,
-      "capabilities": {
-        "mcp": "official",
-        "mcpUrl": "https://resend.com/mcp",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "none",
-        "skills": false,
-        "oauth": false
+      "description": "Email API with official MCP (full API coverage), new CLI (53 commands), 3 agent skills, and dedicated AI onboarding hub",
+      "homepage": "https://resend.com",
+      "docsUrl": "https://resend.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/resend/resend-mcp",
+        "package": "resend-mcp"
       },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "good",
-        "rateLimits": true
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://resend.com/docs/api-reference/introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "resend",
+        "installCmd": "curl -fsSL https://resend.com/install.sh | bash",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": true
       },
       "docs": {
-        "aiFocused": false,
-        "openAPI": true,
-        "quickStart": true
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://resend.com/docs/llms-full.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://resend.com/docs/ai-onboarding",
+        "openApiSpec": true
       },
-      "provisioning": {
-        "oneShot": false,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://resend.com",
-        "docs": "https://resend.com/docs",
-        "logo": "/logos/resend.svg",
-        "description": "Official MCP server (Jan 2, 2026), send from Cursor/Claude, transactional email API"
-      },
+      "score": 96,
+      "maxScore": 100,
       "links": {
-        "mcpDocs": "https://resend.com/docs/knowledge-base/mcp-server",
-        "apiDocs": "https://resend.com/docs",
-        "github": "https://github.com/resend/mcp-send-email",
-        "community": "https://www.pulsemcp.com/servers/resend-email",
-        "guides": [
-          "https://skywork.ai/skypage/en/ai-engineer-resend-email-server/1978346974633914368"
-        ]
+        "github": "https://github.com/resend/resend-mcp",
+        "mcpDocs": "https://resend.com/docs/mcp-server",
+        "cliDocs": "https://github.com/resend/resend-cli",
+        "apiDocs": "https://resend.com/docs/api-reference/introduction",
+        "skillsDocs": "https://resend.com/agent-skills"
       },
-      "strengths": [
-        "Official MCP (resend/mcp-send-email)",
-        "Released Jan 2, 2026",
-        "Send emails from Cursor/Claude Desktop",
-        "Transactional email (resets, confirmations)",
-        "Templates + scheduling"
-      ],
-      "gaps": ["No CLI", "Email domain verification manual"],
-      "bestFor": "Transactional email, templating, MCP email workflows",
-      "lastUpdated": "2026-01-02"
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
     },
     {
-      "id": "uploadthing",
-      "name": "Uploadthing",
-      "category": "files",
-      "tier": 3,
-      "score": 65,
-      "capabilities": {
-        "mcp": "none",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "none",
-        "skills": false,
-        "oauth": false
+      "id": "firecrawl",
+      "name": "Firecrawl",
+      "category": "scraping",
+      "description": "Web scraping API with official MCP (12 tools), REST API v2, CLI with --json, agent skills, and agent-first GTM strategy",
+      "homepage": "https://firecrawl.dev",
+      "docsUrl": "https://docs.firecrawl.dev",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.firecrawl.dev",
+        "package": "firecrawl-mcp"
       },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "basic",
-        "rateLimits": true
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.firecrawl.dev/api-reference/v2-introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "firecrawl",
+        "installCmd": "npm install -g firecrawl-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": false
       },
       "docs": {
-        "aiFocused": false,
-        "openAPI": false,
-        "quickStart": true
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://firecrawl.dev/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.firecrawl.dev/introduction",
+        "openApiSpec": false
       },
-      "provisioning": {
-        "oneShot": false,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://uploadthing.com",
-        "docs": "https://docs.uploadthing.com",
-        "logo": "/logos/uploadthing.svg",
-        "description": "Type-safe Next.js file uploads, App Router + Pages Router, CDN-backed, resumable (2026)"
-      },
+      "score": 82,
+      "maxScore": 100,
       "links": {
-        "apiDocs": "https://docs.uploadthing.com/",
-        "guides": [
-          "https://docs.uploadthing.com/getting-started/appdir",
-          "https://blog.logrocket.com/handling-file-uploads-next-js-using-uploadthing/",
-          "https://codeparrot.ai/blogs/uploadthing-a-modern-file-upload-solution-for-nextjs-applications"
-        ]
+        "github": "https://github.com/firecrawl/firecrawl",
+        "mcpDocs": "https://docs.firecrawl.dev/mcp-server",
+        "cliDocs": "https://docs.firecrawl.dev/sdks/cli",
+        "apiDocs": "https://docs.firecrawl.dev/api-reference/v2-introduction",
+        "skillsDocs": "https://www.firecrawl.dev/skills"
       },
-      "strengths": [
-        "Type-safe TypeScript APIs",
-        "Next.js App Router + Pages Router",
-        "File validation + transformation",
-        "CDN-backed delivery",
-        "Resumable uploads (large files)"
-      ],
-      "gaps": ["No MCP", "No CLI", "No OpenAPI schema"],
-      "bestFor": "Next.js file uploads, type-safe APIs, CDN delivery",
-      "lastUpdated": "2026-01-01"
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "trigger",
+      "name": "Trigger.dev",
+      "category": "jobs",
+      "description": "Background jobs with official MCP, 5 agent skills, 5 agent rule sets, Claude Code subagent, and triple AI onboarding approach",
+      "homepage": "https://trigger.dev",
+      "docsUrl": "https://trigger.dev/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://trigger.dev/docs/mcp-introduction",
+        "package": "trigger.dev"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://trigger.dev/docs/management/overview"
+      },
+      "cli": {
+        "status": "official",
+        "name": "trigger.dev",
+        "installCmd": "npx trigger.dev@latest",
+        "supportsJson": false,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://trigger.dev/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://trigger.dev/docs/building-with-ai",
+        "openApiSpec": false
+      },
+      "score": 86,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/triggerdotdev/trigger.dev",
+        "mcpDocs": "https://trigger.dev/docs/mcp-introduction",
+        "cliDocs": "https://trigger.dev/docs/cli-introduction",
+        "apiDocs": "https://trigger.dev/docs/management/overview",
+        "skillsDocs": "https://trigger.dev/docs/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "clerk",
+      "name": "Clerk",
+      "category": "auth",
+      "description": "Authentication with official MCP, Platform API (private beta), Go CLI (early access), 10 agent skills, and 3 llms.txt variants",
+      "homepage": "https://clerk.com",
+      "docsUrl": "https://clerk.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.clerk.com/mcp",
+        "package": "mcp.clerk.com"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://clerk.com/docs/reference/platform-api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "clerk",
+        "installCmd": "brew install clerk/tap/clerk",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://clerk.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://clerk.com/docs/guides/ai/overview",
+        "openApiSpec": true
+      },
+      "score": 100,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/clerk/skills",
+        "mcpDocs": "https://clerk.com/docs/guides/ai/mcp/clerk-mcp-server",
+        "cliDocs": "https://github.com/clerk/cli",
+        "apiDocs": "https://clerk.com/docs/reference/backend-api",
+        "skillsDocs": "https://clerk.com/docs/guides/ai/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "category": "edge",
+      "description": "Edge platform with 15 remote MCP servers, full REST API with auto-published OpenAPI, Wrangler CLI, but no agent skills",
+      "homepage": "https://cloudflare.com",
+      "docsUrl": "https://developers.cloudflare.com",
+      "mcp": {
+        "status": "official",
+        "url": "https://bindings.mcp.cloudflare.com/mcp",
+        "package": "cloudflare/mcp-server-cloudflare"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://developers.cloudflare.com/api/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "wrangler",
+        "installCmd": "npm i -D wrangler",
+        "supportsJson": false,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none"
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://developers.cloudflare.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 71,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/cloudflare/mcp-server-cloudflare",
+        "mcpDocs": "https://github.com/cloudflare/mcp-server-cloudflare",
+        "cliDocs": "https://developers.cloudflare.com/workers/wrangler/",
+        "apiDocs": "https://developers.cloudflare.com/api/"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
     },
     {
       "id": "kapso",
       "name": "Kapso",
       "category": "messaging",
-      "tier": 3,
-      "score": 62,
-      "capabilities": {
-        "mcp": "official",
-        "mcpUrl": "https://app.kapso.ai/mcp",
-        "platformAPI": true,
-        "apiType": "REST",
-        "cli": "none",
-        "skills": false,
-        "oauth": false
+      "description": "WhatsApp Business API with hosted MCP (22+ tools), REST API with 3 OpenAPI specs, 3 agent skills, but no CLI",
+      "homepage": "https://kapso.ai",
+      "docsUrl": "https://docs.kapso.ai",
+      "mcp": {
+        "status": "official",
+        "url": "https://app.kapso.ai/mcp",
+        "package": "app.kapso.ai/mcp"
       },
-      "features": {
-        "webhooks": true,
-        "agentRules": false,
-        "errorHandling": "good",
-        "rateLimits": true
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.kapso.ai/api-reference/whatsapp-introduction"
+      },
+      "cli": {
+        "status": "none"
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": false
       },
       "docs": {
-        "aiFocused": false,
-        "openAPI": false,
-        "quickStart": true
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.kapso.ai/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.kapso.ai/docs/mcp/introduction",
+        "openApiSpec": true
       },
-      "provisioning": {
-        "oneShot": false,
-        "secrets": true,
-        "branching": false
-      },
-      "metadata": {
-        "homepage": "https://kapso.ai",
-        "docs": "https://docs.kapso.ai",
-        "logo": "/logos/kapso.svg",
-        "description": "WhatsApp MCP (alpha), send/search messages, inbox management, TypeScript SDK (2026)"
-      },
+      "score": 67,
+      "maxScore": 100,
       "links": {
+        "github": "https://github.com/gokapso/agent-skills",
         "mcpDocs": "https://docs.kapso.ai/docs/mcp/introduction",
-        "apiDocs": "https://docs.kapso.ai",
-        "github": "https://github.com/gokapso/whatsapp-cloud-api-js",
-        "community": "https://mcpservers.org/servers/docs-kapso-ai-docs-mcp-introduction",
-        "guides": ["https://apidog.com/blog/whatsapp-mcp-server/"]
+        "apiDocs": "https://docs.kapso.ai/api-reference/whatsapp-introduction",
+        "skillsDocs": "https://github.com/gokapso/agent-skills"
       },
-      "strengths": [
-        "MCP alpha (app.kapso.ai/mcp)",
-        "WhatsApp operations (send, search, inbox)",
-        "TypeScript Cloud API SDK",
-        "Platform tools (create customer, setup links)",
-        "Batch conversation retrieval"
-      ],
-      "gaps": ["No CLI", "Alpha (subject to changes)", "Limited to WhatsApp"],
-      "bestFor": "WhatsApp automation, real-time messaging, MCP workflows",
-      "lastUpdated": "2026-01-01"
-    }
-  ],
-  "metadata": {
-    "researchDate": "2026-02-01",
-    "researcher": "Hunter (Railly Hugo)",
-    "phase": "Research Complete + Verified Links",
-    "totalServices": 10,
-    "productionReady": 5
-  },
-  "recommendations": {
-    "recommendedStack": {
-      "auth": "Clerk",
-      "database": "Supabase OR Neon",
-      "deployment": "Vercel",
-      "jobs": "Trigger.dev",
-      "code": "GitHub",
-      "email": "Resend",
-      "files": "Uploadthing",
-      "messaging": "Kapso",
-      "edge": "Cloudflare"
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
     },
-    "estimatedCost": "$100-200/month"
-  }
+    {
+      "id": "uploadthing",
+      "name": "Uploadthing",
+      "category": "files",
+      "description": "File uploads with REST API and OpenAPI spec, but canary MCP (stale 1yr), no CLI, no skills, and no llms.txt",
+      "homepage": "https://uploadthing.com",
+      "docsUrl": "https://docs.uploadthing.com",
+      "mcp": {
+        "status": "community",
+        "url": "https://www.npmjs.com/package/@uploadthing/mcp-server",
+        "package": "@uploadthing/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.uploadthing.com/api-reference/openapi-spec"
+      },
+      "cli": {
+        "status": "none"
+      },
+      "skills": {
+        "status": "none"
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 37,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/pingdotgg/uploadthing",
+        "apiDocs": "https://docs.uploadthing.com/api-reference/openapi-spec"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "category": "monitoring",
+      "description": "Error monitoring with remote MCP (16+ tools, Seer AI), REST API with OpenAPI, agent-native CLI with --json, 15+ agent skills, and dedicated /ai/ docs hub",
+      "homepage": "https://sentry.io",
+      "docsUrl": "https://docs.sentry.io",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.sentry.dev/mcp",
+        "package": "getsentry/sentry-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.sentry.io/api/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "sentry",
+        "installCmd": "npm install -g sentry",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.sentry.io/ai/",
+        "openApiSpec": true
+      },
+      "score": 90,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/getsentry/sentry-mcp",
+        "mcpDocs": "https://docs.sentry.io/ai/mcp/",
+        "cliDocs": "https://docs.sentry.io/ai/sentry-cli/",
+        "apiDocs": "https://docs.sentry.io/api/",
+        "skillsDocs": "https://docs.sentry.io/ai/agent-skills/"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "category": "pm",
+      "description": "Project management with remote MCP, full GraphQL API with TypeScript SDK, Agent Platform (Developer Preview), Agent Interaction Guidelines, and llms.txt",
+      "homepage": "https://linear.app",
+      "docsUrl": "https://linear.app/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.linear.app/mcp",
+        "package": "mcp.linear.app"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "GraphQL",
+        "docsUrl": "https://linear.app/developers/graphql"
+      },
+      "cli": {
+        "status": "none"
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://linear.app/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://linear.app/developers/agents",
+        "openApiSpec": false
+      },
+      "score": 70,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/linear/linear",
+        "mcpDocs": "https://linear.app/docs/mcp",
+        "apiDocs": "https://linear.app/developers/graphql",
+        "skillsDocs": "https://linear.app/developers/agents"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "upstash",
+      "name": "Upstash",
+      "category": "cache",
+      "description": "Serverless Redis/Vector with official MCP (15 tools), REST management API, CLI with --json, llms.txt via Mintlify, but no agent skills",
+      "homepage": "https://upstash.com",
+      "docsUrl": "https://upstash.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/upstash/mcp-server",
+        "package": "@upstash/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://upstash.com/docs/devops/developer-api/introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "upstash",
+        "installCmd": "npm i -g @upstash/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none"
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://upstash.com/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 75,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/upstash/mcp-server",
+        "mcpDocs": "https://upstash.com/docs/redis/integrations/mcp",
+        "cliDocs": "https://github.com/upstash/cli",
+        "apiDocs": "https://upstash.com/docs/devops/developer-api/introduction"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "category": "payments",
+      "description": "Payments with remote MCP (25 tools), REST API with OpenAPI, mature CLI, progressive-disclosure SKILL.md, agent toolkit SDKs, and Agentic Commerce Protocol",
+      "homepage": "https://stripe.com",
+      "docsUrl": "https://docs.stripe.com",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.stripe.com",
+        "package": "@stripe/mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.stripe.com/api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "stripe",
+        "installCmd": "brew install stripe/stripe-cli/stripe",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.stripe.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.stripe.com/building-with-llms",
+        "openApiSpec": true
+      },
+      "score": 100,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/stripe/ai",
+        "mcpDocs": "https://docs.stripe.com/mcp",
+        "cliDocs": "https://docs.stripe.com/stripe-cli",
+        "apiDocs": "https://docs.stripe.com/api",
+        "skillsDocs": "https://docs.stripe.com/building-with-llms"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "polar",
+      "name": "Polar",
+      "category": "payments",
+      "description": "Developer billing with remote MCP (Speakeasy-generated), full REST API with 4 SDKs and OpenAPI, CLI for webhooks, llms.txt, but no agent skills",
+      "homepage": "https://polar.sh",
+      "docsUrl": "https://polar.sh/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.polar.sh/mcp/polar-mcp",
+        "package": "mcp.polar.sh"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://polar.sh/docs/api-reference/introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "polar",
+        "installCmd": "curl -fsSL https://polar.sh/install.sh | bash",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none"
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://polar.sh/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 67,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/polarsource/polar",
+        "mcpDocs": "https://polar.sh/docs/integrate/mcp",
+        "cliDocs": "https://polar.sh/docs/integrate/webhooks/locally",
+        "apiDocs": "https://polar.sh/docs/api-reference/introduction"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "planetscale",
+      "name": "PlanetScale",
+      "category": "database",
+      "description": "Cloud MySQL/PostgreSQL (Vitess) with official MCP (16 tools), REST API with OpenAPI, pscale CLI with --json, database skills, and llms.txt",
+      "homepage": "https://planetscale.com",
+      "docsUrl": "https://planetscale.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.pscale.dev/mcp/planetscale",
+        "package": "mcp.pscale.dev"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://planetscale.com/docs/api/reference/getting-started-with-planetscale-api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "pscale",
+        "installCmd": "brew tap planetscale/tap && brew install pscale",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://planetscale.com/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://planetscale.com/docs/vitess/tutorials/planetscale-quick-start-guide",
+        "openApiSpec": true
+      },
+      "score": 100,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/planetscale/cli",
+        "mcpDocs": "https://planetscale.com/docs/connect/mcp",
+        "cliDocs": "https://planetscale.com/docs/reference/planetscale-cli",
+        "apiDocs": "https://planetscale.com/docs/api/reference/getting-started-with-planetscale-api",
+        "skillsDocs": "https://database-skills.preview.planetscale.com/"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "render",
+      "name": "Render",
+      "category": "deploy",
+      "description": "Cloud platform with official MCP (7 tools), REST API with OpenAPI 3.0, CLI with --json, 5 agent skills (deploy/debug/monitor/migrate/workflows), and llms.txt",
+      "homepage": "https://render.com",
+      "docsUrl": "https://render.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.render.com/mcp",
+        "package": "render-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://api-docs.render.com"
+      },
+      "cli": {
+        "status": "official",
+        "name": "render",
+        "installCmd": "brew install render",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://render.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://render.com/docs/llm-support",
+        "openApiSpec": true
+      },
+      "score": 100,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/render-oss/render-mcp-server",
+        "mcpDocs": "https://render.com/docs/mcp-server",
+        "cliDocs": "https://render.com/docs/cli",
+        "apiDocs": "https://api-docs.render.com",
+        "skillsDocs": "https://github.com/render-oss/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "better-auth",
+      "name": "Better Auth",
+      "category": "auth",
+      "description": "Open-source TypeScript auth with official MCP plugin (OAuth provider), REST API with OpenAPI, CLI with --json, agent skills, and llms.txt",
+      "homepage": "https://better-auth.com",
+      "docsUrl": "https://better-auth.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://better-auth.com/docs/plugins/mcp",
+        "package": "better-auth/plugins/mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://better-auth.com/docs/concepts/api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "auth",
+        "installCmd": "npx auth@latest",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://better-auth.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://better-auth.com/docs/introduction",
+        "openApiSpec": true
+      },
+      "score": 100,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/better-auth/better-auth",
+        "mcpDocs": "https://better-auth.com/docs/plugins/mcp",
+        "cliDocs": "https://better-auth.com/docs/concepts/cli",
+        "apiDocs": "https://better-auth.com/docs/concepts/api",
+        "skillsDocs": "https://better-auth.com/docs/plugins/open-api"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "turso",
+      "name": "Turso",
+      "category": "database",
+      "description": "Edge SQLite (libSQL) with native MCP via --mcp flag (9 tools), REST Platform API, turso CLI, agent skills + AgentFS for sandboxed execution, and llms.txt",
+      "homepage": "https://turso.tech",
+      "docsUrl": "https://docs.turso.tech",
+      "mcp": {
+        "status": "official",
+        "url": "https://turso.tech/blog/introducing-the-turso-database-mcp-server",
+        "package": "turso-cli --mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.turso.tech/api-reference/introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "turso",
+        "installCmd": "npm install -g turso-cli",
+        "supportsJson": false,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.turso.tech/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.turso.tech/agentfs/quickstart",
+        "openApiSpec": false
+      },
+      "score": 86,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/tursodatabase/turso",
+        "mcpDocs": "https://turso.tech/blog/introducing-the-turso-database-mcp-server",
+        "cliDocs": "https://docs.turso.tech/reference/turso-cli",
+        "apiDocs": "https://docs.turso.tech/api-reference/introduction",
+        "skillsDocs": "https://docs.turso.tech/agentfs/quickstart"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "drizzle",
+      "name": "Drizzle",
+      "category": "orm",
+      "description": "TypeScript ORM with community MCP server, no platform API (library), official drizzle-kit CLI with JSON snapshots, community skills, and llms.txt",
+      "homepage": "https://orm.drizzle.team",
+      "docsUrl": "https://orm.drizzle.team/docs/overview",
+      "mcp": {
+        "status": "community",
+        "url": "https://github.com/defrex/drizzle-mcp",
+        "package": "drizzle-mcp"
+      },
+      "platformApi": {
+        "status": "none"
+      },
+      "cli": {
+        "status": "official",
+        "name": "drizzle-kit",
+        "installCmd": "npm install -D drizzle-kit",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://orm.drizzle.team/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 55,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/drizzle-team/drizzle-orm",
+        "mcpDocs": "https://github.com/defrex/drizzle-mcp",
+        "cliDocs": "https://orm.drizzle.team/docs/kit-overview"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "railway",
+      "name": "Railway",
+      "category": "deploy",
+      "description": "Deployment platform with official MCP (13 tools), GraphQL API v2, CLI with --json, use-railway agent skill, and llms.txt + AI quickstart",
+      "homepage": "https://railway.com",
+      "docsUrl": "https://docs.railway.com",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/railwayapp/railway-mcp-server",
+        "package": "@railway/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "GraphQL",
+        "docsUrl": "https://docs.railway.com/integrations/api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "railway",
+        "installCmd": "npm i -g @railway/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://railway.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.railway.com/ai",
+        "openApiSpec": false
+      },
+      "score": 95,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/railwayapp/railway-mcp-server",
+        "mcpDocs": "https://docs.railway.com/ai/mcp-server",
+        "cliDocs": "https://docs.railway.com/cli",
+        "apiDocs": "https://docs.railway.com/integrations/api",
+        "skillsDocs": "https://docs.railway.com/ai/agent-skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "convex",
+      "name": "Convex",
+      "category": "database",
+      "description": "Real-time backend with official MCP (8+ tools), REST Platform API (beta) with OpenAPI, convex CLI, agent skills repo, and llms.txt + AI quickstart",
+      "homepage": "https://convex.dev",
+      "docsUrl": "https://docs.convex.dev",
+      "mcp": {
+        "status": "official",
+        "url": "https://docs.convex.dev/ai/convex-mcp-server",
+        "package": "convex"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.convex.dev/platform-apis"
+      },
+      "cli": {
+        "status": "official",
+        "name": "convex",
+        "installCmd": "npm i convex",
+        "supportsJson": false,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.convex.dev/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.convex.dev/ai",
+        "openApiSpec": true
+      },
+      "score": 96,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/get-convex/convex-backend",
+        "mcpDocs": "https://docs.convex.dev/ai/convex-mcp-server",
+        "cliDocs": "https://docs.convex.dev/cli",
+        "apiDocs": "https://docs.convex.dev/platform-apis",
+        "skillsDocs": "https://github.com/get-convex/agent-skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "prisma",
+      "name": "Prisma",
+      "category": "orm",
+      "description": "TypeScript ORM with dual-mode MCP (local + remote), Management API with OpenAPI 3.1, agent-aware CLI with --json, 6 official v7 skills, and llms.txt",
+      "homepage": "https://prisma.io",
+      "docsUrl": "https://www.prisma.io/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://www.prisma.io/docs/postgres/integrations/mcp-server",
+        "package": "@prisma/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://www.prisma.io/docs/management-api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "prisma",
+        "installCmd": "npm install -D prisma",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.prisma.io/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://www.prisma.io/docs/ai",
+        "openApiSpec": true
+      },
+      "score": 100,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/prisma/prisma",
+        "mcpDocs": "https://www.prisma.io/docs/postgres/integrations/mcp-server",
+        "cliDocs": "https://www.prisma.io/docs/orm/tools/prisma-cli",
+        "apiDocs": "https://www.prisma.io/docs/management-api",
+        "skillsDocs": "https://www.prisma.io/docs/ai/tools/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "braintrust",
+      "name": "Braintrust",
+      "category": "ai-eval",
+      "description": "AI eval/observability with official MCP (7 tools), REST API with 7 SDKs and OpenAPI, CLI with --json, no agent skills, and llms.txt",
+      "homepage": "https://braintrust.dev",
+      "docsUrl": "https://www.braintrust.dev/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://api.braintrust.dev/mcp",
+        "package": "@braintrust/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://www.braintrust.dev/docs/api-reference/introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "bt",
+        "installCmd": "npm install braintrust",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none"
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.braintrust.dev/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://www.braintrust.dev/docs/observability",
+        "openApiSpec": true
+      },
+      "score": 80,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/braintrustdata",
+        "mcpDocs": "https://www.braintrust.dev/docs/integrations/developer-tools/mcp",
+        "cliDocs": "https://www.braintrust.dev/docs/evaluate/run-evaluations",
+        "apiDocs": "https://www.braintrust.dev/docs/api-reference/introduction"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "algolia",
+      "name": "Algolia",
+      "category": "search",
+      "description": "Search platform with official MCP (algolia-mcp), REST API with OpenAPI + Agent Studio API, CLI with --json, Agent Studio skills framework, and llms.txt",
+      "homepage": "https://algolia.com",
+      "docsUrl": "https://www.algolia.com/doc",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/algolia/mcp-node",
+        "package": "algolia-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://www.algolia.com/doc/api-reference/rest-api/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "algolia",
+        "installCmd": "npm install -g @algolia/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.algolia.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://www.algolia.com/doc/guides/algolia-ai/agent-studio/how-to/quickstart",
+        "openApiSpec": true
+      },
+      "score": 95,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/algolia/mcp-node",
+        "mcpDocs": "https://www.algolia.com/doc/guides/algolia-ai/mcp-server/overview",
+        "cliDocs": "https://www.algolia.com/doc/tools/cli/get-started",
+        "apiDocs": "https://www.algolia.com/doc/api-reference/rest-api/",
+        "skillsDocs": "https://www.algolia.com/doc/guides/algolia-ai/agent-studio/how-to/quickstart"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "sanity",
+      "name": "Sanity",
+      "category": "cms",
+      "description": "Structured content platform with hosted MCP at mcp.sanity.io (15+ tools), REST + GROQ + GraphQL APIs, CLI with --json + --yes, agent-toolkit with 4 skills + slash commands, and llms.txt + AI quickstart",
+      "homepage": "https://sanity.io",
+      "docsUrl": "https://www.sanity.io/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.sanity.io",
+        "package": "@sanity/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://www.sanity.io/docs/http-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "sanity",
+        "installCmd": "npm install -g sanity",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.sanity.io/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://www.sanity.io/docs/ai/ai-quickstart",
+        "openApiSpec": false
+      },
+      "score": 95,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/sanity-io/agent-toolkit",
+        "mcpDocs": "https://www.sanity.io/docs/mcp-server",
+        "cliDocs": "https://www.sanity.io/docs/apis-and-sdks/cli",
+        "apiDocs": "https://www.sanity.io/docs/http-reference",
+        "skillsDocs": "https://github.com/sanity-io/agent-toolkit"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "launchdarkly",
+      "name": "LaunchDarkly",
+      "category": "feature-flags",
+      "description": "Feature flag platform with official MCP (flags + AI configs), REST API with OpenAPI, ldcli with --json, 9 agent skills + CLAUDE.md, and llms.txt + AI quickstart tutorial",
+      "homepage": "https://launchdarkly.com",
+      "docsUrl": "https://launchdarkly.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/launchdarkly/mcp-server",
+        "package": "@launchdarkly/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://launchdarkly.com/docs/api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "ldcli",
+        "installCmd": "brew install ldcli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://launchdarkly.com/docs/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://launchdarkly.com/docs/tutorials/agent-skills-quickstart",
+        "openApiSpec": true
+      },
+      "score": 95,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/launchdarkly/mcp-server",
+        "mcpDocs": "https://github.com/launchdarkly/mcp-server",
+        "cliDocs": "https://github.com/launchdarkly/ldcli",
+        "apiDocs": "https://launchdarkly.com/docs/api",
+        "skillsDocs": "https://github.com/launchdarkly/agent-skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "posthog",
+      "name": "PostHog",
+      "category": "analytics",
+      "description": "Product analytics with official MCP (80+ tools, hosted), REST API with OpenAPI, @posthog/cli, CLAUDE.md + AGENTS.md + ai-plugin with 13 slash commands, and llms.txt",
+      "homepage": "https://posthog.com",
+      "docsUrl": "https://posthog.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.posthog.com/mcp",
+        "package": "posthog/posthog (monorepo)"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://posthog.com/docs/api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "@posthog/cli",
+        "installCmd": "npm install -g @posthog/cli",
+        "supportsJson": false,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://posthog.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://posthog.com/docs/model-context-protocol",
+        "openApiSpec": true
+      },
+      "score": 91,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/PostHog/posthog",
+        "mcpDocs": "https://posthog.com/docs/model-context-protocol",
+        "cliDocs": "https://www.npmjs.com/package/@posthog/cli",
+        "apiDocs": "https://posthog.com/docs/api",
+        "skillsDocs": "https://github.com/PostHog/ai-plugin"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "auth0",
+      "name": "Auth0",
+      "category": "auth",
+      "description": "Enterprise auth with official MCP (21 tools), Management API v2 with OpenAPI, Go CLI with --json, CLAUDE.md in repos + gitignored skills, and 3x llms.txt + dedicated AI Agents product",
+      "homepage": "https://auth0.com",
+      "docsUrl": "https://auth0.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/auth0/auth0-mcp-server",
+        "package": "@auth0/auth0-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://auth0.com/docs/api/management/v2"
+      },
+      "cli": {
+        "status": "official",
+        "name": "auth0",
+        "installCmd": "brew tap auth0/auth0-cli && brew install auth0",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": false,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://auth0.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://auth0.com/ai/docs",
+        "openApiSpec": true
+      },
+      "score": 84,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/auth0/auth0-mcp-server",
+        "mcpDocs": "https://github.com/auth0/auth0-mcp-server",
+        "cliDocs": "https://github.com/auth0/auth0-cli",
+        "apiDocs": "https://auth0.com/docs/api/management/v2",
+        "skillsDocs": "https://auth0.com/ai/docs"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "flyio",
+      "name": "Fly.io",
+      "category": "deploy",
+      "description": "App deployment platform with fly mcp built into CLI (10 subcommands), Machines REST API with OpenAPI, flyctl with --json, CLAUDE.md in side repos, and copy-as-markdown on all docs",
+      "homepage": "https://fly.io",
+      "docsUrl": "https://fly.io/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://fly.io/docs/flyctl/mcp/",
+        "package": "flyctl (built-in)"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://fly.io/docs/machines/api/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "flyctl",
+        "installCmd": "brew install flyctl",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": false,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://fly.io/docs/mcp/",
+        "openApiSpec": true
+      },
+      "score": 84,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/superfly/flyctl",
+        "mcpDocs": "https://fly.io/docs/mcp/",
+        "cliDocs": "https://fly.io/docs/flyctl/",
+        "apiDocs": "https://docs.machines.dev/"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "cloudinary",
+      "name": "Cloudinary",
+      "category": "media",
+      "description": "Media platform with 5 official MCP servers (remote-hosted), REST APIs (Admin + Upload + Search), cld CLI with --json, scaffolder-generated agent rules, and llms.txt on 2 URLs",
+      "homepage": "https://cloudinary.com",
+      "docsUrl": "https://cloudinary.com/documentation",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/cloudinary/mcp-servers",
+        "package": "@cloudinary/asset-management-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://cloudinary.com/documentation/admin_api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "cld",
+        "installCmd": "pip3 install cloudinary-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": false,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://cloudinary.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://cloudinary.com/documentation/cloudinary_llm_mcp",
+        "openApiSpec": false
+      },
+      "score": 79,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/cloudinary/mcp-servers",
+        "mcpDocs": "https://cloudinary.com/documentation/cloudinary_llm_mcp",
+        "cliDocs": "https://github.com/cloudinary/cloudinary-cli",
+        "apiDocs": "https://cloudinary.com/documentation/admin_api"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "workos",
+      "name": "WorkOS",
+      "category": "auth",
+      "description": "Enterprise auth platform with community MCP (26 tools), REST API, AI-powered CLI with --json + NDJSON streaming, official skills repo (17 references + router), and llms.txt",
+      "homepage": "https://workos.com",
+      "docsUrl": "https://workos.com/docs",
+      "mcp": {
+        "status": "community",
+        "url": "https://github.com/tellahq/workos-mcp",
+        "package": "workos-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://workos.com/docs/reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "workos",
+        "installCmd": "npm install -g @workos/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://workos.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 77,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/workos/skills",
+        "mcpDocs": "https://github.com/tellahq/workos-mcp",
+        "cliDocs": "https://github.com/workos/cli",
+        "apiDocs": "https://workos.com/docs/reference",
+        "skillsDocs": "https://github.com/workos/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "xata",
+      "name": "Xata",
+      "category": "database",
+      "description": "Serverless Postgres with official MCP (OpenAPI-generated), REST API with OpenAPI 3.0, xata CLI with --json + --no-input, no agent skills, and llms.txt (Mintlify)",
+      "homepage": "https://xata.io",
+      "docsUrl": "https://xata.io/documentation/overview",
+      "mcp": {
+        "status": "official",
+        "url": "https://xata.io/blog/built-xata-mcp-server",
+        "package": "xata-mcp (hosted)"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://xata.io/documentation/overview"
+      },
+      "cli": {
+        "status": "official",
+        "name": "xata",
+        "installCmd": "npm install -g @xata.io/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none"
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://xata.io/documentation/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 70,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/xataio/client-ts",
+        "mcpDocs": "https://xata.io/blog/built-xata-mcp-server",
+        "cliDocs": "https://xata.io/documentation/cli",
+        "apiDocs": "https://xata.io/documentation/overview"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "inngest",
+      "name": "Inngest",
+      "category": "jobs",
+      "description": "Durable workflow orchestration with MCP built into dev server (8 tools + offline docs), REST API via Stoplight, Go CLI with auto-JSON in non-TTY, official skills repo (6 skills + AGENTS.md), and llms.txt + llms-full.txt + copy-as-markdown",
+      "homepage": "https://inngest.com",
+      "docsUrl": "https://www.inngest.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://www.inngest.com/docs/ai-dev-tools/mcp",
+        "package": "inngest (built-in dev server)"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://api-docs.inngest.com/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "inngest-cli",
+        "installCmd": "npx inngest-cli@latest dev",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.inngest.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://www.inngest.com/docs/ai-dev-tools/mcp",
+        "openApiSpec": true
+      },
+      "score": 96,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/inngest/inngest",
+        "mcpDocs": "https://www.inngest.com/docs/ai-dev-tools/mcp",
+        "cliDocs": "https://www.npmjs.com/package/inngest-cli",
+        "apiDocs": "https://api-docs.inngest.com/",
+        "skillsDocs": "https://github.com/inngest/inngest-skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "langfuse",
+      "name": "Langfuse",
+      "category": "ai-eval",
+      "description": "LLM observability with 2 official MCP servers (prompts + docs), REST API with OpenAPI, auto-generated CLI with --json, official skills repo with SKILL.md, and llms.txt + copy-as-markdown + OpenAPI spec",
+      "homepage": "https://langfuse.com",
+      "docsUrl": "https://langfuse.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/langfuse/mcp-server-langfuse",
+        "package": "langfuse/mcp-server-langfuse"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://api.reference.langfuse.com/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "langfuse-cli",
+        "installCmd": "npm i -g langfuse-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://langfuse.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://langfuse.com/docs/observability/get-started",
+        "openApiSpec": true
+      },
+      "score": 92,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/langfuse/langfuse",
+        "mcpDocs": "https://langfuse.com/docs/docs-mcp",
+        "cliDocs": "https://github.com/langfuse/langfuse-cli",
+        "apiDocs": "https://api.reference.langfuse.com/",
+        "skillsDocs": "https://github.com/langfuse/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "e2b",
+      "name": "E2B",
+      "category": "code",
+      "description": "AI sandbox platform with official MCP server (JS + Python), REST API with OpenAPI spec, CLI with --format json + non-interactive auth, CLAUDE.md, and llms.txt + llms-full.txt + AI quickstart",
+      "homepage": "https://e2b.dev",
+      "docsUrl": "https://e2b.dev/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/e2b-dev/mcp-server",
+        "package": "@e2b/mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://e2b.dev/docs/sdk-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "e2b",
+        "installCmd": "brew install e2b",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": false,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://e2b.dev/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://e2b.dev/docs/quickstart/connect-llms",
+        "openApiSpec": true
+      },
+      "score": 87,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/e2b-dev/E2B",
+        "mcpDocs": "https://e2b.dev/docs/mcp",
+        "cliDocs": "https://e2b.dev/docs/cli",
+        "apiDocs": "https://e2b.dev/docs/sdk-reference"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "axiom",
+      "name": "Axiom",
+      "category": "monitoring",
+      "description": "Observability platform with hosted MCP v2 (mcp.axiom.co), REST API (100+ endpoints), Go CLI with --json + explicit agent mode, Claude Code plugin with 4 skills + hooks + AGENTS.md, and llms.txt + llms-full.txt",
+      "homepage": "https://axiom.co",
+      "docsUrl": "https://axiom.co/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/axiomhq/mcp",
+        "package": "axiomhq/mcp (hosted)"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://axiom.co/docs/restapi/introduction"
+      },
+      "cli": {
+        "status": "official",
+        "name": "axiom",
+        "installCmd": "brew install --cask axiomhq/tap/axiom",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://axiom.co/docs/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 85,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/axiomhq/cli",
+        "mcpDocs": "https://github.com/axiomhq/mcp",
+        "cliDocs": "https://axiom.co/docs/reference/cli",
+        "apiDocs": "https://axiom.co/docs/restapi/introduction",
+        "skillsDocs": "https://github.com/axiomhq/cli/tree/main/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "category": "database",
+      "description": "Document database with official MCP server (46 tools, 960 stars), Atlas Admin API v2 with OpenAPI specs, Atlas CLI with --output json, official agent-skills repo (Claude + Cursor + Gemini plugins), and llms.txt + copy-as-markdown + Build with AI docs",
+      "homepage": "https://www.mongodb.com",
+      "docsUrl": "https://www.mongodb.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/mongodb-js/mongodb-mcp-server",
+        "package": "mongodb-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/"
+      },
+      "cli": {
+        "status": "official",
+        "name": "atlas",
+        "installCmd": "brew install mongodb-atlas-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.mongodb.com/docs/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://www.mongodb.com/docs/build-with-ai/",
+        "openApiSpec": true
+      },
+      "score": 89,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/mongodb-js/mongodb-mcp-server",
+        "mcpDocs": "https://www.mongodb.com/docs/mcp-server/get-started/",
+        "cliDocs": "https://www.mongodb.com/docs/atlas/cli/",
+        "apiDocs": "https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/",
+        "skillsDocs": "https://github.com/mongodb/agent-skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "payload",
+      "name": "Payload",
+      "category": "cms",
+      "description": "Headless CMS (41K stars) with official MCP plugin (custom tools/prompts/resources), REST + GraphQL + Local APIs, scaffolding CLI, industry-leading skills (CLAUDE.md + .claude/ + dedicated skills repo), and llms.txt + llms-full.txt",
+      "homepage": "https://payloadcms.com",
+      "docsUrl": "https://payloadcms.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://payloadcms.com/docs/plugins/mcp",
+        "package": "@payloadcms/plugin-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "Both",
+        "docsUrl": "https://payloadcms.com/docs/rest-api/overview"
+      },
+      "cli": {
+        "status": "official",
+        "name": "create-payload-app",
+        "installCmd": "npx create-payload-app",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://payloadcms.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 77,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/payloadcms/payload",
+        "mcpDocs": "https://payloadcms.com/docs/plugins/mcp",
+        "cliDocs": "https://payloadcms.com/docs/getting-started/installation",
+        "apiDocs": "https://payloadcms.com/docs/rest-api/overview",
+        "skillsDocs": "https://github.com/payloadcms/skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "ably",
+      "name": "Ably",
+      "category": "messaging",
+      "description": "Realtime pub/sub with MCP built into CLI (ably mcp start-server), dual REST APIs with OpenAPI specs, @ably/cli with --json, official agent-skills repo (2 skills + Claude Code plugin), and llms.txt + copy-as-markdown + AI Transport quickstart",
+      "homepage": "https://ably.com",
+      "docsUrl": "https://ably.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/ably/ably-cli",
+        "package": "@ably/cli (built-in)"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://ably.com/docs/api/control-api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "@ably/cli",
+        "installCmd": "npm install -g @ably/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://ably.com/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://ably.com/docs/ai-transport",
+        "openApiSpec": true
+      },
+      "score": 96,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/ably/ably-cli",
+        "mcpDocs": "https://github.com/ably/ably-cli",
+        "cliDocs": "https://github.com/ably/ably-cli",
+        "apiDocs": "https://ably.com/docs/api/control-api",
+        "skillsDocs": "https://github.com/ably/agent-skills"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    },
+    {
+      "id": "meilisearch",
+      "name": "Meilisearch",
+      "category": "search",
+      "description": "Search engine with official MCP server (26 tools, Docker support), REST API with per-release OpenAPI specs, no management CLI, CLAUDE.md + AGENTS.md across SDK ecosystem, and llms.txt + llms-full.txt + AI search quickstart",
+      "homepage": "https://www.meilisearch.com",
+      "docsUrl": "https://www.meilisearch.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/meilisearch/meilisearch-mcp",
+        "package": "meilisearch-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://www.meilisearch.com/docs/reference/api"
+      },
+      "cli": {
+        "status": "none"
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": false,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.meilisearch.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://www.meilisearch.com/docs/learn/ai_powered_search/getting_started_with_ai_search",
+        "openApiSpec": true
+      },
+      "score": 67,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/meilisearch/meilisearch",
+        "mcpDocs": "https://github.com/meilisearch/meilisearch-mcp",
+        "apiDocs": "https://www.meilisearch.com/docs/reference/api"
+      },
+      "lastUpdated": "2026-03-16",
+      "lastResearched": "2026-03-16"
+    }
+  ]
 }
