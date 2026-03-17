@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { filterServices, getMetadata, getServices } from "@/lib/services";
+import { filterServices, getServices } from "@/lib/services";
 import type { FilterType, Service } from "@/lib/types";
 
 import { CompactFilters } from "@/components/compact-filters";
@@ -12,21 +12,19 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export default function Home() {
   const allServices = getServices();
-  const metadata = getMetadata();
 
-  const [filters, setFilters] = useState<FilterType & { search: string }>({
-    tier: [],
+  const [filters, setFilters] = useState<FilterType>({
     category: [],
-    features: [],
     search: "",
   });
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const filteredServices = filterServices(allServices, filters);
 
+  const withAllPillars = allServices.filter((s) => s.score === 100).length;
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
       <header className="border-b border-border sticky top-0 z-30 bg-background">
         <div className="px-4 lg:px-6">
           <div className="flex h-12 items-center justify-between">
@@ -36,9 +34,9 @@ export default function Home() {
               </h1>
               <div className="flex items-center gap-1.5 text-xs">
                 <span className="font-bold tabular-nums">
-                  {metadata.productionReady}/{metadata.totalServices}
+                  {withAllPillars}/{allServices.length}
                 </span>
-                <span className="text-muted-foreground">production ready</span>
+                <span className="text-muted-foreground">fully agent-ready</span>
               </div>
             </div>
             <ThemeSwitcher />
@@ -46,30 +44,15 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="px-4 lg:px-6 py-4">
         <div className="space-y-4">
-          {/* Compact Filters */}
           <CompactFilters onFilterChange={setFilters} />
 
-          {/* Stats Bar */}
           <div className="flex items-center justify-between text-xs border-b border-border pb-3">
             <div className="flex items-center gap-4">
               <span className="text-muted-foreground">
                 Showing {filteredServices.length} of {allServices.length}
               </span>
-              <span className="text-border">|</span>
-              <div className="flex items-center gap-3">
-                <span className="text-[var(--color-green-400)]">
-                  T1: {allServices.filter((s) => s.tier === 1).length}
-                </span>
-                <span className="text-[var(--color-blue-400)]">
-                  T2: {allServices.filter((s) => s.tier === 2).length}
-                </span>
-                <span className="text-[var(--color-red-400)]">
-                  T3: {allServices.filter((s) => s.tier === 3).length}
-                </span>
-              </div>
             </div>
             <div className="flex items-center gap-3 text-muted-foreground">
               <a
@@ -80,24 +63,14 @@ export default function Home() {
               >
                 github
               </a>
-              <a
-                href="https://clerk.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                clerk
-              </a>
             </div>
           </div>
 
-          {/* Services Table */}
           <ServiceTable
             services={filteredServices}
             onServiceClick={setSelectedService}
           />
 
-          {/* Empty State */}
           {filteredServices.length === 0 && (
             <div className="border border-border rounded p-12 text-center text-sm">
               <div className="space-y-2">
@@ -111,7 +84,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Drawer */}
       <ServiceDrawer
         service={selectedService}
         onClose={() => setSelectedService(null)}
