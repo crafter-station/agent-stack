@@ -73,10 +73,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
       <Table className="table-fixed w-full">
         <TableHeader>
           <TableRow className="border-b border-border hover:bg-transparent">
-            <TableHead className="w-[5%] md:w-[3%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[8%] md:w-[3%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               #
             </TableHead>
-            <TableHead className="w-[45%] md:w-[23%] h-9">
+            <TableHead className="w-[40%] md:w-[23%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("name")}
@@ -90,10 +90,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="w-[15%] md:w-[7%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="hidden sm:table-cell w-[7%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Category
             </TableHead>
-            <TableHead className="w-[35%] md:w-[16%] h-9">
+            <TableHead className="w-[52%] sm:w-[35%] md:w-[16%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("score")}
@@ -167,7 +167,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                   </div>
                 </div>
               </TableCell>
-              <TableCell className="py-2">
+              <TableCell className="hidden sm:table-cell py-2">
                 <CategoryBadge category={service.category} />
               </TableCell>
               <TableCell className="py-2">
