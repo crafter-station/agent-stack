@@ -32,7 +32,7 @@ export default function Home() {
         <div className="px-4 lg:px-6">
           <div className="flex h-12 items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-sm font-bold tracking-tight uppercase">
+              <h1 className="text-sm font-bold tracking-tight uppercase whitespace-nowrap">
                 Agent Stack
               </h1>
               <div className="hidden sm:flex items-center gap-3 text-[10px] text-muted-foreground">
@@ -58,16 +58,16 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <a
                 href="https://github.com/crafter-station/agent-stack"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px] text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
+                className="hidden sm:block text-[10px] text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
               >
                 GitHub
               </a>
-              <ThemeSwitcher />
+              <ThemeSwitcher className="[&_button]:px-2 [&_button]:text-[10px] sm:[&_button]:px-3 sm:[&_button]:text-xs" />
             </div>
           </div>
         </div>
