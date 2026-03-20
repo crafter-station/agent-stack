@@ -189,18 +189,32 @@ export default function Home() {
 
       <footer className="border-t border-border py-4 px-4 lg:px-6">
         <div className="flex items-center justify-between text-[10px] text-muted-foreground">
-          <span>
-            Built by{" "}
-            <a
-              href="https://x.com/RaillyHugo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:underline"
-            >
-              @RaillyHugo
-            </a>
-          </span>
-          <span>
+          <div className="flex items-center gap-3">
+            <span>
+              Built by{" "}
+              <a
+                href="https://x.com/RaillyHugo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:underline"
+              >
+                @RaillyHugo
+              </a>
+            </span>
+            <span className="text-border">|</span>
+            <span>
+              Logos by{" "}
+              <a
+                href="https://tryelements.dev/docs/logos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:underline"
+              >
+                Elements
+              </a>
+            </span>
+          </div>
+          <span className="hidden sm:inline">
             Score = MCP(20) + API(20) + CLI(20) + Skills(20) + Docs(20)
           </span>
         </div>
