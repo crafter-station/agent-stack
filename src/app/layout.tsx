@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 
 const title = "Agent Stack — Which dev tools are ready for AI agents?";
 const description =
-  "Ranking 49 developer tools across 5 dimensions: MCP Server, Platform API, CLI, Skills, and Docs. See which services are truly agent-ready.";
+  "Ranking 50 developer tools across 5 dimensions: MCP Server, Platform API, CLI, Skills, and Docs. See which services are truly agent-ready.";
 
 export const metadata: Metadata = {
   title,
@@ -53,6 +54,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
