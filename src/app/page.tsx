@@ -10,6 +10,87 @@ import { ServiceDrawer } from "@/components/service-drawer";
 import { ServiceTable } from "@/components/service-table";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
+const LEGEND_ITEMS = [
+  { label: "MCP", color: "var(--color-violet-400)" },
+  { label: "API", color: "var(--color-blue-400)" },
+  { label: "CLI", color: "var(--color-cyan-400)" },
+  { label: "Skills", color: "var(--color-amber-400)" },
+  { label: "Docs", color: "var(--color-emerald-400)" },
+];
+
+function ScoreLegend() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <div className="hidden sm:flex items-center gap-3 text-[10px] text-muted-foreground">
+        {LEGEND_ITEMS.map((item) => (
+          <span key={item.label} className="flex items-center gap-1">
+            <span
+              className="inline-block w-2 h-2 rounded-sm"
+              style={{ backgroundColor: item.color, opacity: 0.8 }}
+            />
+            {item.label}
+          </span>
+        ))}
+      </div>
+
+      <div className="sm:hidden relative">
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="flex items-center gap-1 px-2 py-1 border border-border rounded text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <div className="flex -space-x-0.5">
+            {LEGEND_ITEMS.map((item) => (
+              <span
+                key={item.label}
+                className="inline-block w-2.5 h-2.5 rounded-full border border-background"
+                style={{ backgroundColor: item.color, opacity: 0.9 }}
+              />
+            ))}
+          </div>
+          <span className="ml-1">legend</span>
+        </button>
+
+        {open && (
+          <>
+            <button
+              type="button"
+              className="fixed inset-0 z-40"
+              onClick={() => setOpen(false)}
+              aria-label="Close legend"
+            />
+            <div className="absolute right-0 top-full mt-2 z-50 bg-card border border-border rounded p-3 shadow-lg min-w-[140px]">
+              <div className="space-y-2">
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">
+                  Score breakdown
+                </div>
+                {LEGEND_ITEMS.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2 text-xs"
+                  >
+                    <span
+                      className="inline-block w-3 h-3 rounded-sm shrink-0"
+                      style={{ backgroundColor: item.color, opacity: 0.8 }}
+                    />
+                    <span className="text-foreground">{item.label}</span>
+                    <span className="text-muted-foreground ml-auto">/ 20</span>
+                  </div>
+                ))}
+                <div className="border-t border-border pt-2 mt-2 flex items-center justify-between text-[10px]">
+                  <span className="text-muted-foreground">Total</span>
+                  <span className="text-foreground font-bold">/ 100</span>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  );
+}
+
 export default function Home() {
   const allServices = getServices();
 
@@ -85,58 +166,7 @@ export default function Home() {
               </span>{" "}
               of {allServices.length}
             </span>
-            <div className="hidden sm:flex items-center gap-3 text-[10px] text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <span
-                  className="inline-block w-2 h-2 rounded-sm"
-                  style={{
-                    backgroundColor: "var(--color-violet-400)",
-                    opacity: 0.8,
-                  }}
-                />
-                MCP
-              </span>
-              <span className="flex items-center gap-1">
-                <span
-                  className="inline-block w-2 h-2 rounded-sm"
-                  style={{
-                    backgroundColor: "var(--color-blue-400)",
-                    opacity: 0.8,
-                  }}
-                />
-                API
-              </span>
-              <span className="flex items-center gap-1">
-                <span
-                  className="inline-block w-2 h-2 rounded-sm"
-                  style={{
-                    backgroundColor: "var(--color-cyan-400)",
-                    opacity: 0.8,
-                  }}
-                />
-                CLI
-              </span>
-              <span className="flex items-center gap-1">
-                <span
-                  className="inline-block w-2 h-2 rounded-sm"
-                  style={{
-                    backgroundColor: "var(--color-amber-400)",
-                    opacity: 0.8,
-                  }}
-                />
-                Skills
-              </span>
-              <span className="flex items-center gap-1">
-                <span
-                  className="inline-block w-2 h-2 rounded-sm"
-                  style={{
-                    backgroundColor: "var(--color-emerald-400)",
-                    opacity: 0.8,
-                  }}
-                />
-                Docs
-              </span>
-            </div>
+            <ScoreLegend />
           </div>
 
           <ServiceTable
