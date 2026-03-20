@@ -140,6 +140,14 @@ html {
   background: var(--color-muted-foreground);
 }
 
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Animate in utilities */
 @keyframes fade-in {
   from {

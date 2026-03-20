@@ -72,17 +72,17 @@ export function CompactFilters({ onFilterChange }: CompactFiltersProps) {
         className="w-full px-3 py-1.5 text-sm bg-muted/30 border border-border rounded focus:outline-none focus:ring-1 focus:ring-foreground transition-all"
       />
 
-      <div className="flex flex-wrap items-center gap-2 text-xs">
-        <div className="flex items-center gap-1">
-          <span className="text-muted-foreground uppercase tracking-wider">
-            Cat:
-          </span>
+      <div className="flex items-center gap-2 text-xs">
+        <span className="text-muted-foreground uppercase tracking-wider shrink-0">
+          Cat:
+        </span>
+        <div className="overflow-x-auto flex items-center gap-1 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat.value}
               type="button"
               onClick={() => toggleCategory(cat.value)}
-              className={`px-2 py-0.5 rounded border transition-all ${
+              className={`px-2 py-0.5 rounded border transition-all whitespace-nowrap shrink-0 ${
                 selectedCategories.includes(cat.value)
                   ? "bg-foreground text-background border-foreground"
                   : "border-border bg-muted/30 text-muted-foreground hover:border-foreground hover:text-foreground"
@@ -92,18 +92,14 @@ export function CompactFilters({ onFilterChange }: CompactFiltersProps) {
             </button>
           ))}
         </div>
-
         {hasFilters && (
-          <>
-            <span className="text-border">|</span>
-            <button
-              type="button"
-              onClick={clearAll}
-              className="px-2 py-0.5 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              clear
-            </button>
-          </>
+          <button
+            type="button"
+            onClick={clearAll}
+            className="px-2 py-0.5 text-muted-foreground hover:text-foreground transition-colors shrink-0"
+          >
+            clear
+          </button>
         )}
       </div>
     </div>
