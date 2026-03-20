@@ -2373,6 +2373,55 @@
       },
       "lastUpdated": "2026-03-17",
       "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "category": "media",
+      "description": "AI inference platform with official MCP server (local + hosted), REST API for 300+ models, Go CLI, official skills repo, and per-model OpenAPI schemas",
+      "homepage": "https://replicate.com",
+      "docsUrl": "https://replicate.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/replicate/replicate-mcp",
+        "package": "replicate-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://replicate.com/docs/reference/http"
+      },
+      "cli": {
+        "status": "official",
+        "name": "replicate",
+        "installCmd": "brew tap replicate/tap && brew install replicate",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://replicate.com/docs/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": true
+      },
+      "score": 84,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/replicate",
+        "mcpDocs": "https://replicate.com/docs/reference/mcp",
+        "cliDocs": "https://github.com/replicate/cli",
+        "apiDocs": "https://replicate.com/docs/reference/http",
+        "skillsDocs": "https://github.com/replicate/skills"
+      },
+      "lastUpdated": "2026-03-17",
+      "lastResearched": "2026-03-17"
     }
   ]
 }

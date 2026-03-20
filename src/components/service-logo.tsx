@@ -37,6 +37,7 @@ import { PolarLogo } from "@/components/logos/polar";
 import { PosthogLogo } from "@/components/logos/posthog";
 import { PrismaLogo } from "@/components/logos/prisma";
 import { RailwayLogo } from "@/components/logos/railway";
+import { ReplicateLogo } from "@/components/logos/replicate";
 import { RenderLogo } from "@/components/logos/render";
 import { ResendLogo } from "@/components/logos/resend";
 import { SanityLogo } from "@/components/logos/sanity";
@@ -116,6 +117,7 @@ export function ServiceLogo({ name, className = "h-5 w-5" }: ServiceLogoProps) {
     Prisma: <PrismaLogo mode={mode} className={className} />,
     Railway: <RailwayLogo mode={mode} className={className} />,
     Render: <RenderLogo mode={mode} className={className} />,
+    Replicate: <ReplicateLogo mode={mode} className={className} />,
     Resend: <ResendLogo variant="icon" className={className} />,
     Sanity: <SanityLogo mode={mode} className={className} />,
     Sentry: <SentryLogo mode={mode} className={className} />,
