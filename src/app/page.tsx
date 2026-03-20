@@ -188,7 +188,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-border py-4 px-4 lg:px-6">
-        <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-3">
             <span>
               Built by{" "}
