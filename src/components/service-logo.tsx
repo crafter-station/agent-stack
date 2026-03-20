@@ -1,6 +1,7 @@
 // @ts-nocheck
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { AblyLogo } from "@/components/logos/ably";
 import { AlgoliaLogo } from "@/components/logos/algolia";
@@ -59,6 +60,16 @@ interface ServiceLogoProps {
 
 export function ServiceLogo({ name, className = "h-5 w-5" }: ServiceLogoProps) {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className={`${className} rounded bg-muted/30 animate-pulse`} />;
+  }
+
   const isDark = resolvedTheme === "dark";
   const mode = isDark ? "dark" : "light";
 
