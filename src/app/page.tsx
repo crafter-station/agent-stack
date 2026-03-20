@@ -85,7 +85,7 @@ export default function Home() {
               </span>{" "}
               of {allServices.length}
             </span>
-            <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
+            <div className="hidden sm:flex items-center gap-3 text-[10px] text-muted-foreground">
               <span className="flex items-center gap-1">
                 <span
                   className="inline-block w-2 h-2 rounded-sm"

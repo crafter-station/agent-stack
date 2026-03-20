@@ -73,10 +73,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
       <Table className="table-fixed w-full">
         <TableHeader>
           <TableRow className="border-b border-border hover:bg-transparent">
-            <TableHead className="w-[3%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[5%] md:w-[3%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               #
             </TableHead>
-            <TableHead className="w-[23%] h-9">
+            <TableHead className="w-[45%] md:w-[23%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("name")}
@@ -90,10 +90,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="w-[7%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="w-[15%] md:w-[7%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Category
             </TableHead>
-            <TableHead className="w-[16%] h-9">
+            <TableHead className="w-[35%] md:w-[16%] h-9">
               <button
                 type="button"
                 onClick={() => handleSort("score")}
@@ -107,10 +107,10 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                 )}
               </button>
             </TableHead>
-            <TableHead className="w-[20%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="hidden md:table-cell w-[20%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Pillars
             </TableHead>
-            <TableHead className="w-[31%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+            <TableHead className="hidden md:table-cell w-[31%] h-9 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
               Docs
             </TableHead>
           </TableRow>
@@ -161,7 +161,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                         </svg>
                       </a>
                     </div>
-                    <span className="text-[10px] text-muted-foreground/50 truncate block">
+                    <span className="hidden sm:block text-[10px] text-muted-foreground/50 truncate">
                       {service.description}
                     </span>
                   </div>
@@ -173,7 +173,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
               <TableCell className="py-2">
                 <ScoreBar service={service} />
               </TableCell>
-              <TableCell className="py-2">
+              <TableCell className="hidden md:table-cell py-2">
                 <div className="flex flex-wrap gap-1">
                   <PillarBadge
                     label="MCP"
@@ -197,7 +197,7 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                   />
                 </div>
               </TableCell>
-              <TableCell className="py-2">
+              <TableCell className="hidden md:table-cell py-2">
                 <div className="flex flex-wrap gap-1">
                   <DocSignal
                     label="llms.txt"
