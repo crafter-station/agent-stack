@@ -53,6 +53,24 @@ import { UpstashLogo } from "@/components/logos/upstash";
 import { VercelLogo } from "@/components/logos/vercel";
 import { WorkosLogo } from "@/components/logos/workos";
 import { XataLogo } from "@/components/logos/xata";
+import { BrowserbaseLogo } from "@/components/logos/browserbase";
+import { BrowserUseLogo } from "@/components/logos/browser-use";
+import { HyperbrowserLogo } from "@/components/logos/hyperbrowser";
+import { ElevenlabsLogo } from "@/components/logos/elevenlabs";
+import { VapiLogo } from "@/components/logos/vapi";
+import { AgentmailLogo } from "@/components/logos/agentmail";
+import { AgentphoneLogo } from "@/components/logos/agentphone";
+import { Mem0Logo } from "@/components/logos/mem0";
+import { ZepLogo } from "@/components/logos/zep";
+import { ExaLogo } from "@/components/logos/exa";
+import { SixtyfourLogo } from "@/components/logos/sixtyfour";
+import { KiteLogo } from "@/components/logos/kite";
+import { SpongeLogo } from "@/components/logos/sponge";
+import { ComposioLogo } from "@/components/logos/composio";
+import { OrthogonalLogo } from "@/components/logos/orthogonal";
+import { DaytonaLogo } from "@/components/logos/daytona";
+import { ModalLogo } from "@/components/logos/modal";
+import { StytchLogo } from "@/components/logos/stytch";
 
 interface ServiceLogoProps {
   name: string;
@@ -139,6 +157,24 @@ export function ServiceLogo({ name, className = "h-5 w-5" }: ServiceLogoProps) {
     Vercel: <VercelLogo variant="icon" className={className} />,
     WorkOS: <WorkosLogo mode={mode} className={className} />,
     Xata: <XataLogo mode={mode} className={className} />,
+    Browserbase: <BrowserbaseLogo mode={mode} className={className} />,
+    "Browser Use": <BrowserUseLogo mode={mode} className={className} />,
+    Hyperbrowser: <HyperbrowserLogo mode={mode} className={className} />,
+    ElevenLabs: <ElevenlabsLogo mode={mode} className={className} />,
+    Vapi: <VapiLogo mode={mode} className={className} />,
+    AgentMail: <AgentmailLogo mode={mode} className={className} />,
+    AgentPhone: <AgentphoneLogo mode={mode} className={className} />,
+    Mem0: <Mem0Logo mode={mode} className={className} />,
+    Zep: <ZepLogo mode={mode} className={className} />,
+    Exa: <ExaLogo mode={mode} className={className} />,
+    Sixtyfour: <SixtyfourLogo mode={mode} className={className} />,
+    Kite: <KiteLogo mode={mode} className={className} />,
+    Sponge: <SpongeLogo mode={mode} className={className} />,
+    Composio: <ComposioLogo mode={mode} className={className} />,
+    Orthogonal: <OrthogonalLogo mode={mode} className={className} />,
+    Daytona: <DaytonaLogo mode={mode} className={className} />,
+    Modal: <ModalLogo mode={mode} className={className} />,
+    Stytch: <StytchLogo mode={mode} className={className} />,
   };
 
   return <>{realLogos[name] || null}</>;

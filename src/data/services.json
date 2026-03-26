@@ -2422,6 +2422,852 @@
       },
       "lastUpdated": "2026-03-17",
       "lastResearched": "2026-03-17"
+    },
+    {
+      "id": "browserbase",
+      "name": "Browserbase",
+      "category": "browser",
+      "description": "Cloud browser infrastructure for AI agents with managed Chromium sessions, stealth mode, CAPTCHA solving, session recording, and Stagehand OSS framework",
+      "homepage": "https://browserbase.com",
+      "docsUrl": "https://docs.browserbase.com",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/browserbase/mcp-server-browserbase",
+        "package": "@browserbasehq/mcp-server-browserbase"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.browserbase.com/reference/api/overview"
+      },
+      "cli": {
+        "status": "official",
+        "name": "bb",
+        "installCmd": "npm install -g @browserbasehq/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.browserbase.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.browserbase.com/integrations/mcp/setup",
+        "openApiSpec": true
+      },
+      "score": 95,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/browserbase",
+        "mcpDocs": "https://docs.browserbase.com/integrations/mcp/introduction",
+        "cliDocs": "https://docs.browserbase.com/integrations/skills/browserbase-cli",
+        "apiDocs": "https://docs.browserbase.com/reference/api/overview",
+        "skillsDocs": "https://docs.browserbase.com/integrations/skills/introduction"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "browser-use",
+      "name": "Browser Use",
+      "category": "browser",
+      "description": "Open-source browser automation for AI agents with natural language task execution, Cloud API with managed stealth browsers, and Python/TypeScript SDKs",
+      "homepage": "https://browser-use.com",
+      "docsUrl": "https://docs.browser-use.com",
+      "mcp": {
+        "status": "community",
+        "url": "https://github.com/kontext-dev/browser-use-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.browser-use.com/cloud/quickstart"
+      },
+      "cli": {
+        "status": "official",
+        "name": "browser-use",
+        "installCmd": "curl -fsSL https://browser-use.com/cli/install.sh | bash",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.browser-use.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.browser-use.com/cloud/coding-agent-quickstart",
+        "openApiSpec": false
+      },
+      "score": 78,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/browser-use/browser-use",
+        "cliDocs": "https://docs.browser-use.com/open-source/browser-use-cli",
+        "apiDocs": "https://docs.browser-use.com/cloud/quickstart",
+        "skillsDocs": "https://github.com/browser-use/browser-use/blob/main/AGENTS.md"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "hyperbrowser",
+      "name": "Hyperbrowser",
+      "category": "browser",
+      "description": "Cloud browser platform for AI agents with ultra stealth mode, Claude Computer Use support, Firecracker VM sandboxes, scraping, and multi-region sessions",
+      "homepage": "https://hyperbrowser.ai",
+      "docsUrl": "https://hyperbrowser.ai/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/hyperbrowserai/mcp",
+        "package": "hyperbrowser-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://hyperbrowser.ai/docs/api-reference/create-new-session"
+      },
+      "cli": {
+        "status": "official",
+        "name": "hb",
+        "installCmd": "curl -fsSL https://www.hyperup.sh/install.sh | sh",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://hyperbrowser.ai/docs/quickstart",
+        "openApiSpec": false
+      },
+      "score": 65,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/hyperbrowserai",
+        "mcpDocs": "https://hyperbrowser.ai/docs/integrations/model-context-protocol",
+        "cliDocs": "https://hyperbrowser.ai/docs/sandboxes/cli",
+        "apiDocs": "https://hyperbrowser.ai/docs/api-reference/create-new-session"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "category": "voice",
+      "description": "Voice AI platform with TTS, STT, voice cloning, sound effects, conversational agents, 32 languages, 1000+ voices, and official MCP server",
+      "homepage": "https://elevenlabs.io",
+      "docsUrl": "https://elevenlabs.io/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/elevenlabs/elevenlabs-mcp",
+        "package": "elevenlabs-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://elevenlabs.io/docs/api-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "elevenlabs",
+        "installCmd": "npm install -g @elevenlabs/cli",
+        "supportsJson": false,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://elevenlabs.io/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://elevenlabs.io/docs/eleven-api/quickstart",
+        "openApiSpec": true
+      },
+      "score": 92,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/elevenlabs",
+        "mcpDocs": "https://elevenlabs.io/docs/mcp",
+        "cliDocs": "https://elevenlabs.io/docs/eleven-agents/operate/cli",
+        "apiDocs": "https://elevenlabs.io/docs/api-reference",
+        "skillsDocs": "https://github.com/elevenlabs/skills"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "vapi",
+      "name": "Vapi",
+      "category": "voice",
+      "description": "Developer platform for voice AI agents with phone/web calls, real-time transcription, multi-assistant squads, campaign management, and full CLI",
+      "homepage": "https://vapi.ai",
+      "docsUrl": "https://docs.vapi.ai",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/VapiAI/mcp-server",
+        "package": "@vapi-ai/mcp-docs-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.vapi.ai/api-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "vapi",
+        "installCmd": "curl -sSL https://vapi.ai/install.sh | bash",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.vapi.ai/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.vapi.ai/quickstart/introduction",
+        "openApiSpec": true
+      },
+      "score": 95,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/VapiAI",
+        "mcpDocs": "https://docs.vapi.ai/sdk/mcp-server",
+        "cliDocs": "https://docs.vapi.ai/cli",
+        "apiDocs": "https://docs.vapi.ai/api-reference",
+        "skillsDocs": "https://github.com/VapiAI/skills"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "agentmail",
+      "name": "AgentMail",
+      "category": "agent-email",
+      "description": "Email inbox API for AI agents with per-agent inboxes, two-way conversations, thread management, attachments, WebSocket events, and IMAP/SMTP access",
+      "homepage": "https://www.agentmail.to",
+      "docsUrl": "https://docs.agentmail.to",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/agentmail-to/agentmail-mcp",
+        "package": "agentmail-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.agentmail.to/api-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "agentmail",
+        "installCmd": "npm install -g agentmail-cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://docs.agentmail.to/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.agentmail.to/agent-onboarding",
+        "openApiSpec": false
+      },
+      "score": 87,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/agentmail-to",
+        "mcpDocs": "https://docs.agentmail.to/agent-onboarding",
+        "cliDocs": "https://github.com/agentmail-to/agentmail-cli",
+        "apiDocs": "https://docs.agentmail.to/api-reference",
+        "skillsDocs": "https://github.com/agentmail-to/agentmail-skills"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "agentphone",
+      "name": "AgentPhone",
+      "category": "agent-phone",
+      "description": "Phone number provisioning API for AI agents with US/Canadian numbers, unified SMS and voice webhook, real-time transcription, and native MCP support",
+      "homepage": "https://agentphone.to",
+      "docsUrl": "https://docs.agentphone.to",
+      "mcp": {
+        "status": "official",
+        "url": "https://www.npmjs.com/package/agentphone-mcp",
+        "package": "agentphone-mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.agentphone.to/api-reference"
+      },
+      "cli": {
+        "status": "none",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 40,
+      "maxScore": 100,
+      "links": {
+        "mcpDocs": "https://agentphone.to",
+        "apiDocs": "https://docs.agentphone.to/api-reference"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "mem0",
+      "name": "Mem0",
+      "category": "memory",
+      "description": "Self-improving memory layer for LLM apps with semantic search, graph memory, dynamic extraction and consolidation across sessions. 50K+ GitHub stars",
+      "homepage": "https://mem0.ai",
+      "docsUrl": "https://docs.mem0.ai",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/mem0ai/mem0-mcp",
+        "package": "mem0-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.mem0.ai/api-reference"
+      },
+      "cli": {
+        "status": "none",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://mem0.ai/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.mem0.ai/platform/quickstart",
+        "openApiSpec": false
+      },
+      "score": 50,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/mem0ai/mem0-mcp",
+        "mcpDocs": "https://docs.mem0.ai/integrations",
+        "apiDocs": "https://docs.mem0.ai/api-reference"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "zep",
+      "name": "Zep",
+      "category": "memory",
+      "description": "Context engineering platform combining agent memory, Graph RAG, and automated context assembly. Temporal knowledge graphs, sub-200ms retrieval, SOC2/HIPAA compliant",
+      "homepage": "https://www.getzep.com",
+      "docsUrl": "https://help.getzep.com",
+      "mcp": {
+        "status": "community",
+        "url": "https://github.com/wastrilith2k/zep-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://help.getzep.com/api-reference"
+      },
+      "cli": {
+        "status": "none",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://www.getzep.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://help.getzep.com/quickstart",
+        "openApiSpec": false
+      },
+      "score": 42,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/getzep/zep",
+        "mcpDocs": "https://help.getzep.com/docs-mcp-server",
+        "apiDocs": "https://help.getzep.com/api-reference"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "exa",
+      "name": "Exa",
+      "category": "ai-search",
+      "description": "Search engine for AI agents with 1B+ people, 50M+ companies, 100M+ research papers indexed. Multiple search modes, token-efficient highlights, and dedicated coding agent docs",
+      "homepage": "https://exa.ai",
+      "docsUrl": "https://exa.ai/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/exa-labs/exa-mcp-server",
+        "package": "exa-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://exa.ai/docs/reference/search"
+      },
+      "cli": {
+        "status": "community",
+        "name": "exa-cli",
+        "installCmd": "npm install -g @realmikekelly/exa-cli",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://exa.ai/docs/reference/search-api-guide-for-coding-agents",
+        "openApiSpec": true
+      },
+      "score": 57,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/exa-labs/exa-mcp-server",
+        "mcpDocs": "https://exa.ai/docs/reference/exa-mcp",
+        "cliDocs": "https://github.com/mikekelly/exa-cli",
+        "apiDocs": "https://exa.ai/docs/reference/search"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "sixtyfour",
+      "name": "Sixtyfour",
+      "category": "people-search",
+      "description": "People and company intelligence for AI agents with email/phone enrichment, social profiles, business signals, QA scoring, and batch CSV pipelines via REST API",
+      "homepage": "https://www.sixtyfour.ai",
+      "docsUrl": "https://docs.sixtyfour.ai",
+      "mcp": {
+        "status": "none"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.sixtyfour.ai/api-reference/introduction"
+      },
+      "cli": {
+        "status": "none",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "community",
+        "hasSkillFile": true,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.sixtyfour.ai/introduction",
+        "openApiSpec": false
+      },
+      "score": 34,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/sixtyfour-ai/notebooks",
+        "apiDocs": "https://docs.sixtyfour.ai/api-reference/introduction",
+        "skillsDocs": "https://github.com/Mtjones2501/sixtyfour-skill"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "kite",
+      "name": "Kite",
+      "category": "agent-payments",
+      "description": "AI payment blockchain with x402 protocol, delegated payment sessions with spending limits, USDC on Avalanche/Base, and MCP-based payment authorization",
+      "homepage": "https://gokite.ai",
+      "docsUrl": "https://docs.gokite.ai",
+      "mcp": {
+        "status": "official",
+        "url": "https://neo.dev.gokite.ai/v1/mcp"
+      },
+      "platformApi": {
+        "status": "community",
+        "type": "REST",
+        "docsUrl": "https://docs.gokite.ai/kite-agent-passport/developer-guide"
+      },
+      "cli": {
+        "status": "none",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 32,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/gokite-ai",
+        "mcpDocs": "https://docs.gokite.ai/kite-agent-passport/developer-guide",
+        "apiDocs": "https://docs.gokite.ai/kite-agent-passport/developer-guide"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "sponge",
+      "name": "Sponge",
+      "category": "agent-payments",
+      "description": "Financial infrastructure for the agent economy with crypto wallets for AI agents, payment gateway, TypeScript SDK, MCP server, and spending controls",
+      "homepage": "https://paysponge.com",
+      "docsUrl": "https://paysponge.com/docs",
+      "mcp": {
+        "status": "official"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://paysponge.com/docs"
+      },
+      "cli": {
+        "status": "none",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": false,
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 40,
+      "maxScore": 100,
+      "links": {
+        "mcpDocs": "https://paysponge.com/docs",
+        "apiDocs": "https://paysponge.com/docs"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "composio",
+      "name": "Composio",
+      "category": "saas-integration",
+      "description": "Skill layer for AI agents with 1000+ app integrations, managed MCP servers with built-in OAuth, Python/TypeScript SDKs, sandboxed execution, and support for every major agent framework",
+      "homepage": "https://composio.dev",
+      "docsUrl": "https://docs.composio.dev",
+      "mcp": {
+        "status": "official",
+        "url": "https://mcp.composio.dev/",
+        "package": "@composio/mcp"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.composio.dev"
+      },
+      "cli": {
+        "status": "official",
+        "name": "composio",
+        "installCmd": "pip install composio",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://composio.dev/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://docs.composio.dev/docs/quickstart",
+        "openApiSpec": false
+      },
+      "score": 70,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/ComposioHQ/composio",
+        "mcpDocs": "https://mcp.composio.dev/",
+        "cliDocs": "https://github.com/ComposioHQ/composio/blob/next/INSTALL.md",
+        "apiDocs": "https://docs.composio.dev"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "orthogonal",
+      "name": "Orthogonal",
+      "category": "api-access",
+      "description": "Unified API marketplace and agent skill library with 80+ paid APIs and OAuth integrations through a single CLI. SKILL.md format installable to Claude Code, Cursor, Codex. YC W26",
+      "homepage": "https://orthogonal.com",
+      "docsUrl": "https://docs.orthogonal.com",
+      "mcp": {
+        "status": "none"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://docs.orthogonal.com"
+      },
+      "cli": {
+        "status": "official",
+        "name": "orth",
+        "installCmd": "npm install -g @orth/cli",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "official",
+        "hasSkillFile": true,
+        "hasAgentRules": true,
+        "hasPrompts": true
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://orthogonal.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": false,
+        "openApiSpec": false
+      },
+      "score": 65,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/orthogonal-sh/cli",
+        "cliDocs": "https://github.com/orthogonal-sh/cli",
+        "apiDocs": "https://docs.orthogonal.com",
+        "skillsDocs": "https://orthogonal.com/skills"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "daytona",
+      "name": "Daytona",
+      "category": "compute-sandbox",
+      "description": "Secure elastic infrastructure for AI-generated code with sub-90ms sandbox creation, stateful containers, official MCP, REST API with OpenAPI spec, and CLI via Homebrew",
+      "homepage": "https://daytona.io",
+      "docsUrl": "https://daytona.io/docs/en",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/daytonaio/daytona"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://daytona.io/docs/en/tools/api"
+      },
+      "cli": {
+        "status": "official",
+        "name": "daytona",
+        "installCmd": "brew install daytonaio/cli/daytona",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://daytona.io/llms.txt",
+        "copyMarkdown": true,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://daytona.io/docs/en/getting-started/",
+        "openApiSpec": true
+      },
+      "score": 80,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/daytonaio/daytona",
+        "mcpDocs": "https://daytona.io/docs/en/mcp",
+        "cliDocs": "https://daytona.io/docs/en/tools/cli",
+        "apiDocs": "https://daytona.io/docs/en/tools/api"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "modal",
+      "name": "Modal",
+      "category": "compute-sandbox",
+      "description": "Serverless cloud compute for AI/ML with GPU access, sub-second cold starts, sandboxed code execution, Python SDK and CLI",
+      "homepage": "https://modal.com",
+      "docsUrl": "https://modal.com/docs",
+      "mcp": {
+        "status": "community",
+        "url": "https://github.com/smehmood/modal-mcp-server",
+        "package": "modal-mcp-server"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://modal.com/docs/reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "modal",
+        "installCmd": "pip install modal",
+        "supportsJson": true,
+        "nonInteractive": true
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://modal.com/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://modal.com/docs/guide/developing-with-llms",
+        "openApiSpec": false
+      },
+      "score": 62,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/modal-labs/modal-client",
+        "mcpDocs": "https://mcpservers.org/servers/smehmood/modal-mcp-server",
+        "cliDocs": "https://modal.com/docs/reference/cli",
+        "apiDocs": "https://modal.com/docs/reference"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
+    },
+    {
+      "id": "stytch",
+      "name": "Stytch",
+      "category": "auth",
+      "description": "Auth platform with first-class M2M tokens, Connected Apps (OAuth 2.0 PKCE for CLI/agent auth), hosted MCP server at mcp.stytch.dev, and published OpenAPI specs",
+      "homepage": "https://stytch.com",
+      "docsUrl": "https://stytch.com/docs",
+      "mcp": {
+        "status": "official",
+        "url": "https://github.com/stytchauth/mcp-examples",
+        "package": "mcp.stytch.dev"
+      },
+      "platformApi": {
+        "status": "official",
+        "type": "REST",
+        "docsUrl": "https://stytch.com/docs/api-reference"
+      },
+      "cli": {
+        "status": "official",
+        "name": "stytch-cli",
+        "installCmd": "bash install.sh",
+        "supportsJson": false,
+        "nonInteractive": false
+      },
+      "skills": {
+        "status": "none",
+        "hasSkillFile": false,
+        "hasAgentRules": false,
+        "hasPrompts": false
+      },
+      "docs": {
+        "llmsTxt": true,
+        "llmsTxtUrl": "https://stytch.com/api/llms.txt",
+        "copyMarkdown": false,
+        "aiQuickstart": true,
+        "aiQuickstartUrl": "https://stytch.com/ai-agent-ready",
+        "openApiSpec": true
+      },
+      "score": 67,
+      "maxScore": 100,
+      "links": {
+        "github": "https://github.com/stytchauth/stytch-openapi",
+        "mcpDocs": "https://stytch.com/docs/resources/workspace-management/stytch-mcp-server",
+        "cliDocs": "https://stytch.com/blog/stytch-cli-connected-apps/",
+        "apiDocs": "https://stytch.com/docs/api-reference"
+      },
+      "lastUpdated": "2026-03-25",
+      "lastResearched": "2026-03-25"
     }
   ]
 }

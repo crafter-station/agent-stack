@@ -107,6 +107,17 @@ const categoryLabels: Record<Category, string> = {
   media: "Media",
   "feature-flags": "Flags",
   mobile: "Mobile",
+  browser: "Browser",
+  voice: "Voice",
+  memory: "Memory",
+  "ai-search": "AI Search",
+  "people-search": "People",
+  "agent-email": "Agent Email",
+  "agent-phone": "Agent Phone",
+  "agent-payments": "Agent Pay",
+  "saas-integration": "SaaS",
+  "api-access": "API",
+  "compute-sandbox": "Sandbox",
 };
 
 export function CategoryBadge({ category }: CategoryBadgeProps) {

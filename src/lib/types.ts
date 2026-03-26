@@ -58,7 +58,18 @@ export type Category =
   | "analytics"
   | "media"
   | "feature-flags"
-  | "mobile";
+  | "mobile"
+  | "browser"
+  | "voice"
+  | "memory"
+  | "ai-search"
+  | "people-search"
+  | "agent-email"
+  | "agent-phone"
+  | "agent-payments"
+  | "saas-integration"
+  | "api-access"
+  | "compute-sandbox";
 
 export interface Service {
   id: string;
