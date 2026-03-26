@@ -142,6 +142,12 @@ export function HomePage() {
             </div>
             <div className="flex items-center gap-2 sm:gap-3">
               <a
+                href="/methodology"
+                className="hidden sm:block text-[10px] text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
+              >
+                Methodology
+              </a>
+              <a
                 href="https://github.com/crafter-station/agent-stack"
                 target="_blank"
                 rel="noopener noreferrer"
