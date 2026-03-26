@@ -124,12 +124,14 @@ const categoryLabels: Record<Category, string> = {
 
 export function CategoryBadge({ category }: CategoryBadgeProps) {
   return (
-    <Badge
-      variant="outline"
-      className="text-[10px] border border-border bg-muted/20 text-muted-foreground font-bold tracking-wide px-1.5 py-0 uppercase"
-    >
-      {categoryLabels[category]}
-    </Badge>
+    <a href={`/category/${category}`} onClick={(e) => e.stopPropagation()}>
+      <Badge
+        variant="outline"
+        className="text-[10px] border border-border bg-muted/20 text-muted-foreground font-bold tracking-wide px-1.5 py-0 uppercase hover:bg-muted/40 hover:text-foreground transition-colors cursor-pointer"
+      >
+        {categoryLabels[category]}
+      </Badge>
+    </a>
   );
 }
 

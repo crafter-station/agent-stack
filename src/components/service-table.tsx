@@ -136,9 +136,13 @@ export function ServiceTable({ services, onServiceClick }: ServiceTableProps) {
                   />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap">
+                      <a
+                        href={`/${service.id}`}
+                        className="font-bold text-xs group-hover:text-foreground transition-colors whitespace-nowrap hover:underline"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         {service.name}
-                      </span>
+                      </a>
                       <a
                         href={service.homepage}
                         target="_blank"

@@ -2,14 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CategoryBadge, DocSignal, ScoreBadge } from "@/components/badge-components";
-import { ScoreGauge } from "@/components/score-gauge";
 import { getScoreBreakdown } from "@/lib/scoring";
 import { getServiceById, getServices } from "@/lib/services";
 import type { PillarStatus } from "@/lib/types";
 
 export function generateStaticParams() {
-  const services = getServices();
-  return services.map((s) => ({ id: s.id }));
+  return getServices().map((s) => ({ id: s.id }));
 }
 
 export async function generateMetadata({
@@ -26,111 +24,41 @@ export async function generateMetadata({
 
   const title = `${service.name} — Agent Readiness Score ${service.score}/100 | Agent Stack`;
   const description = `${service.name} scores ${service.score}/${service.maxScore} on agent readiness. ${service.description}. See the full breakdown across MCP, API, CLI, Skills, and Docs.`;
-  const canonical = `https://agent-stack.crafter.run/${service.id}`;
 
   return {
     title,
     description,
-    alternates: { canonical },
+    alternates: { canonical: `https://agent-stack.crafter.run/${service.id}` },
     openGraph: {
       title,
       description,
-      url: canonical,
+      url: `https://agent-stack.crafter.run/${service.id}`,
       siteName: "Agent Stack",
       type: "website",
     },
-    twitter: {
-      card: "summary",
-      title,
-      description,
-    },
+    twitter: { card: "summary", title, description },
   };
 }
 
+function statusLabel(status: PillarStatus) {
+  if (status === "official") return "Official";
+  if (status === "community") return "Community";
+  return "None";
+}
+
 function statusColor(status: PillarStatus) {
-  if (status === "official") return "text-[var(--color-green-400)]";
-  if (status === "community") return "text-[var(--color-blue-400)]";
-  return "text-muted-foreground/40";
+  if (status === "official") return "var(--color-green-400)";
+  if (status === "community") return "var(--color-blue-400)";
+  return "var(--color-border)";
 }
 
-function PillarSection({
-  label,
-  status,
-  score,
-  maxScore,
-  details,
-  link,
-}: {
-  label: string;
-  status: PillarStatus;
-  score: number;
-  maxScore: number;
-  details?: { label: string; value: string | boolean | undefined }[];
-  link?: string;
-}) {
-  const pct = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
-
-  return (
-    <div className="border border-border rounded p-3 space-y-2 bg-muted/10">
-      <div className="flex items-center justify-between gap-2">
-        <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{label}</span>
-        <span className="text-[10px] tabular-nums text-muted-foreground">
-          {score}/{maxScore}
-        </span>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className={`text-xs font-bold ${statusColor(status)}`}>{status}</span>
-        {status === "community" && (
-          <span className="text-[10px] text-muted-foreground/50">(community)</span>
-        )}
-      </div>
-      <div className="h-1 bg-border/40 rounded-full overflow-hidden">
-        <div
-          className="h-full rounded-full bg-current transition-all"
-          style={{
-            width: `${pct}%`,
-            color:
-              status === "official"
-                ? "var(--color-green-400)"
-                : status === "community"
-                  ? "var(--color-blue-400)"
-                  : "var(--color-border)",
-            backgroundColor:
-              status === "official"
-                ? "var(--color-green-400)"
-                : status === "community"
-                  ? "var(--color-blue-400)"
-                  : "var(--color-border)",
-          }}
-        />
-      </div>
-      {details && details.length > 0 && (
-        <div className="flex flex-wrap gap-x-3 gap-y-1">
-          {details
-            .filter((d) => d.value !== undefined && d.value !== false && d.value !== "")
-            .map((d) => (
-              <span key={d.label} className="text-[10px] text-muted-foreground">
-                <span className="text-muted-foreground/50">{d.label}:</span>{" "}
-                <span className="text-foreground/70">
-                  {typeof d.value === "boolean" ? "yes" : d.value}
-                </span>
-              </span>
-            ))}
-        </div>
-      )}
-      {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
-        >
-          docs →
-        </a>
-      )}
-    </div>
-  );
-}
+const PILLAR_COLORS = [
+  "var(--color-violet-400)",
+  "var(--color-blue-400)",
+  "var(--color-cyan-400)",
+  "var(--color-amber-400)",
+  "var(--color-emerald-400)",
+];
 
 export default async function ServicePage({
   params,
@@ -144,7 +72,7 @@ export default async function ServicePage({
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-muted-foreground text-sm">service not found</p>
+          <p className="text-muted-foreground text-sm">Service not found</p>
           <Link href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
             ← back to rankings
           </Link>
@@ -154,6 +82,13 @@ export default async function ServicePage({
   }
 
   const breakdown = getScoreBreakdown(service);
+  const pillars = [
+    { label: "MCP", score: breakdown.mcp, max: 20, status: service.mcp.status },
+    { label: "API", score: breakdown.platformApi, max: 20, status: service.platformApi.status },
+    { label: "CLI", score: breakdown.cli, max: 20, status: service.cli.status },
+    { label: "Skills", score: breakdown.skills, max: 20, status: service.skills.status },
+    { label: "Docs", score: breakdown.docs, max: 20, status: "none" as PillarStatus },
+  ];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -171,8 +106,6 @@ export default async function ServicePage({
     },
   };
 
-  const pillarMaxScores = { mcp: 20, api: 20, cli: 20, skills: 20, docs: 20 };
-
   return (
     <>
       <script
@@ -181,8 +114,8 @@ export default async function ServicePage({
       />
 
       <div className="min-h-screen bg-background text-foreground">
-        <div className="max-w-2xl mx-auto px-4 py-8 space-y-8">
-          <div className="flex items-center justify-between">
+        <header className="border-b border-border">
+          <div className="max-w-3xl mx-auto px-4 lg:px-6 flex h-12 items-center justify-between">
             <Link
               href="/"
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
@@ -190,141 +123,119 @@ export default async function ServicePage({
               ← agent stack
             </Link>
             <span className="text-[10px] text-muted-foreground/50">
-              researched: {service.lastResearched}
+              researched {service.lastResearched}
             </span>
           </div>
+        </header>
 
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="flex-1 space-y-2 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h1 className="text-xl font-bold">{service.name}</h1>
-                  <CategoryBadge category={service.category} />
-                  <ScoreBadge score={service.score} />
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-                <div className="flex gap-3 text-[10px]">
-                  <a
-                    href={service.homepage}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    homepage →
-                  </a>
-                  <a
-                    href={service.docsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    docs →
-                  </a>
-                </div>
-              </div>
-              <div className="flex-shrink-0">
-                <ScoreGauge score={service.score} size="lg" />
-              </div>
+        <main className="max-w-3xl mx-auto px-4 lg:px-6 py-8 space-y-8">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-2xl font-bold tracking-tight">{service.name}</h1>
+              <CategoryBadge category={service.category} />
+              <ScoreBadge score={service.score} />
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
+              {service.description}
+            </p>
+            <div className="flex items-center gap-4 text-xs">
+              <a
+                href={service.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                homepage →
+              </a>
+              <a
+                href={service.docsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                docs →
+              </a>
+              {service.links.github && (
+                <a
+                  href={service.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  github →
+                </a>
+              )}
             </div>
           </div>
 
           <section className="space-y-3">
             <h2 className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              Score Breakdown
+              Score Breakdown — {breakdown.total}/{service.maxScore}
             </h2>
-            <div className="border border-border rounded p-3 space-y-2.5 bg-muted/10">
-              {[
-                { label: "MCP Server", score: breakdown.mcp, max: pillarMaxScores.mcp },
-                { label: "Platform API", score: breakdown.platformApi, max: pillarMaxScores.api },
-                { label: "CLI", score: breakdown.cli, max: pillarMaxScores.cli },
-                { label: "Skills", score: breakdown.skills, max: pillarMaxScores.skills },
-                { label: "Docs", score: breakdown.docs, max: pillarMaxScores.docs },
-              ].map(({ label, score, max }) => {
-                const pct = Math.round((score / max) * 100);
+            <div className="space-y-2">
+              {pillars.map((p, i) => {
+                const pct = p.max > 0 ? Math.round((p.score / p.max) * 100) : 0;
                 return (
-                  <div key={label} className="space-y-1">
-                    <div className="flex items-center justify-between text-[10px]">
-                      <span className="text-muted-foreground">{label}</span>
-                      <span className="tabular-nums text-muted-foreground/70">
-                        {score}/{max}
-                      </span>
-                    </div>
-                    <div className="h-1 bg-border/30 rounded-full overflow-hidden">
+                  <div key={p.label} className="flex items-center gap-3">
+                    <span className="text-[10px] text-muted-foreground w-12 shrink-0">{p.label}</span>
+                    <div className="flex-1 h-2 bg-border/20 rounded-full overflow-hidden">
                       <div
-                        className="h-full rounded-full"
+                        className="h-full rounded-full transition-all"
                         style={{
                           width: `${pct}%`,
-                          backgroundColor:
-                            pct >= 80
-                              ? "var(--color-green-400)"
-                              : pct >= 50
-                                ? "var(--color-yellow-400)"
-                                : pct > 0
-                                  ? "var(--color-red-400)"
-                                  : "transparent",
+                          backgroundColor: PILLAR_COLORS[i],
+                          opacity: 0.8,
                         }}
                       />
                     </div>
+                    <span className="text-[10px] tabular-nums text-muted-foreground w-10 text-right shrink-0">
+                      {p.score}/{p.max}
+                    </span>
                   </div>
                 );
               })}
-              <div className="pt-1 border-t border-border/30 flex items-center justify-between text-[10px]">
-                <span className="text-muted-foreground font-bold">Total</span>
-                <span className="tabular-nums font-bold">
-                  {breakdown.total}/{service.maxScore}
-                </span>
-              </div>
             </div>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              Four Pillars
+              Pillar Details
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <PillarSection
-                label="MCP Server"
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <PillarCard
+                title="MCP Server"
                 status={service.mcp.status}
-                score={breakdown.mcp}
-                maxScore={pillarMaxScores.mcp}
                 details={[
-                  { label: "package", value: service.mcp.package },
+                  { label: "Package", value: service.mcp.package },
                 ]}
                 link={service.links.mcpDocs}
               />
-              <PillarSection
-                label="Platform API"
+              <PillarCard
+                title="Platform API"
                 status={service.platformApi.status}
-                score={breakdown.platformApi}
-                maxScore={pillarMaxScores.api}
                 details={[
-                  { label: "type", value: service.platformApi.type },
+                  { label: "Type", value: service.platformApi.type },
                 ]}
                 link={service.links.apiDocs}
               />
-              <PillarSection
-                label="CLI"
+              <PillarCard
+                title="CLI"
                 status={service.cli.status}
-                score={breakdown.cli}
-                maxScore={pillarMaxScores.cli}
                 details={[
-                  { label: "name", value: service.cli.name },
-                  { label: "json", value: service.cli.supportsJson },
-                  { label: "non-interactive", value: service.cli.nonInteractive },
+                  { label: "Name", value: service.cli.name },
+                  { label: "JSON output", value: service.cli.supportsJson ? "Yes" : undefined },
+                  { label: "Non-interactive", value: service.cli.nonInteractive ? "Yes" : undefined },
+                  { label: "Install", value: service.cli.installCmd },
                 ]}
                 link={service.links.cliDocs}
               />
-              <PillarSection
-                label="Skills"
+              <PillarCard
+                title="Agent Skills"
                 status={service.skills.status}
-                score={breakdown.skills}
-                maxScore={pillarMaxScores.skills}
                 details={[
-                  { label: "skill file", value: service.skills.hasSkillFile },
-                  { label: "agent rules", value: service.skills.hasAgentRules },
-                  { label: "prompts", value: service.skills.hasPrompts },
+                  { label: "Skill file", value: service.skills.hasSkillFile ? "Yes" : undefined },
+                  { label: "Agent rules", value: service.skills.hasAgentRules ? "Yes" : undefined },
+                  { label: "Prompts", value: service.skills.hasPrompts ? "Yes" : undefined },
                 ]}
                 link={service.links.skillsDocs}
               />
@@ -333,131 +244,80 @@ export default async function ServicePage({
 
           <section className="space-y-3">
             <h2 className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              Docs Signals
+              AI Docs
             </h2>
-            <div className="flex flex-wrap gap-1.5">
-              <DocSignal
-                label="llms.txt"
-                active={service.docs.llmsTxt}
-                href={service.docs.llmsTxtUrl}
-              />
-              <DocSignal
-                label="Copy MD"
-                active={service.docs.copyMarkdown}
-                href={service.docsUrl}
-              />
-              <DocSignal
-                label="AI Quickstart"
-                active={service.docs.aiQuickstart}
-                href={service.docs.aiQuickstartUrl}
-              />
-              <DocSignal
-                label="OpenAPI"
-                active={service.docs.openApiSpec}
-                href={service.links.apiDocs}
-              />
+            <div className="flex flex-wrap gap-2">
+              <DocSignal label="llms.txt" active={service.docs.llmsTxt} href={service.docs.llmsTxtUrl} />
+              <DocSignal label="OpenAPI" active={service.docs.openApiSpec} href={service.links.apiDocs} />
+              <DocSignal label="AI Quickstart" active={service.docs.aiQuickstart} href={service.docs.aiQuickstartUrl} />
+              <DocSignal label="Copy MD" active={service.docs.copyMarkdown} />
             </div>
           </section>
 
-          {service.cli.status !== "none" && service.cli.installCmd && (
-            <section className="space-y-3">
-              <h2 className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                Install CLI
-              </h2>
-              <code className="block text-xs bg-muted/20 border border-border rounded px-3 py-2.5 font-mono">
-                {service.cli.installCmd}
-              </code>
-            </section>
-          )}
-
-          <section className="space-y-3">
-            <h2 className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              Links
-            </h2>
-            <div className="space-y-1.5 text-xs">
-              {service.links.github && (
-                <a
-                  href={service.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  github →
-                </a>
-              )}
-              {service.links.mcpDocs && (
-                <a
-                  href={service.links.mcpDocs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  mcp docs →
-                </a>
-              )}
-              {service.links.cliDocs && (
-                <a
-                  href={service.links.cliDocs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  cli docs →
-                </a>
-              )}
-              {service.links.apiDocs && (
-                <a
-                  href={service.links.apiDocs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  api docs →
-                </a>
-              )}
-              {service.links.skillsDocs && (
-                <a
-                  href={service.links.skillsDocs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  skills docs →
-                </a>
-              )}
-              {service.docs.llmsTxtUrl && (
-                <a
-                  href={service.docs.llmsTxtUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  llms.txt →
-                </a>
-              )}
-              {service.docs.aiQuickstartUrl && (
-                <a
-                  href={service.docs.aiQuickstartUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  ai quickstart →
-                </a>
-              )}
-            </div>
-          </section>
-
-          <div className="border-t border-border/30 pt-4">
+          <div className="border-t border-border pt-6 flex items-center justify-between">
             <Link
               href="/"
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
-              ← view all rankings
+              ← all rankings
+            </Link>
+            <Link
+              href={`/category/${service.category}`}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              more {service.category} tools →
             </Link>
           </div>
-        </div>
+        </main>
       </div>
     </>
+  );
+}
+
+function PillarCard({
+  title,
+  status,
+  details,
+  link,
+}: {
+  title: string;
+  status: PillarStatus;
+  details: { label: string; value: string | undefined }[];
+  link?: string;
+}) {
+  const filtered = details.filter((d) => d.value !== undefined);
+
+  return (
+    <div className="border border-border rounded-lg p-4 space-y-2">
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-medium">{title}</span>
+        <span
+          className="text-[10px] font-bold uppercase"
+          style={{ color: statusColor(status) }}
+        >
+          {statusLabel(status)}
+        </span>
+      </div>
+      {filtered.length > 0 && (
+        <div className="space-y-1">
+          {filtered.map((d) => (
+            <div key={d.label} className="flex items-center justify-between text-[10px]">
+              <span className="text-muted-foreground">{d.label}</span>
+              <span className="text-foreground/70 font-mono truncate ml-2 max-w-[200px]">{d.value}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-[10px] text-muted-foreground hover:text-foreground transition-colors pt-1"
+        >
+          docs →
+        </a>
+      )}
+    </div>
   );
 }
