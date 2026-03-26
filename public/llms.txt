@@ -1,0 +1,37 @@
+# Agent Stack
+
+> Developer tools ranked by AI agent readiness.
+
+Agent Stack ranks developer tools by how ready they are for AI coworkers. Each tool is scored across 5 dimensions, max 100 points.
+
+## Scoring (5 pillars, 20 points each)
+
+- MCP Server: official (20), community (12), none (0)
+- Platform API: official (20), community (12), none (0)
+- CLI: official (12) + json output (4) + non-interactive (4)
+- Agent Skills: official (8) + skill file (4) + agent rules (4) + prompts (4)
+- AI Docs: llms.txt (5) + OpenAPI spec (5) + AI quickstart (5) + copy markdown (5)
+
+## Stats
+
+- 68 tools ranked across 33 categories
+- 8 tools with perfect 100: GitHub, Neon, Clerk, Stripe, PlanetScale, Render, Better Auth, Prisma
+- Categories include: auth, database, deploy, jobs, email, files, messaging, edge, code, scraping, payments, cache, monitoring, search, voice, browser, memory, ai-search, compute-sandbox, saas-integration, and more
+
+## Top 10
+
+1. GitHub (100) - code
+2. Neon (100) - database
+3. Clerk (100) - auth
+4. Stripe (100) - payments
+5. PlanetScale (100) - database
+6. Render (100) - deploy
+7. Better Auth (100) - auth
+8. Prisma (100) - orm
+9. Vercel (96) - deploy
+10. Supabase (95) - database
+
+## Source
+
+https://agent-stack.crafter.run
+https://github.com/crafter-station/agent-stack

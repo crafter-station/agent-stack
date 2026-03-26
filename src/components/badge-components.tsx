@@ -1,3 +1,5 @@
+"use client";
+
 import type { Category, PillarStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
